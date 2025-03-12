@@ -1,0 +1,28 @@
+---
+type Props = {
+  title: string;
+  description: string;
+  images?: string;
+};
+
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://example.com"
+);
+
+const { title, description, images = "/og-image.png" }: Props = Astro.props;
+---
+
+<!-- 页面内SEO  On-Page SEO -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<meta name="google" content="notranslate" />
+
+<!-- 标准链接  Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
