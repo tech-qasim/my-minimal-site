@@ -1,19 +1,24 @@
 ---
 import "@styles/global.css";
 import Head from "@components/Head.astro";
+import { SITE } from "@consts";
 
 type Props = {
   title: string;
   description: string;
-  images?: string;
+  image?: string;
 };
 
-const { title, description, images }: Props = Astro.props;
+const { title, description, image }: Props = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Head title={title} description={description} images={images} />
+    <Head
+      title={`${title} | ${SITE.title}`}
+      description={description}
+      image={image}
+    />
   </head>
 </html>
