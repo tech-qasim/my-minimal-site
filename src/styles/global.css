@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@layer base {
+  @font-face {
+    font-family: "Nubmers";
+    unicode-range: U+0030-0039;
+    src: url("/fonts/Geist[wght].woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Onest";
+    src: url("/fonts/Onest[wght].woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "ShangguSansSCVF";
+    src: url("/fonts/ShangguSansSC-VF.ttf") format("ttf");
+  }
+
+  @font-face {
+    font-family: "CJKEmDash";
+    unicode-range: U+2014, U+2E3A-2E3B;
+    src: url("/fonts/ZhudouSansVF-subset.woff2") format("woff2");
+  }
+}
