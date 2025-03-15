@@ -1,4 +1,33 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+}
+
+@layer base {
+  :root {
+    --background: 210 20% 99%;
+    --foreground: 240 14% 4%;
+    --border: 240 5.9% 90%;
+  }
+
+  .dark {
+    --background: 240 14% 4%;
+    --foreground: 210 20% 99%;
+    --border: 220 14.3% 10.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
 
 @layer base {
   @font-face {
@@ -21,5 +50,14 @@
     font-family: "CJKEmDash";
     unicode-range: U+2014, U+2E3A-2E3B;
     src: url("/fonts/ZhudouSansVF-subset.woff2") format("woff2");
+  }
+}
+
+html {
+  color-scheme: light;
+  /* background-color: var(--color-background); */
+  font-family: "CJKEmDash", "Nubmers", "Onest", "ShangguSansSCVF", sans-serif;
+  @variant dark {
+    color-scheme: dark;
   }
 }

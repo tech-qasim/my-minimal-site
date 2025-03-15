@@ -1,0 +1,17 @@
+---
+import HeaderGradient from "@components/HeaderGradient.tsx";
+import Link from "@components/Link.astro";
+---
+
+<HeaderGradient />
+<header class="border-b">
+  <div class="mx-auto max-w-3xl flex justify-between px-6 py-4 lg:px-8">
+    <div class="flex gap-6 items-center">
+      <Link href="/">
+        <svg class="size-7 fill-current">
+          <use href="/favicon.svg#logo" />
+        </svg>
+      </Link>
+    </div>
+  </div>
+</header>
