@@ -5,9 +5,12 @@
 
 @theme {
   --color-border: hsl(var(--border));
+  
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
+  
   --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
 }
 
 @layer base {
@@ -16,6 +19,7 @@
     --foreground: 240 10% 3.9%;
 
     --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
 
     --border: 240 5.9% 90%;
   }
@@ -25,6 +29,7 @@
     --foreground: 0 0% 98%;
 
     --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
 
     --border: 240 3.7% 15.9%;
   }
@@ -40,7 +45,7 @@
     background-color: var(--color-background);
     font-family: "CJKEmDash", "Nubmers", "Onest", "ShangguSansSCVF", sans-serif;
     /* 添加全局过渡效果 */
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     @variant dark {
       color-scheme: dark;
     }
