@@ -64,7 +64,11 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button onClick={handleClick} className="relative size-5 flex items-center justify-center" aria-label="切换主题">
+    <button
+      onClick={handleClick}
+      className="relative size-5 flex items-center justify-center cursor-pointer"
+      aria-label="切换主题"
+    >
       <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
