@@ -12,23 +12,38 @@
 
 @layer base {
   :root {
-    --background: 210 20% 99%;
-    --foreground: 240 14% 4%;
+    --background: 210 40% 98%;
+    --foreground: 240 10% 3.9%;
+
+    --accent: 240 4.8% 95.9%;
+
     --border: 240 5.9% 90%;
-    --accent: 240 5.9% 90%;
   }
 
   .dark {
-    --background: 240 14% 4%;
-    --foreground: 210 20% 99%;
-    --border: 220 14.3% 10.9%;
-    --accent: 220 14.3% 10.9%;
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --accent: 240 3.7% 15.9%;
+
+    --border: 240 3.7% 15.9%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html {
+    color-scheme: light;
+    background-color: var(--color-background);
+    font-family: "CJKEmDash", "Nubmers", "Onest", "ShangguSansSCVF", sans-serif;
+    /* 添加全局过渡效果 */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    @variant dark {
+      color-scheme: dark;
+    }
   }
 }
 
@@ -53,14 +68,5 @@
     font-family: "CJKEmDash";
     unicode-range: U+2014, U+2E3A-2E3B;
     src: url("/fonts/ZhudouSansVF-subset.woff2") format("woff2");
-  }
-}
-
-html {
-  color-scheme: light;
-  background-color: var(--color-background);
-  font-family: "CJKEmDash", "Nubmers", "Onest", "ShangguSansSCVF", sans-serif;
-  @variant dark {
-    color-scheme: dark;
   }
 }

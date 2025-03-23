@@ -18,7 +18,7 @@ import SectionDivider from "@components/SectionDivider.tsx";
       <div class="flex gap-2 sm:flex">
         {
           LINKS.map((link) => (
-            <Link href={link.url} bg>
+            <Link href={link.url} background>
               {link.name}
             </Link>
           ))
@@ -26,22 +26,15 @@ import SectionDivider from "@components/SectionDivider.tsx";
       </div>
     </div>
     <div class="flex gap-2 items-center">
-      <ThemeToggle />
+      <ThemeToggle client:load />
     </div>
   </div>
 </header>
 <div class="relative max-w-3xl mx-auto pointer-events-none">
-  <div
-    aria-hidden="true"
-    class="absolute inset-x-0 -top-14 bottom-0 mx-auto max-w-3xl"
-  >
-    <div
-      class="to-(--color-border)/50 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"
-    >
+  <div aria-hidden="true" class="absolute inset-x-0 -top-14 bottom-0 mx-auto max-w-3xl">
+    <div class="to-(--color-border)/50 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
     </div>
-    <div
-      class="to-(--color-border)/50 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"
-    >
+    <div class="to-(--color-border)/50 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
     </div>
   </div>
 </div>
