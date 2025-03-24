@@ -1,8 +1,8 @@
 ---
-import { LINKS } from "@consts";
-import HeaderGradient from "@components/HeaderGradient.tsx";
-import Link from "@components/Link.astro";
+import { HEADER_LINKS } from "@consts";
 import ThemeToggle from "@components/ThemeToggle.tsx";
+import HeaderLink from "@components/HeaderLink.astro";
+import HeaderGradient from "@components/HeaderGradient.tsx";
 import SectionDivider from "@components/SectionDivider.tsx";
 ---
 
@@ -17,10 +17,10 @@ import SectionDivider from "@components/SectionDivider.tsx";
       </a>
       <div class="flex gap-2 sm:flex">
         {
-          LINKS.map((link) => (
-            <Link href={link.url} background>
+          HEADER_LINKS.map((link) => (
+            <HeaderLink href={link.url} background>
               {link.name}
-            </Link>
+            </HeaderLink>
           ))
         }
       </div>
@@ -32,10 +32,8 @@ import SectionDivider from "@components/SectionDivider.tsx";
 </header>
 <div class="relative max-w-3xl mx-auto pointer-events-none">
   <div aria-hidden="true" class="absolute inset-x-0 -top-14 bottom-0 mx-auto max-w-3xl">
-    <div class="to-(--color-border)/50 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
-    </div>
-    <div class="to-(--color-border)/50 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
-    </div>
+    <div class="to-(--color-border)/50 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"></div>
+    <div class="to-(--color-border)/50 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"></div>
   </div>
 </div>
 <SectionDivider />

@@ -3,6 +3,7 @@ import "@styles/global.css";
 import { SITE } from "@consts";
 import Head from "@components/Head.astro";
 import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 
 type Props = {
   title: string;
@@ -23,6 +24,7 @@ const { title, description, image }: Props = Astro.props;
     <main>
       <slot />
     </main>
+    <Footer />
     <div class="pointer-events-none bg-white dark:bg-black fixed bottom-0 left-0 h-28 [mask-image:linear-gradient(transparent,#000000)] w-full" />
   </body>
 </html>

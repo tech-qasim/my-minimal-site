@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon, Monitor } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
+import { useStore } from "@nanostores/react";
+import { themeStore } from "@stores/theme";
 
 const iconVariants = {
   visible: {
@@ -17,7 +19,7 @@ const iconVariants = {
 
 const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
+  const theme = useStore(themeStore);
   const controlsSun = useAnimation();
   const controlsMoon = useAnimation();
   const controlsSystem = useAnimation();
@@ -25,13 +27,12 @@ const ThemeToggle = () => {
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | "system";
-    setTheme(savedTheme || "system");
+    themeStore.set(savedTheme || "system");
   }, []);
 
   const applyTheme = (newTheme: string) => {
     const root = document.documentElement;
-    const isDark =
-      newTheme === "dark" || (newTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const isDark = newTheme === "dark" || (newTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
     root.classList.toggle("dark", isDark);
   };
 
@@ -60,20 +61,12 @@ const ThemeToggle = () => {
       dark: "system",
       system: "light",
     };
-    setTheme(themeMap[theme] as "light" | "dark" | "system");
+    themeStore.set(themeMap[theme] as "light" | "dark" | "system");
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="relative size-5 flex items-center justify-center cursor-pointer"
-      aria-label="切换主题"
-    >
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.9 }}
-        className="relative size-5 flex items-center justify-center"
-      >
+    <button onClick={handleClick} className="relative size-5 flex items-center justify-center cursor-pointer" aria-label="切换主题">
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="relative size-5 flex items-center justify-center">
         <motion.div
           className="absolute inset-0"
           variants={iconVariants}

@@ -13,13 +13,28 @@ export const SITE: Site = {
   description: "Astro Dk2 is a blog theme built with Astro.js and Dnzzk2.",
 };
 
-export const LINKS: Link[] = [
+export const HEADER_LINKS: Link[] = [
   {
     name: "Posts",
-    url: "/",
+    url: "/posts",
   },
   {
     name: "Works",
     url: "/works",
+  },
+];
+
+export const FOOTER_LINKS: Link[] = [
+  {
+    name: "Readme",
+    url: "/",
+  },
+  {
+    name: "Posts",
+    url: "/posts",
+  },
+  {
+    name: "Projects",
+    url: "/projects",
   },
 ];
