@@ -53,8 +53,6 @@
     color-scheme: light;
     background-color: var(--color-background);
     font-family: "CJKEmDash", "Nubmers", "Onest", "ShangguSansSCVF", sans-serif;
-    /* 添加全局过渡效果 */
-    transition: background-color 0.3s ease, color 0.3s ease;
     @variant dark {
       color-scheme: dark;
     }
