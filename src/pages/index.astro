@@ -1,5 +1,30 @@
 ---
+import SectionDivider from "@components/SectionDivider";
+import { SITE } from "@consts";
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout title="Home" description="Home page" />
+<Layout title="Readme" description={SITE.description}>
+  <div class="relative z-10">
+    <div class="py-8 pb-10 px-8">
+      <h1 class="tracking-tight text-4xl sm:text-5xl">
+        Astro Dk2
+        <span class="text-muted-foreground font-title font-extralight text-3xl sm:text-4xl block text-balance">
+          A Modern Blog Theme for Astro
+        </span>
+      </h1>
+      <div class="pro text-muted-foreground text-balance">
+        <p class="mt-6">
+          Astro DK2 is a modern, high-performance blog theme built on Astro and inspired by
+          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent developer.
+        </p>
+        <p>
+          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth interactive
+          experience, Support switching between light and dark themes and provide smooth transition animations.
+        </p>
+      </div>
+    </div>
+    <SectionDivider />
+    <div class="py-8 pb-10 px-8"></div>
+  </div>
+</Layout>
