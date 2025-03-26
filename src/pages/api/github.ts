@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import NodeCache from "node-cache";
 
 const CACHE_DURATION = 3600 * 1.5;
-const USE_MOCK_DATA_FOR_DEVELOPMENT = false;
+const USE_MOCK_DATA_FOR_DEVELOPMENT = true;
 const DEFAULT_GITHUB_RESPONSE = {
   viewer: {
     login: "",
@@ -22,10 +22,10 @@ const DEFAULT_GITHUB_RESPONSE = {
   },
 };
 
-// 初始化 node-cache
+// 初始化 node-cache - Initialize node cache
 const cache = new NodeCache({ stdTTL: CACHE_DURATION });
 
-export const getGithubInfo: APIRoute = async () => {
+export const GET: APIRoute = async () => {
   try {
     if (process.env.NODE_ENV === "development" && USE_MOCK_DATA_FOR_DEVELOPMENT) {
       return new Response(JSON.stringify(DEFAULT_GITHUB_RESPONSE), {
@@ -35,7 +35,7 @@ export const getGithubInfo: APIRoute = async () => {
       });
     }
 
-    // 缓存键
+    // 缓存键 - cache key
     const cacheKey = `github-data-${new Date().toISOString().split("T")[0]}`;
     const cachedResponse = cache.get(cacheKey);
 
@@ -95,7 +95,7 @@ export const getGithubInfo: APIRoute = async () => {
 
     const data = await res.json();
 
-    // 缓存数据
+    // 缓存数据 - cache data
     cache.set(cacheKey, data);
 
     return new Response(JSON.stringify(data), {
