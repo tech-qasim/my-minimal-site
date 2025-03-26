@@ -19,8 +19,8 @@ export const HEADER_LINKS: Link[] = [
     url: "/posts",
   },
   {
-    name: "Works",
-    url: "/works",
+    name: "Projects",
+    url: "/Projects",
   },
 ];
 

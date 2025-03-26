@@ -2,6 +2,10 @@
 import SectionDivider from "@components/SectionDivider";
 import { SITE } from "@consts";
 import Layout from "@layouts/Layout.astro";
+import { getGithubInfo } from "./api/github.ts";
+
+const githubInfo = await getGithubInfo(Astro);
+console.log(githubInfo);
 ---
 
 <Layout title="Readme" description={SITE.description}>
@@ -16,11 +20,13 @@ import Layout from "@layouts/Layout.astro";
       <div class="pro text-muted-foreground text-balance">
         <p class="mt-6">
           Astro DK2 is a modern, high-performance blog theme built on Astro and inspired by
-          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent developer.
+          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent
+          developer.
         </p>
         <p>
-          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth interactive
-          experience, Support switching between light and dark themes and provide smooth transition animations.
+          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth
+          interactive experience, Support switching between light and dark themes and provide smooth transition
+          animations.
         </p>
       </div>
     </div>
