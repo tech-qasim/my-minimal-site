@@ -6,6 +6,7 @@ type Site = {
 type Link = {
   name: string;
   url: string;
+  icon?: string;
 };
 
 export const SITE: Site = {
@@ -38,3 +39,5 @@ export const FOOTER_LINKS: Link[] = [
     url: "/projects",
   },
 ];
+
+export const SOLUTION_LINKS: Link[] = [];

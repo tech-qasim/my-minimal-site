@@ -59,7 +59,6 @@ const ogImage = new URL(image, Astro.url);
 
 <script is:inline>
   // 这段脚本需要在页面加载前执行
-  console.log(localStorage.getItem("theme"));
   const theme = (() => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");

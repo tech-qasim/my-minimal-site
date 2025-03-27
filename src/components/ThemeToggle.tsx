@@ -30,12 +30,6 @@ const ThemeToggle = () => {
     themeStore.set(savedTheme || "system");
   }, []);
 
-  const applyTheme = (newTheme: string) => {
-    const root = document.documentElement;
-    const isDark = newTheme === "dark" || (newTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    root.classList.toggle("dark", isDark);
-  };
-
   useEffect(() => {
     if (!mounted) return;
 
@@ -54,6 +48,12 @@ const ThemeToggle = () => {
   }, [theme, mounted, controlsSun, controlsMoon, controlsSystem]);
 
   if (!mounted) return null;
+
+  const applyTheme = (newTheme: string) => {
+    const root = document.documentElement;
+    const isDark = newTheme === "dark" || (newTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    root.classList.toggle("dark", isDark);
+  };
 
   const handleClick = () => {
     const themeMap = {
