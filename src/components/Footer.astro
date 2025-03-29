@@ -3,9 +3,6 @@ import { FOOTER_LINKS } from "@consts";
 import SectionDivider from "@components/SectionDivider.tsx";
 import FooterLink from "@components/FooterLink.astro";
 import ThemeToggle from "@components/ThemeToggle.tsx";
-import LineiconsAstro from '~icons/lineicons/astro';
-import RiVercelLine from '~icons/ri/vercel-line';
-import MingcuteGithubFill from '~icons/mingcute/github-fill';
 ---
 
 <SectionDivider />
@@ -17,12 +14,19 @@ import MingcuteGithubFill from '~icons/mingcute/github-fill';
       </div>
       <div class="text-sm text-muted-foreground px-8 py-4">
         <div class="items-center flex flex-wrap gap-4">
-          <a href="https://astro.build" target="_blank" rel="nofollow" class="items-center flex gap-1 dark:hover:text-white"> Built with <LineiconsAstro class="size-4 inline" /></a>
-          <a href="https://www.vercel.com" target="_blank" rel="nofollow" class="items-center flex gap-1 dark:hover:text-white">
-            Deployed on <RiVercelLine class="size-4 inline mb-[1px]" /> 
+          <a href="https://astro.build" target="_blank" rel="nofollow" class="items-center flex gap-1 dark:hover:text-white">
+            Built with <span class="icon-[lineicons--astro] size-4 inline"></span>
           </a>
-          <a href="https://github.com/Dnzzk2/astro-theme" target="_blank" rel="nofollow" class="items-center flex gap-1 dark:hover:text-white">
-            Source on <MingcuteGithubFill class="size-4 inline mb-[1px]" />
+          <a href="https://www.vercel.com" target="_blank" rel="nofollow" class="items-center flex gap-1 dark:hover:text-white">
+            Deployed on <span class="icon-[ri--vercel-line] size-4 inline mb-[1px]"></span>
+          </a>
+          <a
+            href="https://github.com/Dnzzk2/astro-theme"
+            target="_blank"
+            rel="nofollow"
+            class="items-center flex gap-1 dark:hover:text-white"
+          >
+            Source on <span class="icon-[mingcute--github-fill] size-4 inline mb-[1px]"></span>
           </a>
           <div class="grow"></div>
           <ThemeToggle client:load />

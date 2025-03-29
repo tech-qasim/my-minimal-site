@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Sun, Moon, Monitor } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
 import { useStore } from "@nanostores/react";
 import { themeStore } from "@stores/theme";
@@ -74,7 +73,7 @@ const ThemeToggle = () => {
           animate={controlsSun}
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
-          <Sun className="size-5" fill="currentColor" />
+          <span className="icon-[f7--sun-max-fill] size-5"></span>
         </motion.div>
         <motion.div
           className="absolute inset-0"
@@ -83,7 +82,7 @@ const ThemeToggle = () => {
           animate={controlsSystem}
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
-          <Monitor className="size-5 dark:rotate-180" />
+          <span className="icon-[majesticons--monitor-line] size-5 dark:rotate-180"></span>
         </motion.div>
         <motion.div
           className="absolute inset-0"
@@ -92,7 +91,7 @@ const ThemeToggle = () => {
           animate={controlsMoon}
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
-          <Moon className="size-5" fill="currentColor" />
+          <span className="icon-[tabler--moon-filled] size-5"></span>
         </motion.div>
       </motion.div>
     </button>
