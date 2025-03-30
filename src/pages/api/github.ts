@@ -1,8 +1,9 @@
+import { GITHUB_CONFIG } from "@consts";
 import type { APIRoute } from "astro";
 import NodeCache from "node-cache";
 
-const CACHE_DURATION = 3600 * 1.5;
-const USE_MOCK_DATA_FOR_DEVELOPMENT = true;
+const { CACHE_DURATION, USE_MOCK_DATA_FOR_DEVELOPMENT } = GITHUB_CONFIG;
+
 const DEFAULT_GITHUB_RESPONSE = {
   viewer: {
     login: "",
@@ -11,7 +12,7 @@ const DEFAULT_GITHUB_RESPONSE = {
       nodes: [],
     },
     followers: {
-      totalCount: 0,
+      totalCount: 1000,
     },
     contributionsCollection: {
       contributionCalendar: {

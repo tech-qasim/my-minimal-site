@@ -1,11 +1,24 @@
 ---
 import SectionDivider from "@components/SectionDivider";
-import { SITE } from "@consts";
+import { SITE, SOLUTION_LINKS } from "@consts";
 import Layout from "@layouts/Layout.astro";
 import { GET } from "./api/github.ts";
+import SocialLink from "@components/SocialLink.astro";
+import { GITHUB_CONFIG } from "@consts";
 
-const githubInfo = await GET(Astro);
-const githubData = await githubInfo.json();
+const { ENABLED } = GITHUB_CONFIG;
+
+let followerCount = null;
+
+if (ENABLED) {
+  try {
+    const githubInfo = await GET(Astro);
+    const githubData = await githubInfo.json();
+    followerCount = githubData?.viewer.followers.totalCount || null;
+  } catch (error) {
+    console.error("Failed to fetch GitHub data:", error);
+  }
+}
 ---
 
 <Layout title="Readme" description={SITE.description}>
@@ -27,7 +40,17 @@ const githubData = await githubInfo.json();
           experience, Support switching between light and dark themes and provide smooth transition animations.
         </p>
       </div>
-      <div class="mt-6 flex gap-6"></div>
+      <div class="mt-6 flex gap-6">
+        {
+          SOLUTION_LINKS.map((item) => {
+            const isGithub = item.name.toLowerCase() === "github";
+            if (isGithub && ENABLED && followerCount !== null) {
+              return <SocialLink icon={item.icon} count={followerCount} label="followers" aria-label="Follow on Github" />;
+            }
+            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />;
+          })
+        }
+      </div>
     </div>
     <SectionDivider />
     <div class="py-8 pb-10 px-8"></div>
