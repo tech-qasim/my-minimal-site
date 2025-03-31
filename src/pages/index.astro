@@ -8,13 +8,14 @@ import { GITHUB_CONFIG } from "@consts";
 
 const { ENABLED } = GITHUB_CONFIG;
 
-let followerCount = null;
+let githubFollowerCount = null;
+let githubGraphqlData = [];
 
 if (ENABLED) {
   try {
     const githubInfo = await GET(Astro);
     const githubData = await githubInfo.json();
-    followerCount = githubData?.viewer.followers.totalCount || null;
+    githubFollowerCount = githubData?.data.viewer.followers.totalCount || null;
   } catch (error) {
     console.error("Failed to fetch GitHub data:", error);
   }
@@ -44,8 +45,8 @@ if (ENABLED) {
         {
           SOLUTION_LINKS.map((item) => {
             const isGithub = item.name.toLowerCase() === "github";
-            if (isGithub && ENABLED && followerCount !== null) {
-              return <SocialLink icon={item.icon} count={followerCount} label="followers" aria-label="Follow on Github" />;
+            if (isGithub && ENABLED && githubFollowerCount !== null) {
+              return <SocialLink icon={item.icon} count={githubFollowerCount} label="followers" aria-label="Follow on Github" />;
             }
             return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />;
           })
@@ -53,6 +54,14 @@ if (ENABLED) {
       </div>
     </div>
     <SectionDivider />
-    <div class="py-8 pb-10 px-8"></div>
+    <!-- 真实Github数据渲染 - Real Github data rendering -->
+    {
+      ENABLED && githubGraphqlData.length > 0 && (
+        <div class="py-8 pb-10 px-8">
+          <h2 class="text-3xl">Spotlight</h2>
+          <p class="text-muted-foreground mb-8 mt-1">Most recent contributions.</p>
+        </div>
+      )
+    }
   </div>
 </Layout>

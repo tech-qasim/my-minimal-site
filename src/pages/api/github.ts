@@ -5,19 +5,21 @@ import NodeCache from "node-cache";
 const { CACHE_DURATION, USE_MOCK_DATA_FOR_DEVELOPMENT } = GITHUB_CONFIG;
 
 const DEFAULT_GITHUB_RESPONSE = {
-  viewer: {
-    login: "",
-    repositories: {
-      totalCount: 0,
-      nodes: [],
-    },
-    followers: {
-      totalCount: 1000,
-    },
-    contributionsCollection: {
-      contributionCalendar: {
-        totalContributions: 0,
-        weeks: [],
+  data: {
+    viewer: {
+      login: "",
+      repositories: {
+        totalCount: 0,
+        nodes: [],
+      },
+      followers: {
+        totalCount: 1000,
+      },
+      contributionsCollection: {
+        contributionCalendar: {
+          totalContributions: 0,
+          weeks: [],
+        },
       },
     },
   },
@@ -28,7 +30,7 @@ const cache = new NodeCache({ stdTTL: CACHE_DURATION });
 
 export const GET: APIRoute = async () => {
   try {
-    if (process.env.NODE_ENV === "development" && USE_MOCK_DATA_FOR_DEVELOPMENT) {
+    if (import.meta.env.DEV && USE_MOCK_DATA_FOR_DEVELOPMENT) {
       return new Response(JSON.stringify(DEFAULT_GITHUB_RESPONSE), {
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +91,7 @@ export const GET: APIRoute = async () => {
     const res = await fetch("https://api.github.com/graphql", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
       },
       body: JSON.stringify({ query }),
     });
