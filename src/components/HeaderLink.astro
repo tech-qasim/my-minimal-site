@@ -20,6 +20,7 @@ const isActive = Astro.url.pathname === href;
     isActive && "text-foreground",
     className
   )}
+  rel="prefetch"
   {...props}
 >
   <slot />

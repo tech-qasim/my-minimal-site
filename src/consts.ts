@@ -21,7 +21,7 @@ type SocialLink = {
 export const GITHUB_CONFIG = {
   ENABLED: true,
   CACHE_DURATION: 60 * 60 * 1.5,
-  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
+  USE_MOCK_DATA_FOR_DEVELOPMENT: false,
 };
 
 export const SITE: Site = {

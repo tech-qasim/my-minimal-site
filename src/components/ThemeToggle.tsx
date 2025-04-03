@@ -50,8 +50,17 @@ const ThemeToggle = () => {
 
   const applyTheme = (newTheme: string) => {
     const root = document.documentElement;
+
+    // 添加过渡类
+    root.classList.add("theme-transition");
+
     const isDark = newTheme === "dark" || (newTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
     root.classList.toggle("dark", isDark);
+
+    // 移除过渡类
+    setTimeout(() => {
+      root.classList.remove("theme-transition");
+    }, 300);
   };
 
   const handleClick = () => {
