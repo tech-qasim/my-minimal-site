@@ -82,7 +82,7 @@ const ThemeToggle = () => {
           animate={controlsSystem}
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
-          <span className="icon-[majesticons--monitor-line] size-5 dark:rotate-180"></span>
+          <span className="icon-[majesticons--monitor-line] size-5"></span>
         </motion.div>
         <motion.div
           className="absolute inset-0"

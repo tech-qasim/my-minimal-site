@@ -23,7 +23,7 @@ const { weeks }: Props = Astro.props;
           });
 
           const tooltipContent = `${formattedDate} — ${
-            contributionCount === 1 ? "1 contribution 😶" : contributionCount === 0 ? "Rest day 🏖" : `${contributionCount} contributions`
+            contributionCount === 1 ? "1 contribution 🌟" : contributionCount === 0 ? "Rest day 🌼" : `${contributionCount} contributions`
           }`;
 
           return (
@@ -47,3 +47,13 @@ const { weeks }: Props = Astro.props;
     ))
   }
 </div>
+
+<script>
+  // 确保在页面加载时滚动到最右侧
+  window.addEventListener("load", () => {
+    const scrollContainer = document.querySelector(".overflow-x-auto");
+    if (scrollContainer) {
+      scrollContainer.scrollLeft = scrollContainer.scrollWidth;
+    }
+  });
+</script>
