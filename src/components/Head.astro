@@ -13,6 +13,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.url);
 ---
 
+<!-- 添加在最前面 -->
+<script is:inline>
+  // 立即执行主题初始化
+  (function () {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      document.documentElement.classList.add(localStorage.getItem("theme"));
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+    }
+  })();
+</script>
+
 <!-- 页面内SEO  On-Page SEO -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -56,28 +68,3 @@ const ogImage = new URL(image, Astro.url);
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImage} />
-
-<script is:inline>
-  // 这段脚本需要在页面加载前执行
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "system";
-    }
-    return "light";
-  })();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else if (theme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }
-</script>

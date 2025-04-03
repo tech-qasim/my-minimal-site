@@ -48,7 +48,7 @@ const { weeks }: Props = Astro.props;
   }
 </div>
 
-<script>
+<script is:inline>
   // 确保在页面加载时滚动到最右侧
   window.addEventListener("load", () => {
     const scrollContainer = document.querySelector(".overflow-x-auto");
