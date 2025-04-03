@@ -5,16 +5,25 @@ import Layout from "@layouts/Layout.astro";
 import { GET } from "./api/github.ts";
 import SocialLink from "@components/SocialLink.astro";
 import { GITHUB_CONFIG } from "@consts";
+import { padMissingWeeks } from "@lib/utils";
+import GithubContributions from "@components/GithubContributions.astro";
 
 const { ENABLED } = GITHUB_CONFIG;
 
 let githubFollowerCount = null;
-let githubGraphqlData = [];
+let githubGraphqlData: Additional.Github.ContributionDays[] = [];
 
 if (ENABLED) {
   try {
     const githubInfo = await GET(Astro);
     const githubData = await githubInfo.json();
+
+    // 默认53周，不足53周则填充
+    const last53weeks = githubData?.data?.viewer?.contributionsCollection?.contributionCalendar?.weeks.slice(-53);
+    const newWeeks = padMissingWeeks(last53weeks, 53);
+    const newWeeksData = newWeeks.flatMap((week) => week.contributionDays);
+
+    githubGraphqlData = newWeeksData;
     githubFollowerCount = githubData?.data.viewer.followers.totalCount || null;
   } catch (error) {
     console.error("Failed to fetch GitHub data:", error);
@@ -34,11 +43,13 @@ if (ENABLED) {
       <div class="pro text-muted-foreground text-balance">
         <p class="mt-6">
           Astro DK2 is a modern, high-performance blog theme built on Astro and inspired by
-          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent developer.
+          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent
+          developer.
         </p>
         <p>
-          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth interactive
-          experience, Support switching between light and dark themes and provide smooth transition animations.
+          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth
+          interactive experience, Support switching between light and dark themes and provide smooth transition
+          animations.
         </p>
       </div>
       <div class="mt-6 flex gap-6">
@@ -46,20 +57,36 @@ if (ENABLED) {
           SOLUTION_LINKS.map((item) => {
             const isGithub = item.name.toLowerCase() === "github";
             if (isGithub && ENABLED && githubFollowerCount !== null) {
-              return <SocialLink icon={item.icon} count={githubFollowerCount} label="followers" aria-label="Follow on Github" />;
+              return (
+                <SocialLink
+                  icon={item.icon}
+                  count={githubFollowerCount}
+                  label="followers"
+                  aria-label="Follow on Github"
+                />
+              );
             }
-            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />;
+            return (
+              <SocialLink
+                href={item.url}
+                icon={item.icon}
+                aria-label={`Link of ${item.name}`}
+                count={item.count}
+                label="followers"
+              />
+            );
           })
         }
       </div>
     </div>
     <SectionDivider />
-    <!-- 真实Github数据渲染 - Real Github data rendering -->
+    <!-- Github数据渲染 -  Github data rendering -->
     {
       ENABLED && githubGraphqlData.length > 0 && (
         <div class="py-8 pb-10 px-8">
           <h2 class="text-3xl">Spotlight</h2>
           <p class="text-muted-foreground mb-8 mt-1">Most recent contributions.</p>
+          <GithubContributions contributionsData={githubGraphqlData} />
         </div>
       )
     }

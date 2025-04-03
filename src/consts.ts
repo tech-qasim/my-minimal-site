@@ -19,7 +19,7 @@ type SocialLink = {
 // 控制是否启用 GitHub API 和一些相关参数
 // 启用：显示github的follower数量 和 最新的github graph
 export const GITHUB_CONFIG = {
-  ENABLED: false,
+  ENABLED: true,
   CACHE_DURATION: 60 * 60 * 1.5,
   USE_MOCK_DATA_FOR_DEVELOPMENT: true,
 };

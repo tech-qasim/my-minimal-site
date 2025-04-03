@@ -1,0 +1,169 @@
+---
+interface Props {
+  content: string;
+  class?: string;
+}
+
+const { content, class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={["tooltip-trigger relative inline-block", className]}
+  data-tooltip={content}
+>
+  <slot />
+</div>
+
+<script>
+  import {
+    computePosition,
+    autoPlacement,
+    offset,
+    arrow,
+    shift,
+  } from "@floating-ui/dom";
+
+  declare global {
+    interface Window {
+      tooltipInitialized: boolean;
+    }
+  }
+
+  if (!window.tooltipInitialized) {
+    window.tooltipInitialized = true;
+
+    let activeTooltip: HTMLElement | null = null;
+    let hideTimeout: number | null = null;
+
+    function initTooltips() {
+      const triggers = document.querySelectorAll("[data-tooltip]");
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener(
+          "mouseenter",
+          handleMouseEnter as EventListener
+        );
+        trigger.addEventListener("mouseleave", handleMouseLeave);
+        trigger.addEventListener(
+          "touchstart",
+          handleTouchStart as EventListener,
+          {
+            passive: false,
+          }
+        );
+      });
+    }
+
+    function handleMouseEnter(e: MouseEvent) {
+      const trigger = e.currentTarget as HTMLElement;
+      const content = trigger.getAttribute("data-tooltip");
+      if (content) {
+        // 清除任何待处理的隐藏操作
+        if (hideTimeout) {
+          clearTimeout(hideTimeout);
+          hideTimeout = null;
+        }
+        showTooltip(trigger, content);
+      }
+    }
+
+    function handleMouseLeave() {
+      // 使用延迟来避免tooltip闪烁
+      hideTimeout = window.setTimeout(() => {
+        hideTooltip();
+      }, 50);
+    }
+
+    function handleTouchStart(e: TouchEvent) {
+      e.preventDefault();
+      const trigger = e.currentTarget as HTMLElement;
+      const content = trigger.getAttribute("data-tooltip");
+      if (content) {
+        showTooltip(trigger, content);
+      }
+    }
+
+    async function showTooltip(trigger: HTMLElement, content: string) {
+      // 确保移除任何现有的tooltip
+      if (activeTooltip) {
+        activeTooltip.remove();
+        activeTooltip = null;
+      }
+
+      const tooltip = document.createElement("div");
+      tooltip.className =
+        "tooltip-floating fixed z-50 px-2 py-1 text-xs bg-zinc-900 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-900 rounded whitespace-nowrap pointer-events-none shadow-lg opacity-0 transition-opacity duration-200";
+      tooltip.textContent = content;
+
+      const arrowElement = document.createElement("div");
+      arrowElement.className =
+        "absolute w-2 h-2 bg-zinc-900 dark:bg-zinc-50 rotate-45 transform";
+      tooltip.appendChild(arrowElement);
+
+      document.body.appendChild(tooltip);
+      activeTooltip = tooltip;
+
+      const { x, y, placement, middlewareData } = await computePosition(
+        trigger,
+        tooltip,
+        {
+          placement: "top",
+          middleware: [
+            offset(8),
+            shift({ padding: 5 }),
+            autoPlacement({ allowedPlacements: ["top", "bottom"] }),
+            arrow({ element: arrowElement }),
+          ],
+        }
+      );
+
+      Object.assign(tooltip.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+
+      if (middlewareData.arrow) {
+        const { x: arrowX, y: arrowY } = middlewareData.arrow;
+        const staticSide = {
+          top: "bottom",
+          bottom: "top",
+        }[placement.split("-")[0]];
+
+        Object.assign(arrowElement.style, {
+          left: arrowX != null ? `${arrowX}px` : "",
+          top: arrowY != null ? `${arrowY}px` : "",
+          [staticSide as string]: "-4px",
+        });
+      }
+
+      requestAnimationFrame(() => {
+        tooltip.classList.add("opacity-100");
+      });
+    }
+
+    function hideTooltip() {
+      if (activeTooltip) {
+        activeTooltip.classList.remove("opacity-100");
+        activeTooltip.classList.add("opacity-0");
+
+        setTimeout(() => {
+          if (activeTooltip?.parentNode) {
+            activeTooltip.remove();
+            activeTooltip = null;
+          }
+        }, 200);
+      }
+    }
+
+    // 初始化
+    document.addEventListener("DOMContentLoaded", initTooltips);
+    document.addEventListener("astro:page-load", initTooltips);
+
+    // 点击其他地方关闭tooltip
+    document.addEventListener("touchstart", (e) => {
+      if (!(e.target as HTMLElement).closest("[data-tooltip]")) {
+        hideTooltip();
+      }
+    });
+  }
+</script>
