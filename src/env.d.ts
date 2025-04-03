@@ -10,3 +10,7 @@ declare namespace Additional {
     };
   }
 }
+
+interface ImportMetaEnv {
+  readonly SECRET_GITHUB_TOKEN: string;
+}

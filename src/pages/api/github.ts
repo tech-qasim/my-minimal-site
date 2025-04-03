@@ -1780,7 +1780,7 @@ export const GET: APIRoute = async () => {
     const res = await fetch("https://api.github.com/graphql", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+        Authorization: `Bearer ${import.meta.env.SECRET_GITHUB_TOKEN}`,
       },
       body: JSON.stringify({ query }),
     });
