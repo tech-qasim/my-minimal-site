@@ -50,6 +50,7 @@ const { weeks }: Props = Astro.props;
 
 <script is:inline>
   // 确保在页面加载时滚动到最右侧
+  // Ensure to scroll to the far right when the page loads
   window.addEventListener("load", () => {
     const scrollContainer = document.querySelector(".overflow-x-auto");
     if (scrollContainer) {

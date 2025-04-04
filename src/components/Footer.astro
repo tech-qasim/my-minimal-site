@@ -29,7 +29,9 @@ import ThemeToggle from "@components/ThemeToggle.tsx";
             Source on <span class="icon-[mingcute--github-fill] size-4 inline mb-[1px]"></span>
           </a>
           <div class="grow"></div>
-          <ThemeToggle client:idle />
+          <div transition:persist="footer-theme-toggle">
+            <ThemeToggle client:load />
+          </div>
         </div>
       </div>
     </div>

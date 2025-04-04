@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@consts";
+import { ClientRouter } from "astro:transitions";
 
 type Props = {
   title: string;
@@ -13,17 +14,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.url);
 ---
 
-<!-- 添加在最前面 -->
-<script is:inline>
-  // 立即执行主题初始化
-  (function () {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      document.documentElement.classList.add(localStorage.getItem("theme"));
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add("dark");
-    }
-  })();
-</script>
+<ClientRouter />
+
+<script is:inline src="/js/theme.js"></script>
 
 <!-- 页面内SEO  On-Page SEO -->
 <meta charset="UTF-8" />
@@ -68,23 +61,3 @@ const ogImage = new URL(image, Astro.url);
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImage} />
-
-<!-- 添加性能监控 -->
-<script is:inline>
-  // 简单的性能监控
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      if (window.performance) {
-        const timing = window.performance.timing;
-        const loadTime = timing.loadEventEnd - timing.navigationStart;
-        console.log("页面加载时间:", loadTime + "ms");
-
-        // 可以发送到分析服务
-        if (loadTime > 3000) {
-          // 记录慢加载
-          console.warn("页面加载过慢");
-        }
-      }
-    }, 0);
-  });
-</script>

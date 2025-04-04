@@ -25,8 +25,8 @@ import SectionDivider from "@components/SectionDivider.tsx";
         }
       </div>
     </div>
-    <div class="flex gap-2 items-center">
-      <ThemeToggle client:idle />
+    <div class="flex gap-2 items-center" transition:persist="header-theme-toggle">
+      <ThemeToggle client:load />
     </div>
   </div>
 </header>
