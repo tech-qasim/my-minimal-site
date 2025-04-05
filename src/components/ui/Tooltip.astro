@@ -125,14 +125,13 @@ const { content, class: className = "" } = Astro.props;
       // 创建更新位置的函数
       const updatePosition = async () => {
         const { x, y, placement, middlewareData } = await computePosition(trigger, tooltip, {
-          strategy: "fixed", // 使用fixed定位策略
+          strategy: "fixed",
           placement: "top",
           middleware: [
             offset(8),
             shift({
               padding: 5,
               boundary: document.body,
-              // 添加滚动容器配置
               rootBoundary: "viewport",
             }),
             autoPlacement({
@@ -146,16 +145,19 @@ const { content, class: className = "" } = Astro.props;
           ],
         });
 
-        // 获取目标元素的位置信息
         const triggerRect = trigger.getBoundingClientRect();
         const triggerCenter = {
           x: triggerRect.left + triggerRect.width / 2,
           y: triggerRect.top + triggerRect.height / 2,
         };
 
+        // 使用 CSS transform 来定位，这样可以避免缩放影响
         Object.assign(tooltip.style, {
-          left: `${x}px`,
-          top: `${y}px`,
+          position: "fixed",
+          left: "0",
+          top: "0",
+          transform: `translate3d(${x}px, ${y}px, 0)`,
+          transformOrigin: "top left",
         });
 
         if (middlewareData.arrow) {
@@ -164,8 +166,7 @@ const { content, class: className = "" } = Astro.props;
             bottom: "top",
           }[placement.split("-")[0]];
 
-          // 计算箭头的精确位置
-          const arrowLeft = triggerCenter.x - x - 4; // 4 是箭头宽度的一半
+          const arrowLeft = triggerCenter.x - x - 4;
 
           Object.assign(arrowElement.style, {
             position: "absolute",
@@ -180,16 +181,18 @@ const { content, class: className = "" } = Astro.props;
       // 初始更新位置
       await updatePosition();
 
-      // 添加滚动事件监听
-      const scrollHandler = () => {
+      // 添加视口变化监听
+      const viewportHandler = () => {
         if (activeTooltip === tooltip) {
           requestAnimationFrame(updatePosition);
         }
       };
 
-      // 监听所有可能的滚动事件
-      window.addEventListener("scroll", scrollHandler, { passive: true });
-      document.addEventListener("scroll", scrollHandler, { passive: true });
+      // 监听所有可能的滚动和缩放事件
+      window.addEventListener("scroll", viewportHandler, { passive: true });
+      document.addEventListener("scroll", viewportHandler, { passive: true });
+      window.visualViewport?.addEventListener("resize", viewportHandler);
+      window.visualViewport?.addEventListener("scroll", viewportHandler);
 
       // 显示 tooltip
       requestAnimationFrame(() => {
@@ -198,8 +201,10 @@ const { content, class: className = "" } = Astro.props;
 
       // 清理函数
       const cleanup = () => {
-        window.removeEventListener("scroll", scrollHandler);
-        document.removeEventListener("scroll", scrollHandler);
+        window.removeEventListener("scroll", viewportHandler);
+        document.removeEventListener("scroll", viewportHandler);
+        window.visualViewport?.removeEventListener("resize", viewportHandler);
+        window.visualViewport?.removeEventListener("scroll", viewportHandler);
       };
 
       // 在 tooltip 被移除时清理事件监听
