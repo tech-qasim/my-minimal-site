@@ -1715,93 +1715,100 @@ const DEFAULT_GITHUB_RESPONSE = {
 };
 
 // 初始化 node-cache - Initialize node cache
-const cache = new NodeCache({ stdTTL: CACHE_DURATION });
+const cache = new NodeCache({
+  stdTTL: CACHE_DURATION,
+});
+
+// 添加缓存即将过期时的自动刷新逻辑
+cache.on("ttl", async (key, ttlValue) => {
+  if (key === "github-data" && ttlValue < 60 * 5) {
+    // 剩余5分钟时刷新
+    try {
+      const data = await fetchGitHubData();
+      cache.set(key, data);
+    } catch (error) {
+      console.error("缓存自动刷新失败:", error);
+    }
+  }
+});
 
 export const GET: APIRoute = async () => {
   try {
     if (import.meta.env.DEV && USE_MOCK_DATA_FOR_DEVELOPMENT) {
       return new Response(JSON.stringify(DEFAULT_GITHUB_RESPONSE), {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
     }
 
-    // 缓存键 - cache key
-    const cacheKey = `github-data-${new Date().toISOString().split("T")[0]}`;
-    const cachedResponse = cache.get(cacheKey);
+    // 修改缓存键为固定值，确保所有请求使用同一个缓存
+    const cacheKey = "github-data";
+    let cachedResponse = cache.get(cacheKey);
 
-    if (cachedResponse) {
-      return new Response(JSON.stringify(cachedResponse), {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    // 添加缓存过期自动刷新逻辑
+    if (!cachedResponse || cache.getTtl(cacheKey) === undefined) {
+      const data = await fetchGitHubData();
+      cache.set(cacheKey, data);
+      cachedResponse = data;
     }
 
-    const query = `
-    {
-      viewer {
-        login
-        repositories(
-          first: 20
-          affiliations: OWNER
-          isFork: false
-          orderBy: {field: STARGAZERS, direction: DESC}
-        ) {
-          totalCount
-          nodes {
-            nameWithOwner
-            name
-            description
-            forkCount
-            stargazerCount
-            createdAt
-            updatedAt
-          }
-        }
-        followers {
-          totalCount
-        }
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                contributionCount
-                date
-              }
-            }
-          }
-        }
-      }
-    }`;
-
-    const res = await fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${import.meta.env.SECRET_GITHUB_TOKEN}`,
-      },
-      body: JSON.stringify({ query }),
-    });
-
-    const data = await res.json();
-
-    // 缓存数据 - cache data
-    cache.set(cacheKey, data);
-
-    return new Response(JSON.stringify(data), {
-      headers: {
-        "Content-Type": "application/json",
-      },
+    return new Response(JSON.stringify(cachedResponse), {
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("GitHub API 错误", error);
     return new Response(JSON.stringify(DEFAULT_GITHUB_RESPONSE), {
       status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   }
 };
+
+// 新增独立的数据获取函数
+async function fetchGitHubData() {
+  const query = `{
+    viewer {
+      login
+      repositories(
+        first: 20
+        affiliations: OWNER
+        isFork: false
+        orderBy: {field: STARGAZERS, direction: DESC}
+      ) {
+        totalCount
+        nodes {
+          nameWithOwner
+          name
+          description
+          forkCount
+          stargazerCount
+          createdAt
+          updatedAt
+        }
+      }
+      followers {
+        totalCount
+      }
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+            }
+          }
+        }
+      }
+    }
+  }`;
+
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${import.meta.env.SECRET_GITHUB_TOKEN}`,
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  return await res.json();
+}
