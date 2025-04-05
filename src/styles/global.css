@@ -101,7 +101,7 @@
     &::-webkit-scrollbar-thumb {
       @apply bg-primary/10;
       &:hover {
-        @apply bg-primary/80;
+        @apply bg-primary/30;
       }
     }
   }
