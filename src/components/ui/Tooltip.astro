@@ -154,9 +154,9 @@ const { content, class: className = "" } = Astro.props;
         // 使用 CSS transform 来定位，这样可以避免缩放影响
         Object.assign(tooltip.style, {
           position: "fixed",
-          left: "0",
-          top: "0",
-          transform: `translate3d(${x}px, ${y}px, 0)`,
+          left: `${x}px`,
+          top: `${y}px`,
+          transform: "translateY(6px)", // 初始位置用于动画
           transformOrigin: "top left",
         });
 
@@ -196,7 +196,9 @@ const { content, class: className = "" } = Astro.props;
 
       // 显示 tooltip
       requestAnimationFrame(() => {
-        tooltip.classList.add("opacity-100");
+        tooltip.style.transition = "opacity 200ms ease-out, transform 200ms ease-out";
+        tooltip.style.opacity = "1";
+        tooltip.style.transform = "translateY(0)";
       });
 
       // 清理函数

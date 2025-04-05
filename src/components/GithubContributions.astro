@@ -23,14 +23,14 @@ const { weeks }: Props = Astro.props;
           });
 
           const tooltipContent = `${formattedDate} — ${
-            contributionCount === 1 ? "1 contribution 🌟" : contributionCount === 0 ? "Rest day 🌼" : `${contributionCount} contributions`
+            contributionCount === 1 ? "1 contribution 💤" : contributionCount === 0 ? "Rest day 🪴" : `${contributionCount} contributions`
           }`;
 
           return (
             <Tooltip content={tooltipContent}>
               <div
                 class={cn(
-                  "size-2 relative hover:scale-125 transition-transform duration-150",
+                  "size-2 relative hover:scale-125 transition-transform duration-200",
                   contributionCount === 0
                     ? "bg-zinc-200 dark:bg-zinc-900"
                     : contributionCount < 5
