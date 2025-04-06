@@ -5,6 +5,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --font-serif: var(--font-lexend);
+
   --color-border: hsl(var(--border));
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
@@ -21,7 +23,9 @@
 }
 
 @layer base {
-  :root {
+  /* Old */
+  /* :root {
+    --font-lexend: "Lexend", sans-serif;
     --background: 210 40% 98%;
     --foreground: 240 10% 3.9%;
 
@@ -35,6 +39,25 @@
     --muted-foreground: 240 3.8% 46.1%;
 
     --border: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+  } */
+
+  /* New 纠结中 */
+  :root {
+    --font-lexend: "Lexend", sans-serif;
+    --background: 45 33% 96.5%; /* #fbf9f2 */
+    --foreground: 240 10% 3.9%;
+
+    --accent: 45 33% 94%; /* 稍暗的浅色 */
+    --accent-foreground: 240 5.9% 10%;
+
+    --primary: 240 5.9% 10%; /* 深色文字 */
+    --primary-foreground: 45 33% 96.5%; /* #fbf9f2 */
+
+    --muted: 45 33% 92%; /* 更暗的浅色 */
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --border: 45 33% 90%; /* 边框色 */
     --ring: 240 10% 3.9%;
   }
 
@@ -69,8 +92,7 @@
   h4,
   h5,
   h6 {
-    @apply font-medium! tracking-tight;
-    font-family: "Autour One";
+    @apply font-serif font-medium! tracking-tight;
   }
   a {
     @apply underline-offset-4;
@@ -132,6 +154,12 @@
     font-family: "CJKEmDash";
     unicode-range: U+2014, U+2E3A-2E3B;
     src: url("/fonts/ZhudouSansVF-subset.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Lexend";
+    src: url("/fonts/Lexend-VariableFont_wght.woff2") format("woff2");
     font-display: swap;
   }
 }

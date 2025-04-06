@@ -8,7 +8,7 @@ export default function HeaderGradient(): React.ReactElement {
         <svg
           viewBox="0 0 1113 440"
           aria-hidden="true"
-          className="absolute left-1/2 top-0 ml-[-19rem] w-[69.5625rem] fill-white dark:fill-zinc-950 blur-[26px]"
+          className="absolute left-1/2 top-0 ml-[-19rem] w-[69.5625rem] fill-background dark:fill-zinc-950 blur-[26px]"
         >
           <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z" />
         </svg>
