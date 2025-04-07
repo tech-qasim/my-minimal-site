@@ -1,34 +1,19 @@
-type Site = {
-  title: string;
-  description: string;
-};
+import type { GithubConfig, Link, PostConfig, Site, SocialLink } from "@types";
 
-type Link = {
-  name: string;
-  url: string;
-};
-
-type SocialLink = {
-  name: string;
-  url: string;
-  icon: string;
-  count?: number;
-};
-
-// Control whether to enable GitHub API and some related parameters
-// 控制是否启用 GitHub API 和一些相关参数
-// 启用：显示github的follower数量 和 最新的github graph
-export const GITHUB_CONFIG = {
-  ENABLED: true,
-  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5,
-  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
-};
-
+// 站点基础配置
 export const SITE: Site = {
-  title: "Astro Dk2",
-  description: "Astro Dk2 is a blog theme built with Astro.js and Dnzzk2.",
+  title: "Litos",
+  description: "Litos is a blog theme built with Astro.js and Dnzzk2.",
 };
 
+// 文章相关配置
+export const POSTS_CONFIG: PostConfig = {
+  author: "Litos",
+  homePageSize: 5,
+  postsPageSize: 10,
+};
+
+// 导航配置
 export const HEADER_LINKS: Link[] = [
   {
     name: "Posts",
@@ -36,7 +21,7 @@ export const HEADER_LINKS: Link[] = [
   },
   {
     name: "Projects",
-    url: "/Projects",
+    url: "/projects", // 修正大小写一致性
   },
 ];
 
@@ -55,16 +40,28 @@ export const FOOTER_LINKS: Link[] = [
   },
 ];
 
-// You can obtain icons from the website: https://icon-sets.iconify.design/
-// 你可以从网站获取图标：https://icon-sets.iconify.design/
-// You can also use count to display the number of followers. If the Github API is enabled, the priority of the API is higher than count
-// 你也可以使用 count 来显示关注者数量，如果开启了Github API，API的优先级比count高
-// Use the group over: text portrait and text color attributes in tailwindcss to overwrite the original color and hover color
-// 可以使用tailwindcss中的group-hover:text-xxx属性和text-xxx属性来重写原始颜色和hover颜色
-// example: "icon-[ri--github-fill] text-muted-foreground group-hover:text-primary"
-// 例子："icon-[ri--github-fill] text-muted-foreground group-hover:text-primary"
+// 社交媒体链接配置
 export const SOLUTION_LINKS: SocialLink[] = [
-  { name: "github", url: "https://github.com/yourname", icon: "icon-[ri--github-fill]" },
-  { name: "twitter", url: "https://x.com/yourname", icon: "icon-[ri--twitter-x-fill]" },
-  { name: "bilibili", url: "https://space.bilibili.com/yourSpaceId", icon: "icon-[ri--bilibili-fill]" },
+  {
+    name: "github",
+    url: "https://github.com/yourname",
+    icon: "icon-[ri--github-fill]",
+  },
+  {
+    name: "twitter",
+    url: "https://x.com/yourname",
+    icon: "icon-[ri--twitter-x-fill]",
+  },
+  {
+    name: "bilibili",
+    url: "https://space.bilibili.com/yourSpaceId",
+    icon: "icon-[ri--bilibili-fill]",
+  },
 ];
+
+// GitHub 功能配置
+export const GITHUB_CONFIG: GithubConfig = {
+  ENABLED: true,
+  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5, // 1.5小时 + 5分钟的缓存时间
+  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
+};

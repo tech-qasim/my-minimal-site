@@ -1,3 +1,4 @@
+import type { CollectionEntry } from "astro:content";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -5,7 +6,11 @@ export function cn(...classes: ClassValue[]) {
   return twMerge(clsx(classes));
 }
 
-export function padMissingWeeks(weeks: Additional.Github.Week[], targetWeeks = 53): Additional.Github.Week[] {
+// 补全周数
+export function padMissingWeeks(
+  weeks: Additional.Github.Week[],
+  targetWeeks = 53
+): Additional.Github.Week[] {
   if (weeks.length >= targetWeeks) return weeks;
 
   // 获取第一周的日期
@@ -36,4 +41,15 @@ export function padMissingWeeks(weeks: Additional.Github.Week[], targetWeeks = 5
   }
 
   return paddedWeeks;
+}
+
+// Posts精选
+export function postsChoice(posts: CollectionEntry<"posts">[], number: number) {
+  const choicePosts = posts.filter((post) => post.data.choice);
+  const noChoicePosts = posts.filter((post) => !post.data.choice);
+  if (choicePosts.length >= number) {
+    return choicePosts;
+  } else {
+    return [choicePosts, noChoicePosts].flat().slice(0, number);
+  }
 }

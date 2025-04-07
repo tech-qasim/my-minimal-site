@@ -4,11 +4,13 @@ import { SITE, SOLUTION_LINKS } from "@consts";
 import Layout from "@layouts/Layout.astro";
 import { GET } from "./api/github.ts";
 import SocialLink from "@components/SocialLink.astro";
-import { GITHUB_CONFIG } from "@consts";
-import { padMissingWeeks } from "@lib/utils";
+import { GITHUB_CONFIG, POSTS_CONFIG } from "@consts";
+import { padMissingWeeks, postsChoice } from "@lib/utils";
 import GithubContributions from "@components/GithubContributions.astro";
+import { getCollection } from "astro:content";
 
 const { ENABLED } = GITHUB_CONFIG;
+const { homePageSize } = POSTS_CONFIG;
 
 let githubFollowerCount = null;
 let githubGraphqlData: Additional.Github.Week[] = [];
@@ -19,7 +21,10 @@ if (ENABLED) {
     const githubData = await githubInfo.json();
 
     // 默认53周，不足53周则填充
-    const last53weeks = githubData?.data?.viewer?.contributionsCollection?.contributionCalendar?.weeks.slice(-53);
+    const last53weeks =
+      githubData?.data?.viewer?.contributionsCollection?.contributionCalendar?.weeks.slice(
+        -53
+      );
     const newWeeks = padMissingWeeks(last53weeks, 53);
 
     githubGraphqlData = newWeeks;
@@ -28,25 +33,40 @@ if (ENABLED) {
     console.error("Failed to fetch GitHub data:", error);
   }
 }
+
+const allPosts = await getCollection("posts");
+const posts = postsChoice(allPosts, homePageSize);
+console.log(posts);
 ---
 
 <Layout title="Readme" description={SITE.description}>
   <div class="relative z-10">
     <div class="py-8 pb-10 px-8">
-      <h1 class="tracking-tight text-4xl sm:text-5xl">
-        Astro DK2
-        <span class="text-muted-foreground font-title font-extralight! text-3xl sm:text-4xl block text-balance">
-          A Modern Blog Theme for Astro
+      <h1 class="flex flex-col gap-2">
+        <span class="text-4xl sm:text-5xl tracking-tight"> Litos </span>
+        <span
+          class="text-muted-foreground font-light text-xl sm:text-2xl block tracking-wide text-balance"
+        >
+          A Simple & Modern Blog Theme for Astro
         </span>
       </h1>
       <div class="pro text-muted-foreground text-balance">
         <p>
-          Astro DK2 is a modern, high-performance blog theme built on Astro and inspired by
-          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent developer.
+          Litos is a modern, high-performance blog theme built on Astro and
+          inspired by
+          <a
+            href="https://github.com/needim"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            @needim</a
+          >, an excellent developer.
         </p>
         <p>
-          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth interactive
-          experience, Support switching between light and dark themes and provide smooth transition animations.
+          Implementing elegant responsive design using Tailwind CSS, Integrating
+          React components to achieve a smooth interactive experience, Support
+          switching between light and dark themes and provide smooth transition
+          animations.
         </p>
       </div>
       <div class="mt-6 flex gap-6">
@@ -54,9 +74,24 @@ if (ENABLED) {
           SOLUTION_LINKS.map((item) => {
             const isGithub = item.name.toLowerCase() === "github";
             if (isGithub && ENABLED && githubFollowerCount !== null) {
-              return <SocialLink icon={item.icon} count={githubFollowerCount} label="followers" aria-label="Follow on Github" />;
+              return (
+                <SocialLink
+                  icon={item.icon}
+                  count={githubFollowerCount}
+                  label="followers"
+                  aria-label="Follow on Github"
+                />
+              );
             }
-            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />;
+            return (
+              <SocialLink
+                href={item.url}
+                icon={item.icon}
+                aria-label={`Link of ${item.name}`}
+                count={item.count}
+                label="followers"
+              />
+            );
           })
         }
       </div>
@@ -68,11 +103,21 @@ if (ENABLED) {
         <div class="py-8 pb-10 px-6 max-md:px-8">
           <div class="px-2 max-md:px-0">
             <h2 class="text-3xl ">Spotlight</h2>
-            <p class="text-muted-foreground mb-6 mt-1">Most recent contributions.</p>
+            <p class="text-muted-foreground mb-6 mt-1">
+              Most recent contributions.
+            </p>
           </div>
           <GithubContributions weeks={githubGraphqlData} />
         </div>
       )
     }
+    <div class="py-8 pb-10 px-6 max-md:px-8">
+      <div class="px-2 max-md:px-0">
+        <h2 class="text-3xl">Posts</h2>
+        <p class="text-muted-foreground mb-6 mt-1">
+          Recent blog posts, hoping to be helpful.
+        </p>
+      </div>
+    </div>
   </div>
 </Layout>
