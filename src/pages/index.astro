@@ -5,7 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import { GET } from "./api/github.ts";
 import SocialLink from "@components/SocialLink.astro";
 import { GITHUB_CONFIG, POSTS_CONFIG } from "@consts";
-import { padMissingWeeks, postsChoice } from "@lib/utils";
+import { padMissingWeeks, postsSort } from "@lib/utils";
 import GithubContributions from "@components/GithubContributions.astro";
 import { getCollection } from "astro:content";
 import PostCard from "@components/PostCard.astro";
@@ -33,7 +33,7 @@ if (ENABLED) {
 }
 
 const allPosts = await getCollection("posts");
-const posts = postsChoice(allPosts, homePageSize);
+const posts = postsSort(allPosts).slice(0, homePageSize);
 console.log(posts);
 ---
 
@@ -83,19 +83,20 @@ console.log(posts);
     <SectionDivider />
     <div class="py-8 pb-10 px-8">
       <h2 class="text-3xl">Posts</h2>
-      <p class="text-muted-foreground mb-6 mt-1">Recent blog posts, hoping to be helpful.</p>
-      <PostCard
-        title="The 1000000th time I'm going to do this"
-        description="这是文章的简短描述，会自动限制为两行..."
-        image="/path/to/image.jpg"
-        date={new Date()}
-      />
-      <PostCard
-        title="The 1000000th time I'm going to do this"
-        description="这是文章的简短描述，会自动限制为两行...这是文章的简短描述，会自动限制为两行...这是文章的简短描述，会自动限制为两行...这是文章的简短描述，会自动限制为两行...这是文章的简短描述，会自动限制为两行..."
-        image="/path/to/image.jpg"
-        date={new Date()}
-      />
+      <p class="text-muted-foreground mb-6 mt-1">Recent {homePageSize} blog posts, hoping to be helpful.</p>
+      {
+        posts.map((post) => {
+          return (
+            <PostCard
+              title={post.data.title}
+              pubDate={post.data.pubDate}
+              updatedDate={post.data.updatedDate}
+              description={post.data.description}
+              recommend={post.data.recommend}
+            />
+          );
+        })
+      }
     </div>
   </div>
 </Layout>

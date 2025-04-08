@@ -21,7 +21,7 @@ export const HEADER_LINKS: Link[] = [
   },
   {
     name: "Projects",
-    url: "/projects", // 修正大小写一致性
+    url: "/projects",
   },
 ];
 

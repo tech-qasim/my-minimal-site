@@ -7,10 +7,7 @@ export function cn(...classes: ClassValue[]) {
 }
 
 // 补全周数
-export function padMissingWeeks(
-  weeks: Additional.Github.Week[],
-  targetWeeks = 53
-): Additional.Github.Week[] {
+export function padMissingWeeks(weeks: Additional.Github.Week[], targetWeeks = 53): Additional.Github.Week[] {
   if (weeks.length >= targetWeeks) return weeks;
 
   // 获取第一周的日期
@@ -43,13 +40,11 @@ export function padMissingWeeks(
   return paddedWeeks;
 }
 
-// Posts精选
-export function postsChoice(posts: CollectionEntry<"posts">[], number: number) {
-  const choicePosts = posts.filter((post) => post.data.choice);
-  const noChoicePosts = posts.filter((post) => !post.data.choice);
-  if (choicePosts.length >= number) {
-    return choicePosts;
-  } else {
-    return [choicePosts, noChoicePosts].flat().slice(0, number);
-  }
+// 文章按时间排序
+export function postsSort(posts: CollectionEntry<"posts">[]) {
+  return posts.sort((a, b) => {
+    const dateA = a.data.updatedDate || a.data.pubDate;
+    const dateB = b.data.updatedDate || b.data.pubDate;
+    return new Date(dateB).getTime() - new Date(dateA).getTime();
+  });
 }

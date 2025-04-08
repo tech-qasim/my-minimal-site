@@ -8,7 +8,7 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     pubDate: z.date(),
-    choice: z.boolean().default(false),
+    recommend: z.boolean().default(false),
     author: z.string().default(POSTS_CONFIG.author),
     updatedDate: z.date().optional(),
     heroImage: z.string().optional(),
