@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-dk2.vercel.app/",
+  site: "https://litos.vercel.app/",
   prefetch: true, // 启用预取
   vite: {
     plugins: [tailwindcss()],
