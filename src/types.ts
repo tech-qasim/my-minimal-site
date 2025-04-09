@@ -21,8 +21,14 @@ export type GithubConfig = {
   USE_MOCK_DATA_FOR_DEVELOPMENT: boolean;
 };
 
-export type PostConfig = {
+export interface PostConfig {
   author: string;
   homePageSize: number;
   postsPageSize: number;
-};
+  enableImage: boolean;
+  defaultHeroImage: string;
+  defaultHeroImageAspectRatio: HeroImageAspectRatio;
+}
+
+export type HeroImageAspectRatio = "16/9" | "9/16";
+export type HeroImageLayout = "left" | "right";

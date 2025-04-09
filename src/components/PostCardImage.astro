@@ -1,0 +1,111 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { HeroImageAspectRatio } from "@types";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  index: number;
+}
+
+const { post, index } = Astro.props;
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+const aspectRatioClass: Record<HeroImageAspectRatio, string> = {
+  "16/9": "aspect-[16/9]",
+  "9/16": "aspect-[9/16]",
+};
+
+const isVertical = post.data.heroImageAspectRatio === "9/16";
+const imagePosition = post.data.heroImageLayout || (index % 2 === 1 ? "right" : "left");
+const isReverse = imagePosition === "right";
+---
+
+<article class={`group flex flex-col md:flex-row gap-8 ${isReverse ? "md:flex-row-reverse" : ""}`}>
+  <div class={`${isVertical ? "md:w-1/4" : "md:w-2/5"} flex flex-col overflow-hidden`}>
+    <a href={`/posts/${post.slug}`} class="block relative">
+      <div class={`${aspectRatioClass[post.data.heroImageAspectRatio]} overflow-hidden bg-muted/30 `}>
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full h-full object-cover transition duration-500 group-hover:scale-105 dark:brightness-90"
+        />
+      </div>
+    </a>
+    {
+      !isVertical && (
+        <a
+          href={`/posts/${post.slug}`}
+          class="hidden md:inline-flex mt-4 items-center gap-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors group/read"
+        >
+          Read More
+          <span class="icon-[ph--arrow-right-light] size-4 transition-transform group-hover/read:translate-x-1" />
+        </a>
+      )
+    }
+  </div>
+
+  <div class={`w-full ${isVertical ? "md:w-3/4" : "md:w-3/5"} flex flex-col justify-center`}>
+    <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-3 md:mb-4">
+      {
+        post.data.recommend && (
+          <span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-primary/10 text-primary rounded flex items-center gap-1">
+            <span class="icon-[ph--sparkle-fill] size-3.5" />
+            recommend
+          </span>
+        )
+      }
+      {
+        post.data.tags?.map((tag) => (
+          <span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-muted/50 text-muted-foreground rounded hover:bg-muted transition-colors cursor-pointer">
+            # {tag}
+          </span>
+        ))
+      }
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground/90">
+      <time class="flex items-center gap-1.5">
+        <span class="icon-[ph--calendar-light] size-3.5"></span>
+        {formatDate(post.data.pubDate)}
+      </time>
+
+      {
+        post.data.updatedDate && (
+          <>
+            <span class="w-1 h-1 rounded-full bg-muted-foreground/50" />
+            <time class="flex items-center gap-1.5">
+              <span class="icon-[ph--clock-clockwise-light] size-3.5" />
+              {formatDate(post.data.updatedDate)}
+            </time>
+          </>
+        )
+      }
+    </div>
+
+    <a href={`/posts/${post.slug}`} class="mt-2 md:mt-3 group/title">
+      <h2 class="text-xl md:text-2xl font-medium transition-colors group-hover/title:text-primary line-clamp-2">
+        {post.data.title}
+      </h2>
+    </a>
+
+    {
+      post.data.description && (
+        <p class="text-xs sm:text-sm text-muted-foreground/80 mt-2 md:mt-3 line-clamp-2 leading-relaxed">{post.data.description}</p>
+      )
+    }
+
+    <a
+      href={`/posts/${post.slug}`}
+      class={`${isVertical ? "md:inline-flex" : "md:hidden"} mt-3 inline-flex items-center gap-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors group/read`}
+    >
+      Read More
+      <span class="icon-[ph--arrow-right-light] size-4 transition-transform group-hover/read:translate-x-1"></span>
+    </a>
+  </div>
+</article>

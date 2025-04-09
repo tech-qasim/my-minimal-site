@@ -8,9 +8,12 @@ export const SITE: Site = {
 
 // 文章相关配置
 export const POSTS_CONFIG: PostConfig = {
-  author: "Litos",
+  author: "Dnzzk2",
   homePageSize: 5,
   postsPageSize: 10,
+  enableImage: true, // 添加图片模式开关
+  defaultHeroImage: "https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=1470&auto=format&fit=crop",
+  defaultHeroImageAspectRatio: "16/9", // 添加图片默认宽高比
 };
 
 // 导航配置
