@@ -20,6 +20,11 @@
 
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-tg-bg: hsl(var(--tag-bg));
+  --color-tag-bg-hover: hsl(var(--tag-bg-hover));
+  --color-tag-border: hsl(var(--tag-border));
+  --color-tag-text: hsl(var(--tag-text));
 }
 
 @layer base {
@@ -40,42 +45,66 @@
 
     --border: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
+
+    --tag-bg: 45 30% 97%; 
+    --tag-bg-hover: 45 35% 94%;
+    --tag-border: 45 25% 90%;
+    --tag-text: 45 30% 30%; 
   } */
 
   /* New 纠结中 */
   :root {
     --font-lexend: "Lexend", sans-serif;
-    --background: 45 33% 96.5%; /* #fbf9f2 */
-    --foreground: 240 10% 3.9%;
 
-    --accent: 45 33% 94%; /* 稍暗的浅色 */
-    --accent-foreground: 240 5.9% 10%;
+    /* 基础色调 - 清新色调 */
+    --background: 220 30% 98%;
+    --foreground: 225 15% 12%;
 
-    --primary: 240 5.9% 10%; /* 深色文字 */
-    --primary-foreground: 45 33% 96.5%; /* #fbf9f2 */
+    /* 交互状态 */
+    --accent: 220 25% 94%;
+    --accent-foreground: 225 15% 12%;
 
-    --muted: 45 33% 92%; /* 更暗的浅色 */
-    --muted-foreground: 240 3.8% 46.1%;
+    /* 主要强调色 */
+    --primary: 225 15% 12%;
+    --primary-foreground: 220 30% 98%;
 
-    --border: 240 5.9% 90%; /* 边框色 */
-    --ring: 240 10% 3.9%;
+    /* 弱化元素 */
+    --muted: 220 25% 92%;
+    --muted-foreground: 225 10% 40%;
+    --border: 220 20% 90%;
+    --ring: 225 15% 12%;
+
+    /* 标签系统 */
+    --tag-bg: 220 25% 96%;
+    --tag-bg-hover: 220 25% 92%;
+    --tag-border: 220 25% 90%;
+    --tag-text: 225 15% 35%;
   }
 
   .dark {
+    /* 基础色调 - 深色主题 */
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
 
+    /* 交互状态 - 深色主题 */
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
 
+    /* 主要强调色 - 反转 */
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
 
+    /* 弱化元素 - 深色协调 */
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-
     --border: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    /* 标签系统 - 深色协调 */
+    --tag-bg: 240 20% 13%;
+    --tag-bg-hover: 240 20% 16%;
+    --tag-border: 240 20% 20%;
+    --tag-text: 240 15% 85%;
   }
 }
 

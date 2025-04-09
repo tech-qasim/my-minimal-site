@@ -22,7 +22,10 @@ if (ENABLED) {
     const githubData = await githubInfo.json();
 
     // 默认53周，不足53周则填充
-    const last53weeks = githubData?.data?.viewer?.contributionsCollection?.contributionCalendar?.weeks.slice(-53);
+    const last53weeks =
+      githubData?.data?.viewer?.contributionsCollection?.contributionCalendar?.weeks.slice(
+        -53
+      );
     const newWeeks = padMissingWeeks(last53weeks, 53);
 
     githubGraphqlData = newWeeks;
@@ -42,18 +45,29 @@ console.log(posts);
     <div class="py-8 pb-10 px-8">
       <h1 class="flex flex-col gap-2">
         <span class="text-4xl sm:text-5xl tracking-tight"> Litos </span>
-        <span class="text-muted-foreground font-light text-xl sm:text-2xl block tracking-wide text-balance">
+        <span
+          class="text-muted-foreground font-light text-xl sm:text-2xl block tracking-wide text-balance"
+        >
           A Simple & Modern Blog Theme for Astro
         </span>
       </h1>
       <div class="pro text-muted-foreground text-balance">
         <p>
-          Litos is a modern, high-performance blog theme built on Astro and inspired by
-          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer"> @needim</a>, an excellent developer.
+          Litos is a modern, high-performance blog theme built on Astro and
+          inspired by
+          <a
+            href="https://github.com/needim"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            @needim</a
+          >, an excellent developer.
         </p>
         <p>
-          Implementing elegant responsive design using Tailwind CSS, Integrating React components to achieve a smooth interactive
-          experience, Support switching between light and dark themes and provide smooth transition animations.
+          Implementing elegant responsive design using Tailwind CSS, Integrating
+          React components to achieve a smooth interactive experience, Support
+          switching between light and dark themes and provide smooth transition
+          animations.
         </p>
       </div>
       <div class="mt-6 flex gap-6">
@@ -61,9 +75,24 @@ console.log(posts);
           SOLUTION_LINKS.map((item) => {
             const isGithub = item.name.toLowerCase() === "github";
             if (isGithub && ENABLED && githubFollowerCount !== null) {
-              return <SocialLink icon={item.icon} count={githubFollowerCount} label="followers" aria-label="Follow on Github" />;
+              return (
+                <SocialLink
+                  icon={item.icon}
+                  count={githubFollowerCount}
+                  label="followers"
+                  aria-label="Follow on Github"
+                />
+              );
             }
-            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />;
+            return (
+              <SocialLink
+                href={item.url}
+                icon={item.icon}
+                aria-label={`Link of ${item.name}`}
+                count={item.count}
+                label="followers"
+              />
+            );
           })
         }
       </div>
@@ -74,7 +103,9 @@ console.log(posts);
         <div class="py-8 pb-10 px-6 max-md:px-8">
           <div class="px-2 max-md:px-0">
             <h2 class="text-3xl ">Spotlight</h2>
-            <p class="text-muted-foreground mb-6 mt-1">Most recent contributions.</p>
+            <p class="text-muted-foreground mb-6 mt-1">
+              Most recent contributions.
+            </p>
           </div>
           <GithubContributions weeks={githubGraphqlData} />
         </div>
@@ -83,20 +114,10 @@ console.log(posts);
     <SectionDivider />
     <div class="py-8 pb-10 px-8">
       <h2 class="text-3xl">Posts</h2>
-      <p class="text-muted-foreground mb-6 mt-1">Recent {homePageSize} blog posts, hoping to be helpful.</p>
-      {
-        posts.map((post) => {
-          return (
-            <PostCard
-              title={post.data.title}
-              pubDate={post.data.pubDate}
-              updatedDate={post.data.updatedDate}
-              description={post.data.description}
-              recommend={post.data.recommend}
-            />
-          );
-        })
-      }
+      <p class="text-muted-foreground mb-6 mt-1">
+        Recent {posts.length} blog posts, hoping to be helpful.
+      </p>
+      {posts.map((post) => <PostCard post={post} />)}
     </div>
   </div>
 </Layout>
