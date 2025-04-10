@@ -30,5 +30,5 @@ export interface PostConfig {
   defaultHeroImageAspectRatio: HeroImageAspectRatio;
 }
 
-export type HeroImageAspectRatio = "16/9" | "9/16";
+export type HeroImageAspectRatio = "16/9" | "3/4";
 export type HeroImageLayout = "left" | "right";

@@ -22,13 +22,10 @@ const { post } = Astro.props;
         </time>
         {
           post.data.updatedDate && (
-            <>
-              <span class="w-1 h-1 rounded-full bg-muted-foreground/50" />
-              <time class="flex items-center gap-1.5">
-                <span class="icon-[ph--clock-clockwise-light] size-3.5" />
-                {formatDate(post.data.updatedDate)}
-              </time>
-            </>
+            <time class="flex items-center gap-1.5">
+              <span class="icon-[ph--clock-clockwise-light] size-3.5" />
+              {formatDate(post.data.updatedDate)}
+            </time>
           )
         }
       </div>
