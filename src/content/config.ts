@@ -12,9 +12,12 @@ const posts = defineCollection({
     updatedDate: z.date().optional(),
     recommend: z.boolean().default(false),
     author: z.string().default(POSTS_CONFIG.author),
-    heroImage: z.string().optional().default(POSTS_CONFIG.defaultHeroImage),
+    heroImage: z.string().optional(),
+    ogImage: z.string().optional(),
     heroImageLayout: z.custom<HeroImageLayout>().optional(),
-    heroImageAspectRatio: z.custom<HeroImageAspectRatio>().default(POSTS_CONFIG.defaultHeroImageAspectRatio),
+    heroImageAspectRatio: z
+      .custom<HeroImageAspectRatio>()
+      .default(POSTS_CONFIG.defaultHeroImageAspectRatio),
     tags: z.array(z.string()).default([]),
   }),
 });

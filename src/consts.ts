@@ -12,8 +12,7 @@ export const POSTS_CONFIG: PostConfig = {
   homePageSize: 5,
   postsPageSize: 10,
   enableImage: true,
-  defaultHeroImage:
-    "https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=1470&auto=format&fit=crop",
+  defaultHeroImage: "og-image.png",
   defaultHeroImageAspectRatio: "16/9",
 };
 

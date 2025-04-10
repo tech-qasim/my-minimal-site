@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { HeroImageAspectRatio } from "@types";
 import { formatDate } from "@lib/utils";
+import { POSTS_CONFIG } from "@consts";
 import PostTag from "./ui/PostTag.astro";
 import RecommendBadge from "./ui/RecommendBadge.astro";
 
@@ -38,7 +39,7 @@ const isReverse = imagePosition === "right";
         >
         </div>
         <img
-          src={post.data.heroImage}
+          src={post.data.heroImage || POSTS_CONFIG.defaultHeroImage}
           alt={post.data.title}
           loading="lazy"
           decoding="async"

@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-const ogImage = post.data.heroImage;
+const ogImage = post.data.ogImage || post.data.heroImage;
 ---
 
 <Layout
