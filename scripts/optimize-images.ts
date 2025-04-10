@@ -5,6 +5,20 @@ import path from 'path'
 import readline from 'readline'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+import chalk from 'chalk'
+import ora from 'ora'
+import cliProgress from 'cli-progress'
+
+// 初始化装饰工具
+const progressBar = new cliProgress.SingleBar(
+  {
+    format: `${chalk.blue('{bar}')} {percentage}% | {value}/{total} 文件`,
+    barCompleteChar: '\u2588',
+    barIncompleteChar: '\u2591',
+    hideCursor: true,
+  },
+  cliProgress.Presets.shades_grey
+)
 
 // 检测系统语言
 const isChinese = (process.env.LANG || process.env.LANGUAGE || '').toLowerCase().includes('zh')
@@ -40,6 +54,19 @@ async function isOptimized(filePath: string): Promise<boolean> {
   } catch {
     return false
   }
+}
+
+// 修改后的消息对象，添加颜色装饰
+const decoratedMessages = {
+  ...messages,
+  inputPrompt: chalk.hex('#FFA500')(messages.inputPrompt),
+  qualityPrompt: chalk.hex('#FFA500')(messages.qualityPrompt),
+  widthPrompt: chalk.hex('#FFA500')(messages.widthPrompt),
+  skipOptimized: (filename: string) => chalk.gray(messages.skipOptimized(filename)),
+  completeOptimize: (filename: string) => chalk.green(messages.completeOptimize(filename)),
+  processError: (filename: string, err: unknown) => chalk.red(messages.processError(filename, err)),
+  pathNotExist: chalk.red.bold(messages.pathNotExist),
+  invalidPath: chalk.red.bold(messages.invalidPath),
 }
 
 async function main() {
@@ -103,8 +130,10 @@ async function main() {
   }
 
   const processFile = async (filePath: string) => {
+    const spinner = ora(`正在处理 ${path.basename(filePath)}`).start()
+
     if (await isOptimized(filePath)) {
-      console.log(messages.skipOptimized(path.basename(filePath)))
+      spinner.info(decoratedMessages.skipOptimized(path.basename(filePath)))
       return
     }
 
@@ -114,9 +143,9 @@ async function main() {
 
       fs.unlinkSync(filePath)
       fs.renameSync(tempPath, filePath)
-      console.log(messages.completeOptimize(path.basename(filePath)))
+      spinner.succeed(decoratedMessages.completeOptimize(path.basename(filePath)))
     } catch (err) {
-      console.error(messages.processError(path.basename(filePath), err))
+      spinner.fail(decoratedMessages.processError(path.basename(filePath), err))
     }
   }
 
