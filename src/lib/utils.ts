@@ -7,7 +7,10 @@ export function cn(...classes: ClassValue[]) {
 }
 
 // 补全周数
-export function padMissingWeeks(weeks: Additional.Github.Week[], targetWeeks = 53): Additional.Github.Week[] {
+export function padMissingWeeks(
+  weeks: Additional.Github.Week[],
+  targetWeeks = 53
+): Additional.Github.Week[] {
   if (weeks.length >= targetWeeks) return weeks;
 
   // 获取第一周的日期
@@ -48,3 +51,12 @@ export function postsSort(posts: CollectionEntry<"posts">[]) {
     return new Date(dateB).getTime() - new Date(dateA).getTime();
   });
 }
+
+// 日期格式化
+
+export const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });

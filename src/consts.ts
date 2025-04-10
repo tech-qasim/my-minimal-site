@@ -11,9 +11,17 @@ export const POSTS_CONFIG: PostConfig = {
   author: "Dnzzk2",
   homePageSize: 5,
   postsPageSize: 10,
-  enableImage: true, // 添加图片模式开关
-  defaultHeroImage: "https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=1470&auto=format&fit=crop",
-  defaultHeroImageAspectRatio: "16/9", // 添加图片默认宽高比
+  enableImage: true,
+  defaultHeroImage:
+    "https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=1470&auto=format&fit=crop",
+  defaultHeroImageAspectRatio: "16/9",
+};
+
+// GitHub 功能配置
+export const GITHUB_CONFIG: GithubConfig = {
+  ENABLED: true,
+  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5, // 1.5小时 + 5分钟的缓存时间
+  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
 };
 
 // 导航配置
@@ -61,10 +69,3 @@ export const SOLUTION_LINKS: SocialLink[] = [
     icon: "icon-[ri--bilibili-fill]",
   },
 ];
-
-// GitHub 功能配置
-export const GITHUB_CONFIG: GithubConfig = {
-  ENABLED: true,
-  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5, // 1.5小时 + 5分钟的缓存时间
-  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
-};

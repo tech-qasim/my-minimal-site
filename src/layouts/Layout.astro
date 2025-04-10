@@ -17,7 +17,11 @@ const { title, description, image }: Props = Astro.props;
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <Head title={`${title} | ${SITE.title}`} description={description} image={image} />
+    <Head
+      title={`${title} | ${SITE.title}`}
+      description={description}
+      image={image}
+    />
   </head>
   <body>
     <Header />

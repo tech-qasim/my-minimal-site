@@ -24,6 +24,7 @@
     "node-cache": "^5.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sharp": "^0.34.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.12"
   },
