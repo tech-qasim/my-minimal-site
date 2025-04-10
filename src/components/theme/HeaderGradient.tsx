@@ -1,4 +1,4 @@
-import type React from "react";
+import type React from 'react'
 
 export default function HeaderGradient(): React.ReactElement {
   return (
@@ -14,5 +14,5 @@ export default function HeaderGradient(): React.ReactElement {
         </svg>
       </div>
     </div>
-  );
+  )
 }

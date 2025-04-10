@@ -1,16 +1,16 @@
 declare namespace Additional {
   namespace Github {
     type ContributionDays = {
-      contributionCount: number;
-      date: string;
-    };
+      contributionCount: number
+      date: string
+    }
 
     type Week = {
-      contributionDays: ContributionDay[];
-    };
+      contributionDays: ContributionDay[]
+    }
   }
 }
 
 interface ImportMetaEnv {
-  readonly SECRET_GITHUB_TOKEN: string;
+  readonly SECRET_GITHUB_TOKEN: string
 }

@@ -1,28 +1,28 @@
 ---
-import type { GetStaticPaths, Page } from "astro";
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-import PostCardImage from "@components/PostCardImage.astro";
-import Layout from "@layouts/Layout.astro";
-import { POSTS_CONFIG } from "@consts";
-import { postsSort } from "@lib/utils";
-import Pagination from "@components/Pagination.astro";
-import PostCardSimple from "@components/PostCardSimple.astro";
+import type { GetStaticPaths, Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import PostCardImage from '@components/PostCardImage.astro'
+import Layout from '@layouts/Layout.astro'
+import { POSTS_CONFIG } from '@consts'
+import { postsSort } from '@lib/utils'
+import Pagination from '@components/Pagination.astro'
+import PostCardSimple from '@components/PostCardSimple.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const allPosts = await getCollection("posts");
-  const sortedPosts = postsSort(allPosts);
+  const allPosts = await getCollection('posts')
+  const sortedPosts = postsSort(allPosts)
 
   return paginate(sortedPosts, {
     pageSize: POSTS_CONFIG.postsPageSize,
-  });
-};
-
-interface Props {
-  page: Page<CollectionEntry<"posts">>;
+  })
 }
 
-const { page } = Astro.props;
+interface Props {
+  page: Page<CollectionEntry<'posts'>>
+}
+
+const { page } = Astro.props
 ---
 
 <Layout title="Posts" description="Posts">
@@ -36,12 +36,12 @@ const { page } = Astro.props;
       <div class="mt-12 space-y-16">
         {
           page.data.map((post, index) => {
-            return POSTS_CONFIG.enableImage ? <PostCardImage post={post} index={index} /> : <PostCardSimple post={post} />;
+            return POSTS_CONFIG.enableImage ? <PostCardImage post={post} index={index} /> : <PostCardSimple post={post} />
           })
         }
       </div>
 
-      <Pagination page={page} />
+      <Pagination {page} />
     </div>
   </div>
 </Layout>

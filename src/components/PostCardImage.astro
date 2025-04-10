@@ -1,43 +1,33 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import type { HeroImageAspectRatio } from "@types";
-import { formatDate } from "@lib/utils";
-import { POSTS_CONFIG } from "@consts";
-import PostTag from "./ui/PostTag.astro";
-import RecommendBadge from "./ui/RecommendBadge.astro";
+import type { CollectionEntry } from 'astro:content'
+import type { HeroImageAspectRatio } from '@types'
+import { formatDate } from '@lib/utils'
+import { POSTS_CONFIG } from '@consts'
+import PostTag from './ui/PostTag.astro'
+import RecommendBadge from './ui/RecommendBadge.astro'
 
 interface Props {
-  post: CollectionEntry<"posts">;
-  index: number;
+  post: CollectionEntry<'posts'>
+  index: number
 }
 
-const { post, index } = Astro.props;
+const { post, index } = Astro.props
 
 const aspectRatioClass: Record<HeroImageAspectRatio, string> = {
-  "16/9": "aspect-[16/9]",
-  "3/4": "aspect-[3/4]",
-};
+  '16/9': 'aspect-[16/9]',
+  '3/4': 'aspect-[3/4]',
+}
 
-const isVertical = post.data.heroImageAspectRatio === "3/4";
-const imagePosition =
-  post.data.heroImageLayout || (index % 2 === 1 ? "right" : "left");
-const isReverse = imagePosition === "right";
+const isVertical = post.data.heroImageAspectRatio === '3/4'
+const imagePosition = post.data.heroImageLayout || (index % 2 === 1 ? 'right' : 'left')
+const isReverse = imagePosition === 'right'
 ---
 
-<article
-  class={`group flex flex-col md:flex-row gap-8 ${isReverse ? "md:flex-row-reverse" : ""}`}
->
-  <div
-    class={`${isVertical ? "md:w-1/4" : "md:w-2/5"} flex flex-col overflow-hidden`}
-  >
+<article class={`group flex flex-col md:flex-row gap-8 ${isReverse ? 'md:flex-row-reverse' : ''}`}>
+  <div class={`${isVertical ? 'md:w-1/4' : 'md:w-2/5'} flex flex-col overflow-hidden`}>
     <a href={`/posts/${post.slug}`} class="block relative">
-      <div
-        class={`${aspectRatioClass[post.data.heroImageAspectRatio]} overflow-hidden bg-muted/30 relative`}
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-accent to-muted/50 animate-pulse"
-        >
-        </div>
+      <div class={`${aspectRatioClass[post.data.heroImageAspectRatio]} overflow-hidden bg-muted/30 relative`}>
+        <div class="absolute inset-0 bg-gradient-to-br from-accent to-muted/50 animate-pulse"></div>
         <img
           src={post.data.heroImage || POSTS_CONFIG.defaultHeroImage}
           alt={post.data.title}
@@ -61,17 +51,13 @@ const isReverse = imagePosition === "right";
     }
   </div>
 
-  <div
-    class={`w-full ${isVertical ? "md:w-3/4" : "md:w-3/5"} flex flex-col justify-center`}
-  >
+  <div class={`w-full ${isVertical ? 'md:w-3/4' : 'md:w-3/5'} flex flex-col justify-start`}>
     <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-3 md:mb-4">
       {post.data.recommend && <RecommendBadge />}
       {post.data.tags?.map((tag) => <PostTag tag={tag} />)}
     </div>
 
-    <div
-      class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground/90"
-    >
+    <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground/90">
       <time class="flex items-center gap-1.5">
         <span class="icon-[ph--calendar-light] size-3.5"></span>
         {formatDate(post.data.pubDate)}
@@ -88,29 +74,23 @@ const isReverse = imagePosition === "right";
     </div>
 
     <a href={`/posts/${post.slug}`} class="mt-2 md:mt-3 group/title">
-      <h2
-        class="text-xl md:text-2xl font-medium transition-colors group-hover/title:text-primary line-clamp-2"
-      >
+      <h2 class="text-xl md:text-2xl font-medium transition-colors group-hover/title:text-primary line-clamp-2">
         {post.data.title}
       </h2>
     </a>
 
     {
       post.data.description && (
-        <p class="text-xs sm:text-sm text-muted-foreground/80 mt-2 md:mt-3 line-clamp-2 leading-relaxed">
-          {post.data.description}
-        </p>
+        <p class="text-xs sm:text-sm text-muted-foreground/80 mt-2 md:mt-3 line-clamp-2 leading-relaxed">{post.data.description}</p>
       )
     }
 
     <a
       href={`/posts/${post.slug}`}
-      class={`${isVertical ? "md:inline-flex" : "md:hidden"} mt-3 inline-flex items-center gap-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors group/read`}
+      class={`${isVertical ? 'md:inline-flex' : 'md:hidden'} mt-3 inline-flex items-center gap-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors group/read`}
     >
       Read More
-      <span
-        class="icon-[ph--arrow-right-light] size-4 transition-transform group-hover/read:translate-x-1"
-      ></span>
+      <span class="icon-[ph--arrow-right-light] size-4 transition-transform group-hover/read:translate-x-1"></span>
     </a>
   </div>
 </article>

@@ -1,10 +1,10 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z } from 'astro:content'
 
-import { POSTS_CONFIG } from "@consts";
-import type { HeroImageAspectRatio, HeroImageLayout } from "@types";
+import { POSTS_CONFIG } from '@consts'
+import type { HeroImageAspectRatio, HeroImageLayout } from '@types'
 
 const posts = defineCollection({
-  type: "content",
+  type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -15,11 +15,9 @@ const posts = defineCollection({
     heroImage: z.string().optional(),
     ogImage: z.string().optional(),
     heroImageLayout: z.custom<HeroImageLayout>().optional(),
-    heroImageAspectRatio: z
-      .custom<HeroImageAspectRatio>()
-      .default(POSTS_CONFIG.defaultHeroImageAspectRatio),
-    tags: z.array(z.string()).default([]),
+    heroImageAspectRatio: z.custom<HeroImageAspectRatio>().default(POSTS_CONFIG.defaultHeroImageAspectRatio),
+    tags: z.array(z.string()),
   }),
-});
+})
 
-export const collections = { posts };
+export const collections = { posts }

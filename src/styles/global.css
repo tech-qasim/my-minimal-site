@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @plugin "@iconify/tailwind4";
 
@@ -54,7 +54,7 @@
 
   /* New 纠结中 */
   :root {
-    --font-lexend: "Lexend", sans-serif;
+    --font-lexend: 'Lexend', sans-serif;
 
     /* 基础色调 - 清新色调 */
     --background: 220 30% 98%;
@@ -132,14 +132,16 @@
   html {
     color-scheme: light;
     background-color: var(--color-background);
-    font-family: "CJKEmDash", "Nubmers", "Onest", "ShangguSansSCVF", sans-serif;
+    font-family: 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
     @variant dark {
       color-scheme: dark;
     }
   }
   /* 添加主题过渡效果 */
   .theme-transition {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   /* 滚动条样式 */
@@ -161,34 +163,34 @@
 
 @layer base {
   @font-face {
-    font-family: "Nubmers";
+    font-family: 'Nubmers';
     unicode-range: U+0030-0039;
-    src: url("/fonts/Geist[wght].woff2") format("woff2");
+    src: url('/fonts/Geist[wght].woff2') format('woff2');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Onest";
-    src: url("/fonts/Onest[wght].woff2") format("woff2");
+    font-family: 'Onest';
+    src: url('/fonts/Onest[wght].woff2') format('woff2');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "ShangguSansSCVF";
-    src: url("/fonts/ShangguSansSC-VF.ttf") format("ttf");
+    font-family: 'ShangguSansSCVF';
+    src: url('/fonts/ShangguSansSC-VF.ttf') format('ttf');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "CJKEmDash";
+    font-family: 'CJKEmDash';
     unicode-range: U+2014, U+2E3A-2E3B;
-    src: url("/fonts/ZhudouSansVF-subset.woff2") format("woff2");
+    src: url('/fonts/ZhudouSansVF-subset.woff2') format('woff2');
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Lexend";
-    src: url("/fonts/Lexend-VariableFont_wght.woff2") format("woff2");
+    font-family: 'Lexend';
+    src: url('/fonts/Lexend-VariableFont_wght.woff2') format('woff2');
     font-display: swap;
   }
 }

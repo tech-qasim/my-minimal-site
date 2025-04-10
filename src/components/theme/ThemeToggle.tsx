@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useStore } from "@nanostores/react";
-import { themeStore } from "@stores/theme";
+import { useEffect, useState } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useStore } from '@nanostores/react'
+import { themeStore } from '@stores/theme'
 
 const iconVariants = {
   visible: {
@@ -14,63 +14,63 @@ const iconVariants = {
     opacity: 0,
     rotate: 180,
   },
-};
+}
 
 const ThemeToggle = () => {
-  const [mounted, setMounted] = useState(false);
-  const theme = useStore(themeStore);
-  const controlsSun = useAnimation();
-  const controlsMoon = useAnimation();
-  const controlsSystem = useAnimation();
+  const [mounted, setMounted] = useState(false)
+  const theme = useStore(themeStore)
+  const controlsSun = useAnimation()
+  const controlsMoon = useAnimation()
+  const controlsSystem = useAnimation()
 
   useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | "system";
-    themeStore.set(savedTheme || "system");
-  }, []);
+    setMounted(true)
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system'
+    themeStore.set(savedTheme || 'system')
+  }, [])
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) return
 
-    if (theme === "system") {
-      controlsSun.start("hidden");
-      controlsSystem.start("visible");
-      controlsMoon.start("hidden");
+    if (theme === 'system') {
+      controlsSun.start('hidden')
+      controlsSystem.start('visible')
+      controlsMoon.start('hidden')
     } else {
-      controlsSun.start(theme === "light" ? "visible" : "hidden");
-      controlsMoon.start(theme === "dark" ? "visible" : "hidden");
-      controlsSystem.start("hidden");
+      controlsSun.start(theme === 'light' ? 'visible' : 'hidden')
+      controlsMoon.start(theme === 'dark' ? 'visible' : 'hidden')
+      controlsSystem.start('hidden')
     }
 
-    localStorage.setItem("theme", theme);
-    applyTheme(theme);
-  }, [theme, mounted, controlsSun, controlsMoon, controlsSystem]);
+    localStorage.setItem('theme', theme)
+    applyTheme(theme)
+  }, [theme, mounted, controlsSun, controlsMoon, controlsSystem])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   const applyTheme = (newTheme: string) => {
-    const root = document.documentElement;
+    const root = document.documentElement
 
     // 添加过渡类
-    root.classList.add("theme-transition");
+    root.classList.add('theme-transition')
 
-    const isDark = newTheme === "dark" || (newTheme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    root.classList.toggle("dark", isDark);
+    const isDark = newTheme === 'dark' || (newTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    root.classList.toggle('dark', isDark)
 
     // 移除过渡类
     setTimeout(() => {
-      root.classList.remove("theme-transition");
-    }, 300);
-  };
+      root.classList.remove('theme-transition')
+    }, 300)
+  }
 
   const handleClick = () => {
     const themeMap = {
-      light: "dark",
-      dark: "system",
-      system: "light",
-    };
-    themeStore.set(themeMap[theme] as "light" | "dark" | "system");
-  };
+      light: 'dark',
+      dark: 'system',
+      system: 'light',
+    }
+    themeStore.set(themeMap[theme] as 'light' | 'dark' | 'system')
+  }
 
   return (
     <button onClick={handleClick} className="relative size-5 flex items-center justify-center cursor-pointer" aria-label="切换主题">
@@ -80,7 +80,7 @@ const ThemeToggle = () => {
           variants={iconVariants}
           initial="hidden"
           animate={controlsSun}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
           <span className="icon-[f7--sun-max-fill] size-5"></span>
         </motion.div>
@@ -89,7 +89,7 @@ const ThemeToggle = () => {
           variants={iconVariants}
           initial="hidden"
           animate={controlsSystem}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
           <span className="icon-[majesticons--monitor-line] size-5"></span>
         </motion.div>
@@ -98,13 +98,13 @@ const ThemeToggle = () => {
           variants={iconVariants}
           initial="hidden"
           animate={controlsMoon}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
           <span className="icon-[tabler--moon-filled] size-5"></span>
         </motion.div>
       </motion.div>
     </button>
-  );
-};
+  )
+}
 
-export default ThemeToggle;
+export default ThemeToggle
