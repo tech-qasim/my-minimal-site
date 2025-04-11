@@ -33,7 +33,7 @@ const { page } = Astro.props
         <p class="mt-2">Here, I will share the usage instructions for this theme to help you quickly use it.</p>
       </div>
 
-      <div class="mt-12 space-y-16">
+      <div class="fade-up mt-12 space-y-16">
         {
           page.data.map((post, index) => {
             return POSTS_CONFIG.enableImage ? <PostCardImage post={post} index={index} /> : <PostCardSimple post={post} />
