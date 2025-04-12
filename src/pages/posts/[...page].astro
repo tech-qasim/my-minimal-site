@@ -6,15 +6,14 @@ import { POSTS_CONFIG } from '~/config'
 import { postsSort } from '~/lib/utils'
 import Layout from '~/layouts/Layout.astro'
 import Pagination from '~/components/Pagination.astro'
-import PostCardSimple from '~/components/PostCardSimple.astro'
-import PostCardImage from '~/components/PostCardImage.astro'
+import PostCardList from '~/components/postCard/PostCardList.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allPosts = await getCollection('posts')
   const sortedPosts = postsSort(allPosts)
 
   return paginate(sortedPosts, {
-    pageSize: POSTS_CONFIG.postsPageSize,
+    pageSize: POSTS_CONFIG.postPageConfig.size,
   })
 }
 
@@ -33,14 +32,10 @@ const { title, description } = POSTS_CONFIG
       <p class="mt-2">Here, I will share the usage instructions for this theme to help you quickly use it.</p>
     </div>
 
-    <div class="fade-up mt-12 space-y-16">
-      {
-        page.data.map((post, index) => {
-          return POSTS_CONFIG.enableImage ? <PostCardImage post={post} index={index} /> : <PostCardSimple post={post} />
-        })
-      }
+    <div class="fade-up mt-12">
+      <PostCardList posts={page.data} type={POSTS_CONFIG.postPageConfig.type} />
     </div>
 
-    <Pagination {page} />
+    <Pagination {page} baseUrl="/posts" />
   </div>
 </Layout>

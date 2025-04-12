@@ -24,13 +24,33 @@ export type HeroImageAspectRatio = '16/9' | '3/4'
 export type HeroImageLayout = 'left' | 'right'
 
 /**
+ * 文章卡片类型 / PostCardType
+ * @description 可选值为 'compact' 、'image' 和 'time-line' / Possible values: 'compact', 'image' and 'timeLine'
+ */
+export type PostCardType = 'compact' | 'image' | 'time-line'
+
+/**
+ * 文章卡片页面基础配置接口 / Post card page configuration interface
+ * @description 用于配置文章卡片页面的显示方式 / Used to configure how post cards are displayed on pages
+ * @property {PostCardType} type - 卡片展示类型 / Card display type
+ * @property {number} size - 每页显示数量 / Number of items per page
+ * @property {HeroImageLayout} heroImageLayout - 特色图片布局方式 / Hero image layout position
+ */
+export interface PostCardPageConfig {
+  type: PostCardType
+  size: number
+  heroImageLayout?: HeroImageLayout
+}
+
+/**
  * 文章配置接口 / Post configuration interface
+ * @description 用于配置博客文章相关的全局设置 / Used to configure global settings for blog posts
  * @property {string} title - 文章标题 / Post title
  * @property {string} description - 文章描述 / Post description
  * @property {string} author - 作者名称 / Author name
- * @property {number} homePageSize - 首页显示文章数量 / Number of posts on home page
- * @property {number} postsPageSize - 文章列表页每页数量 / Posts per page on posts list
- * @property {boolean} enableImage - 是否启用文章图片 / Whether to enable post images
+ * @property {PostCardPageConfig} homePageConfig - 首页文章展示配置 / Home page posts display configuration
+ * @property {PostCardPageConfig} postPageConfig - 文章列表页展示配置 / Posts list page display configuration
+ * @property {PostCardPageConfig} tagsPageConfig - 标签页文章展示配置 / Post display configuration for tags page
  * @property {string} defaultHeroImage - 默认文章封面图 / Default hero image for posts
  * @property {HeroImageAspectRatio} defaultHeroImageAspectRatio - 默认图片宽高比 / Default image aspect ratio
  */
@@ -38,9 +58,9 @@ export interface PostConfig {
   title: string
   description: string
   author: string
-  homePageSize: number
-  postsPageSize: number
-  enableImage: boolean
+  homePageConfig: PostCardPageConfig
+  postPageConfig: PostCardPageConfig
+  tagsPageConfig: PostCardPageConfig
   defaultHeroImage: string
   defaultHeroImageAspectRatio: HeroImageAspectRatio
 }

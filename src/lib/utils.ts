@@ -50,7 +50,6 @@ export function postsSort(posts: CollectionEntry<'posts'>[]) {
 }
 
 // 日期格式化
-
 export const formatDate = (date: Date) =>
   date.toLocaleDateString('en-US', {
     year: 'numeric',

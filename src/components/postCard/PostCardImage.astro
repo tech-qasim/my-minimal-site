@@ -3,8 +3,8 @@ import type { CollectionEntry } from 'astro:content'
 import type { HeroImageAspectRatio } from '~/types'
 import { formatDate } from '~/lib/utils'
 import { POSTS_CONFIG } from '~/config'
-import PostTag from './ui/PostTag.astro'
-import RecommendBadge from './ui/RecommendBadge.astro'
+import PostTag from '~/components/ui/PostTag.astro'
+import RecommendBadge from '~/components/ui/RecommendBadge.astro'
 
 interface Props {
   post: CollectionEntry<'posts'>
@@ -21,6 +21,7 @@ const aspectRatioClass: Record<HeroImageAspectRatio, string> = {
 const isVertical = post.data.heroImageAspectRatio === '3/4'
 const imagePosition = post.data.heroImageLayout || (index % 2 === 1 ? 'right' : 'left')
 const isReverse = imagePosition === 'right'
+const defaultHeroImage = POSTS_CONFIG.defaultHeroImage
 ---
 
 <article class={`group flex flex-col md:flex-row gap-8 ${isReverse ? 'md:flex-row-reverse' : ''}`}>
@@ -29,7 +30,7 @@ const isReverse = imagePosition === 'right'
       <div class={`${aspectRatioClass[post.data.heroImageAspectRatio]} overflow-hidden bg-muted/30 relative`}>
         <div class="absolute inset-0 bg-gradient-to-br from-accent to-muted/50 animate-pulse"></div>
         <img
-          src={post.data.heroImage || POSTS_CONFIG.defaultHeroImage}
+          src={post.data.heroImage || defaultHeroImage}
           alt={post.data.title}
           loading="lazy"
           decoding="async"

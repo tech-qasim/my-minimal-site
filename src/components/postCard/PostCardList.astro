@@ -1,0 +1,34 @@
+---
+import type { PostCardType } from '~/types'
+import type { CollectionEntry } from 'astro:content'
+import PostCardCompact from '~/components/postCard/PostCardCompact.astro'
+import PostCardImage from '~/components/postCard/PostCardImage.astro'
+import PostCardTimeLine from '~/components/postCard/PostCardTimeLine.astro'
+import { cn } from '~/lib/utils'
+
+const POST_CARD_COMPONENTS = {
+  'compact': PostCardCompact,
+  'image': PostCardImage,
+  'time-line': PostCardTimeLine,
+} as const
+
+const POST_CARD_SPACING_CLASSES = {
+  'compact': '',
+  'image': 'space-y-16',
+  'time-line': '',
+} as const
+
+type Props = {
+  posts: CollectionEntry<'posts'>[]
+  type: PostCardType
+  customSpacing?: string
+}
+
+const { posts, type, customSpacing } = Astro.props
+const spacingClass = customSpacing || POST_CARD_SPACING_CLASSES[type]
+const PostCardElement = POST_CARD_COMPONENTS[type]
+---
+
+<div class={cn(spacingClass)}>
+  {posts.map((post, index) => <PostCardElement {post} {index} />)}
+</div>

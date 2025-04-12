@@ -16,19 +16,27 @@ export const SITE: Site = {
  * @property {string} title - 文章标题 / Post title
  * @property {string} description - 文章描述 / Post description
  * @property {string} author - 作者名称 / Author name
- * @property {number} homePageSize - 首页显示文章数量 / Number of posts on home page
- * @property {number} postsPageSize - 文章列表页每页数量 / Posts per page on posts list
- * @property {boolean} enableImage - 是否启用文章图片 / Whether to enable post images
+ * @property {PostCardPageConfig} homePageConfig - 首页文章展示配置 / Home page posts display configuration
+ * @property {PostCardPageConfig} postPageConfig - 文章列表页展示配置 / Posts list page display configuration
  * @property {string} defaultHeroImage - 默认文章封面图 / Default hero image for posts
- * @property {string} defaultHeroImageAspectRatio - 默认图片宽高比 / Default image aspect ratio
+ * @property {HeroImageAspectRatio} defaultHeroImageAspectRatio - 默认图片宽高比 / Default image aspect ratio
  */
 export const POSTS_CONFIG: PostConfig = {
   title: 'Posts',
   description: 'Posts by Dnzzk2',
   author: 'Dnzzk2',
-  homePageSize: 5,
-  postsPageSize: 10,
-  enableImage: true,
+  homePageConfig: {
+    size: 5,
+    type: 'compact',
+  },
+  postPageConfig: {
+    size: 10,
+    type: 'image',
+  },
+  tagsPageConfig: {
+    size: 10,
+    type: 'time-line',
+  },
   defaultHeroImage: 'og-image.png',
   defaultHeroImageAspectRatio: '16/9',
 }

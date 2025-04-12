@@ -3,9 +3,10 @@ import type { Page } from 'astro'
 
 interface Props {
   page: Page<any>
+  baseUrl: string
 }
 
-const { page } = Astro.props
+const { page, baseUrl } = Astro.props
 
 // 处理大量页码的显示逻辑
 const getVisiblePages = (current: number, total: number) => {
@@ -39,7 +40,7 @@ const visiblePages = getVisiblePages(page.currentPage, page.lastPage)
             <span class="w-6 sm:w-9 text-center text-muted-foreground text-xs sm:text-sm">...</span>
           ) : (
             <a
-              href={pageNum === 1 ? '/posts' : `/posts/${pageNum}`}
+              href={pageNum === 1 ? baseUrl : `${baseUrl}/${pageNum}`}
               class={`inline-flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-md text-xs sm:text-sm transition-colors ${
                 page.currentPage === pageNum
                   ? 'text-primary font-medium border-primary/20 border'

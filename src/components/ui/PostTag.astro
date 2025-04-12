@@ -6,9 +6,10 @@ interface Props {
 const { tag } = Astro.props
 ---
 
-<span
+<a
+  href={`/tags/${tag}`}
   aria-label={`View posts tagged ${tag}`}
-  class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-muted/50 text-muted-foreground rounded hover:bg-muted transition-colors cursor-pointer"
+  class="inline-block text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-muted/50 text-muted-foreground rounded hover:bg-muted transition-colors cursor-pointer"
 >
-  # {tag}
-</span>
+  #{tag}
+</a>
