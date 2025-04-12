@@ -1,0 +1,40 @@
+---
+import { TAGS_CONFIG } from '~/config'
+import Layout from '~/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const allPosts = await getCollection('posts')
+const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))]
+
+const { title, description } = TAGS_CONFIG
+---
+
+<Layout {title} {description}>
+  <div class="fullPage relative z-[1] py-8 pb-10 px-8">
+    <h1 class="tracking-tight text-5xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent pb-1.5">Tags</h1>
+    <div class="pro text-muted-foreground text-balance">
+      <p class="mt-2">All the tags for posts are here, you can click to filter them.</p>
+    </div>
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+        tags.map((tag) => {
+          const postCount = allPosts.filter((post) => post.data.tags?.includes(tag)).length
+          return (
+            <a
+              href={`/tags/${tag}`}
+              class="group flex flex-col p-4 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-primary font-medium group-hover:text-primary/80 transition-colors">#{tag}</span>
+                <span class="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{postCount} 篇</span>
+              </div>
+              <div class="mt-2 w-full bg-muted rounded-full h-1.5 overflow-hidden">
+                <div class="bg-primary h-full transition-all duration-300" style={`width: ${Math.min(100, postCount * 10)}%`} />
+              </div>
+            </a>
+          )
+        })
+      }
+    </div>
+  </div>
+</Layout>

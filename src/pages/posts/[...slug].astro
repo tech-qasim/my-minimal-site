@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
-import Layout from '@layouts/Layout.astro'
+import Layout from '~/layouts/Layout.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -17,7 +17,7 @@ const ogImage = post.data.ogImage || post.data.heroImage
 ---
 
 <Layout title={post.data.title} description={post.data.description || post.data.title} image={ogImage}>
-  <article class="mx-auto max-w-3xl px-8 py-12 relative">
+  <article class="fullPage mx-auto max-w-3xl px-8 py-12 relative">
     <h1 class="text-4xl font-bold">{post.data.title}</h1>
     <div class="prose dark:prose-invert mt-8">
       <Content />

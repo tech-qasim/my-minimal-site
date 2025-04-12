@@ -139,6 +139,9 @@
       color-scheme: dark;
     }
   }
+  .fullPage {
+    min-height: calc(100vh - 272px);
+  }
 }
 
 @layer base {

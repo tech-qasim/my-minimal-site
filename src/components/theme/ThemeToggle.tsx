@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useStore } from '@nanostores/react'
-import { themeStore } from '@stores/theme'
+import { themeStore } from '~/stores/theme'
 
 const iconVariants = {
   visible: {

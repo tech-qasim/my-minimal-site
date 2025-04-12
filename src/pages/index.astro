@@ -1,14 +1,14 @@
 ---
-import SectionDivider from '@components/SectionDivider'
-import { SITE, SOLUTION_LINKS } from '@consts'
-import Layout from '@layouts/Layout.astro'
+import { SITE, SOLUTION_LINKS } from '~/config.ts'
 import { GET } from './api/github.ts'
-import SocialLink from '@components/SocialLink.astro'
-import { GITHUB_CONFIG, POSTS_CONFIG } from '@consts'
-import { padMissingWeeks, postsSort } from '@lib/utils'
-import GithubContributions from '@components/GithubContributions.astro'
+import { GITHUB_CONFIG, POSTS_CONFIG } from '~/config.ts'
+import { padMissingWeeks, postsSort } from '~/lib/utils'
 import { getCollection } from 'astro:content'
-import PostCard from '@components/PostCard.astro'
+import Layout from '~/layouts/Layout.astro'
+import SectionDivider from '~/components/SectionDivider'
+import PostCard from '~/components/PostCard.astro'
+import GithubContributions from '~/components/GithubContributions.astro'
+import SocialLink from '~/components/SocialLink.astro'
 
 const { ENABLED } = GITHUB_CONFIG
 const { homePageSize } = POSTS_CONFIG

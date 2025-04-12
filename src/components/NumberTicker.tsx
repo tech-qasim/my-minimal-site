@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '~/lib/utils'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 

@@ -1,4 +1,4 @@
-import { GITHUB_CONFIG } from '@consts'
+import { GITHUB_CONFIG } from '~/config'
 import type { APIRoute } from 'astro'
 import NodeCache from 'node-cache'
 

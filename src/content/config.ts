@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content'
 
-import { POSTS_CONFIG } from '@consts'
-import type { HeroImageAspectRatio, HeroImageLayout } from '@types'
+import { POSTS_CONFIG } from '~/config'
+import type { HeroImageAspectRatio, HeroImageLayout } from '~/types'
 
 const posts = defineCollection({
   type: 'content',
