@@ -85,7 +85,7 @@ const posts = postsSort(allPosts).slice(0, size)
       <p class="text-muted-foreground mb-6 mt-1">
         Recent {posts.length} blog posts, hoping to be helpful.
       </p>
-      <PostCardList {posts} {type} />
+      <PostCardList {posts} {type} heroImageLayout={POSTS_CONFIG.homePageConfig?.heroImageLayout} />
     </div>
   </div>
 </Layout>

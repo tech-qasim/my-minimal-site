@@ -16,14 +16,15 @@ const { title, description } = TAGS_CONFIG
       <p class="mt-2">All the tags for posts are here, you can click to filter them.</p>
     </div>
 
-    <div class="mt-12 flex flex-wrap gap-4">
+    <div class="mt-12 flex flex-wrap gap-4" data-astro-transition="animate">
       {
         tags.map((tag) => {
           const postCount = allPosts.filter((post) => post.data.tags?.includes(tag)).length
           return (
             <a
-              href={`/tags/${tag}`} 
+              href={`/tags/${tag}`}
               class="group relative flex items-center gap-2 px-4 py-2 rounded-md bg-muted/50 hover:bg-muted transition-all"
+              style={`view-transition-name: tag-${tag.replace(/\s+/g, '-')}`}
             >
               <span class="text-sm font-medium text-foreground">#{tag}</span>
               <span class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{postCount}</span>

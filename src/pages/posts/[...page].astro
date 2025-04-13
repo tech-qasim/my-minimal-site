@@ -33,7 +33,11 @@ const { title, description } = POSTS_CONFIG
     </div>
 
     <div class="fade-up mt-12">
-      <PostCardList posts={page.data} type={POSTS_CONFIG.postPageConfig.type} />
+      <PostCardList
+        posts={page.data}
+        type={POSTS_CONFIG.postPageConfig.type}
+        heroImageLayout={POSTS_CONFIG.postPageConfig?.heroImageLayout}
+      />
     </div>
 
     <Pagination {page} baseUrl="/posts" />

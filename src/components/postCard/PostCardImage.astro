@@ -1,17 +1,14 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import type { HeroImageAspectRatio } from '~/types'
 import { formatDate } from '~/lib/utils'
 import { POSTS_CONFIG } from '~/config'
 import PostTag from '~/components/ui/PostTag.astro'
 import RecommendBadge from '~/components/ui/RecommendBadge.astro'
+import type { CardProps } from './PostCardList.astro'
 
-interface Props {
-  post: CollectionEntry<'posts'>
-  index: number
-}
+interface Props extends CardProps {}
 
-const { post, index } = Astro.props
+const { post, index, heroImageLayout }: Props = Astro.props
 
 const aspectRatioClass: Record<HeroImageAspectRatio, string> = {
   '16/9': 'aspect-[16/9]',
@@ -19,7 +16,7 @@ const aspectRatioClass: Record<HeroImageAspectRatio, string> = {
 }
 
 const isVertical = post.data.heroImageAspectRatio === '3/4'
-const imagePosition = post.data.heroImageLayout || (index % 2 === 1 ? 'right' : 'left')
+const imagePosition = post.data.heroImageLayout || heroImageLayout || (index % 2 === 1 ? 'right' : 'left')
 const isReverse = imagePosition === 'right'
 const defaultHeroImage = POSTS_CONFIG.defaultHeroImage
 ---

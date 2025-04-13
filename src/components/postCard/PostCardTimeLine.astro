@@ -1,14 +1,11 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import { formatDate } from '~/lib/utils'
 import PostTag from '~/components/ui/PostTag.astro'
+import type { CardProps } from './PostCardList.astro'
 
-interface Props {
-  post: CollectionEntry<'posts'>
-  index: number
-}
+interface Props extends CardProps {}
 
-const { post } = Astro.props
+const { post }: Props = Astro.props
 ---
 
 <article class="group relative pl-10">
