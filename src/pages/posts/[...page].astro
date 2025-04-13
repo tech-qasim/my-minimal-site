@@ -6,7 +6,7 @@ import { POSTS_CONFIG } from '~/config'
 import { postsSort } from '~/lib/utils'
 import Layout from '~/layouts/Layout.astro'
 import Pagination from '~/components/Pagination.astro'
-import PostCardList from '~/components/postCard/PostCardList.astro'
+import PostCardList from '~/components/post-card/PostCardList.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allPosts = await getCollection('posts')

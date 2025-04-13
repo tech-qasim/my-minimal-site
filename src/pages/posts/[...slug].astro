@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '~/layouts/Layout.astro'
-import HeroHorizontal from '~/components/postFrontMatter/HeroHorizontal.astro'
-import NoHero from '~/components/postFrontMatter/NoHero.astro'
+import NoImageLayout from '~/components/post-layouts/NoImageLayout.astro'
+import HorizontalImageLayout from '~/components/post-layouts/HorizontalImageLayout.astro'
+import VerticalImageLayout from '~/components/post-layouts/VerticalImageLayout.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -15,8 +16,16 @@ export async function getStaticPaths() {
 const { post } = Astro.props
 const { data: frontmatter } = post
 const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const hasImage = frontmatter.heroImage || false
+const isVertical = frontmatter.heroImageAspectRatio === '3/4'
+
+const PostLayout = !hasImage ? NoImageLayout : isVertical ? VerticalImageLayout : HorizontalImageLayout
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description || frontmatter.title} image={frontmatter.ogImage}>
-  <article class="relative"></article>
+  <div class="fullPage relative">
+    <PostLayout {frontmatter} minutesRead={remarkPluginFrontmatter.minutesRead}>
+      <Content />
+    </PostLayout>
+  </div>
 </Layout>

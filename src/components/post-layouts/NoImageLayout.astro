@@ -1,0 +1,71 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { formatDate } from '~/lib/utils'
+
+interface Props {
+  frontmatter: any
+  minutesRead?: string
+}
+
+const { frontmatter, minutesRead } = Astro.props
+---
+
+<article class="relative px-8 py-8">
+  <header class="pb-8 space-y-6 max-w-2xl mx-auto">
+    <div class="text-center border-y border-border/30 py-6 mb-8 space-y-4">
+      <h1
+        class="text-[2.8rem] font-serif leading-tight tracking-wide italic
+                bg-gradient-to-r from-foreground/90 to-foreground/70 bg-clip-text text-transparent"
+      >
+        {frontmatter.title}
+      </h1>
+
+      <div class="flex justify-center items-center gap-4 text-sm text-muted-foreground/80">
+        <div class="flex items-center gap-2">
+          <span class="icon-[ph--calendar-blank] w-4 h-4 opacity-75"></span>
+          <time datetime={frontmatter.pubDate.toISOString()}>
+            {formatDate(frontmatter.pubDate)}
+          </time>
+        </div>
+        {
+          frontmatter.updatedDate && (
+            <>
+              <span class="text-muted-foreground/30">/</span>
+              <div class="flex items-center gap-2">
+                <span class="icon-[ph--clock-countdown] w-4 h-4 opacity-75" />
+                <time datetime={frontmatter.updatedDate.toISOString()}>{formatDate(frontmatter.updatedDate)}</time>
+              </div>
+            </>
+          )
+        }
+        {
+          minutesRead && (
+            <>
+              <span class="text-muted-foreground/30">/</span>
+              <div class="flex items-center gap-2">
+                <span class="icon-[ph--clock] w-4 h-4 opacity-75" />
+                <span>{minutesRead} min read</span>
+              </div>
+            </>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-3 flex-wrap">
+      {
+        frontmatter.tags?.map((tag: string) => (
+          <a
+            href={`/tags/${tag}`}
+            class="px-4 py-1.5 text-xs  tracking-widest 
+                   border border-border rounded-full hover:bg-primary/10 
+                   transition-colors duration-200 group"
+            aria-label={`View posts tagged with ${tag}`}
+          >
+            <span class="opacity-80 group-hover:opacity-100">#{tag}</span>
+          </a>
+        ))
+      }
+    </div>
+  </header>
+</article>

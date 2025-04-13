@@ -24,7 +24,6 @@ const { title, description } = TAGS_CONFIG
             <a
               href={`/tags/${tag}`}
               class="group relative flex items-center gap-2 px-4 py-2 rounded-md bg-muted/50 hover:bg-muted transition-all"
-              style={`view-transition-name: tag-${tag.replace(/\s+/g, '-')}`}
             >
               <span class="text-sm font-medium text-foreground">#{tag}</span>
               <span class="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{postCount}</span>
