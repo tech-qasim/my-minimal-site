@@ -12,6 +12,7 @@
     "format:write": "prettier . --write --ignore-unknown --cache"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "^6.3.1",
     "@astrojs/mdx": "^4.2.3",
     "@astrojs/react": "^4.2.1",
     "@floating-ui/dom": "^1.6.13",
@@ -23,10 +24,12 @@
     "astro": "^5.6.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
+    "mdast-util-to-string": "^4.0.0",
     "nanostores": "^0.11.4",
     "node-cache": "^5.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "reading-time": "^1.5.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.12"
   },
@@ -35,6 +38,7 @@
     "@iconify/json": "^2.2.321",
     "@iconify/tailwind4": "^1.0.6",
     "@types/cli-progress": "^3.11.6",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^22.13.13",
     "@types/yargs": "^17.0.33",
     "chalk": "^5.4.1",

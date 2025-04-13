@@ -27,17 +27,15 @@ export const POSTS_CONFIG: PostConfig = {
   author: 'Dnzzk2',
   homePageConfig: {
     size: 5,
-    type: 'image',
-    heroImageLayout: 'left',
+    type: 'compact',
   },
   postPageConfig: {
     size: 10,
     type: 'image',
-    heroImageLayout: 'right',
   },
   tagsPageConfig: {
     size: 10,
-    type: 'image',
+    type: 'time-line',
   },
   defaultHeroImage: '/og-image.png',
   defaultHeroImageAspectRatio: '16/9',

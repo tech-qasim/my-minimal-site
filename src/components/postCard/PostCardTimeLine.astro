@@ -29,7 +29,7 @@ const { post }: Props = Astro.props
       </time>
     </div>
 
-    <a href={`/posts/${post.slug}`} class="block group-hover:translate-x-2 transition-transform duration-300">
+    <a href={`/posts/${post.slug}`} class="block">
       <h2 class="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
         {post.data.title}
       </h2>

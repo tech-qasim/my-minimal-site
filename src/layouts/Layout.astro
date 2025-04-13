@@ -19,7 +19,7 @@ const { title, description, image }: Props = Astro.props
   <head>
     <Head title={`${title} | ${SITE.title}`} {description} {image} />
   </head>
-  <body>
+  <body class="scrollbarClass">
     <Header />
     <main class="flex-auto border-x border-border/50 max-w-3xl mx-auto">
       <slot />

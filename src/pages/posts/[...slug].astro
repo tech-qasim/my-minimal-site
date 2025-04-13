@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '~/layouts/Layout.astro'
+import HeroHorizontal from '~/components/postFrontMatter/HeroHorizontal.astro'
+import NoHero from '~/components/postFrontMatter/NoHero.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -11,16 +13,10 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
-const { Content } = await post.render()
-
-const ogImage = post.data.ogImage || post.data.heroImage
+const { data: frontmatter } = post
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
 ---
 
-<Layout title={post.data.title} description={post.data.description || post.data.title} image={ogImage}>
-  <article class="fullPage mx-auto max-w-3xl px-8 py-12 relative">
-    <h1 class="text-4xl font-bold">{post.data.title}</h1>
-    <div class="prose dark:prose-invert mt-8">
-      <Content />
-    </div>
-  </article>
+<Layout title={frontmatter.title} description={frontmatter.description || frontmatter.title} image={frontmatter.ogImage}>
+  <article class="relative"></article>
 </Layout>
