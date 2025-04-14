@@ -4,11 +4,13 @@
  * @property {string} title - 站点标题 / Site title
  * @property {string} description - 站点描述 / Site description
  * @property {string} author - 作者名称 / Author name
+ * @property {string} website - 网站地址 / Website address
  */
 export type Site = {
   title: string
   description: string
   author: string
+  website: string
 }
 
 /**

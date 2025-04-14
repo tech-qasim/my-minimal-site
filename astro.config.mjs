@@ -4,9 +4,10 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 import { remarkPlugins, rehypePlugins } from './plugins'
+import { SITE } from './src/config'
 
 export default defineConfig({
-  site: 'https://litos.vercel.app/',
+  site: SITE.website,
   prefetch: true,
   vite: {
     plugins: [tailwindcss()],
@@ -15,20 +16,6 @@ export default defineConfig({
   markdown: {
     remarkPlugins,
     rehypePlugins,
-    shikiConfig: {
-      theme: 'github-dark',
-      wrap: true,
-    },
   },
-  integrations: [
-    react(),
-    mdx({
-      remarkPlugins,
-      rehypePlugins,
-      shikiConfig: {
-        theme: 'github-dark',
-        wrap: true,
-      },
-    }),
-  ],
+  integrations: [react(), mdx()],
 })

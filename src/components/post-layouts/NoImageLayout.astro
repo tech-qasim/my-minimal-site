@@ -10,11 +10,11 @@ interface Props {
 const { frontmatter, minutesRead } = Astro.props
 ---
 
-<article class="relative px-4 sm:px-8 py-6 sm:py-8">
+<article class="relative px-6 sm:px-8 py-6 sm:py-8 fade-up">
   <header class="pb-6 sm:pb-8 space-y-4 sm:space-y-6 max-w-2xl mx-auto">
     <div class="text-center border-y border-border/30 py-4 sm:py-6 mb-6 sm:mb-8 space-y-4">
       <h1
-        class="text-2xl sm:text-[2.8rem] font-serif leading-tight tracking-wide italic
+        class="text-2xl sm:text-[2.8rem] font-serif leading-tight tracking-wide
                 bg-gradient-to-r from-foreground/90 to-foreground/70 bg-clip-text text-transparent"
       >
         {frontmatter.title}
@@ -58,11 +58,12 @@ const { frontmatter, minutesRead } = Astro.props
           <a
             href={`/tags/${tag}`}
             class="px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs tracking-widest 
-                 border border-border rounded-full hover:bg-primary/10 
-                 transition-colors duration-200 group"
+                   bg-tag-bg text-tag-text border border-tag-border rounded-full
+                   hover:bg-tag-bg-hover hover:border-primary/30 hover:text-foreground
+                   transition-all duration-300 group"
             aria-label={`View posts tagged with ${tag}`}
           >
-            <span class="opacity-80 group-hover:opacity-100">#{tag}</span>
+            <span class="opacity-90 group-hover:opacity-100">#{tag}</span>
           </a>
         ))
       }

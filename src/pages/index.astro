@@ -38,7 +38,7 @@ const posts = postsSort(allPosts).slice(0, size)
 
 <Layout title="Readme" description={SITE.description}>
   <div class="relative z-[1]">
-    <div class="py-8 pb-10 px-8">
+    <div class="py-8 pb-10 px-6 sm:px-8">
       <h1 class="flex flex-col gap-2">
         <span class="text-4xl sm:text-5xl tracking-tight"> Litos </span>
         <span class="text-muted-foreground font-light text-xl sm:text-2xl block tracking-wide text-balance">
@@ -70,7 +70,7 @@ const posts = postsSort(allPosts).slice(0, size)
     <SectionDivider />
     {
       ENABLED && githubGraphqlData.length > 0 && (
-        <div class="py-8 pb-10 px-6 max-md:px-8">
+        <div class="py-8 pb-10 px-6 max-md:px-6">
           <div class="px-2 max-md:px-0">
             <h2 class="text-3xl ">Spotlight</h2>
             <p class="text-muted-foreground mb-6 mt-1">Most recent contributions.</p>
@@ -80,7 +80,7 @@ const posts = postsSort(allPosts).slice(0, size)
       )
     }
     <SectionDivider />
-    <div class="py-8 pb-10 px-8">
+    <div class="py-8 pb-10 px-6 sm:px-8">
       <h2 class="text-3xl">Posts</h2>
       <p class="text-muted-foreground mb-6 mt-1">
         Recent {posts.length} blog posts, hoping to be helpful.

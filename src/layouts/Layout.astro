@@ -1,5 +1,6 @@
 ---
 import '~/styles/global.css'
+import '~/styles/markdown.css'
 import { SITE } from '~/config'
 import Head from '~/components/Head.astro'
 import Header from '~/components/Header.astro'
@@ -19,7 +20,7 @@ const { title, description, image }: Props = Astro.props
   <head>
     <Head title={`${title} | ${SITE.title}`} {description} {image} />
   </head>
-  <body class="scrollbarClass">
+  <body>
     <Header />
     <main class="flex-auto border-x border-border/50 max-w-3xl mx-auto">
       <slot />

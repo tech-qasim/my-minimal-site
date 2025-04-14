@@ -1,64 +1,104 @@
+/* 导入依赖 */
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @plugin "@iconify/tailwind4";
 
+/* 暗色模式配置 */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* 主题变量 */
 @theme {
+  /* 字体 */
   --font-serif: var(--font-lexend);
   --font-mono: var(--font-dm-mono);
 
+  /* 基础颜色 */
   --color-border: hsl(var(--border));
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
+  /* 主题颜色 */
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
 
+  /* 标签颜色 */
   --color-tg-bg: hsl(var(--tag-bg));
   --color-tag-bg-hover: hsl(var(--tag-bg-hover));
   --color-tag-border: hsl(var(--tag-border));
   --color-tag-text: hsl(var(--tag-text));
+
+  /* 滚动条颜色 */
+  --color-scrollbar: hsl(var(--scrollbar));
+  --color-scrollbar-bg: hsl(var(--scrollbar-bg));
 }
 
+/* 字体配置 =========================== */
 @layer base {
-  /* Old */
-  /* :root {
-    --font-lexend: "Lexend", sans-serif;
-    --background: 210 40% 98%;
-    --foreground: 240 10% 3.9%;
+  /* 数字字体 */
+  @font-face {
+    font-family: 'Nubmers';
+    unicode-range: U+0030-0039;
+    src: url('/fonts/Geist[wght].woff2') format('woff2');
+    font-display: swap;
+  }
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+  /* 中文字体 */
+  @font-face {
+    font-family: 'ShangguSansSCVF';
+    src: url('/fonts/ShangguSansSC-VF.ttf') format('ttf');
+    font-display: swap;
+  }
 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+  /* 英文字体 */
+  @font-face {
+    font-family: 'Onest';
+    src: url('/fonts/Onest[wght].woff2') format('woff2');
+    font-display: swap;
+  }
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+  /* 破折号字体 */
+  @font-face {
+    font-family: 'CJKEmDash';
+    unicode-range: U+2014, U+2E3A-2E3B;
+    src: url('/fonts/ZhudouSansVF-subset.woff2') format('woff2');
+    font-display: swap;
+  }
 
-    --border: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+  /* 标题字体 */
+  @font-face {
+    font-family: 'Lexend';
+    src: url('/fonts/Lexend-VariableFont_wght.woff2') format('woff2');
+    font-display: swap;
+  }
 
-    --tag-bg: 45 30% 97%; 
-    --tag-bg-hover: 45 35% 94%;
-    --tag-border: 45 25% 90%;
-    --tag-text: 45 30% 30%; 
-  } */
+  /* 等宽字体 */
+  @font-face {
+    font-family: 'DM Mono';
+    src: url('/fonts/DMMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'DM Mono';
+    src: url('/fonts/DMMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+}
 
-  /* New 纠结中 */
+/* 颜色变量 =========================== */
+@layer base {
   :root {
-    --font-lexend: 'Lexend', sans-serif;
+    /* 字体族 */
+    --font-lexend: 'Lexend', 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
     --font-dm-mono: 'DM Mono', monospace;
 
-    /* 基础色调 - 清新色调 */
+    /* 基础色调 */
     --background: 220 30% 98%;
     --foreground: 225 15% 12%;
 
@@ -81,42 +121,65 @@
     --tag-bg-hover: 220 25% 92%;
     --tag-border: 220 25% 90%;
     --tag-text: 225 15% 35%;
+
+    /* 滚动条 */
+    --scrollbar: 220 20% 80%;
+    --scrollbar-bg: 220 25% 95%;
   }
 
+  /* 暗色模式变量 */
   .dark {
-    /* 基础色调 - 深色主题 */
+    /* 基础色调 */
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
 
-    /* 交互状态 - 深色主题 */
+    /* 交互状态 */
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
 
-    /* 主要强调色 - 反转 */
+    /* 主要强调色 */
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
 
-    /* 弱化元素 - 深色协调 */
+    /* 弱化元素 */
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
     --border: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
-    /* 标签系统 - 深色协调 */
+    /* 标签系统 */
     --tag-bg: 240 20% 13%;
     --tag-bg-hover: 240 20% 16%;
     --tag-border: 240 20% 20%;
     --tag-text: 240 15% 85%;
+
+    /* 滚动条 */
+    --scrollbar: 240 10% 30%;
+    --scrollbar-bg: 240 10% 15%;
   }
 }
 
+/* 基础样式 =========================== */
 @layer base {
   * {
     @apply border-border;
   }
+
+  html {
+    color-scheme: light;
+    background-color: var(--color-background);
+    font-family: 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
+    scroll-behavior: smooth;
+    @variant dark {
+      color-scheme: dark;
+    }
+  }
+
   body {
     @apply min-h-screen bg-background text-foreground;
   }
+
+  /* 标题样式 */
   h1,
   h2,
   h3,
@@ -125,26 +188,25 @@
   h6 {
     @apply font-serif font-medium! tracking-tight;
   }
+
+  /* 链接样式 */
   a {
     @apply underline-offset-4;
   }
+
+  /* 工具类 */
   .pro {
     @apply prose prose-zinc dark:prose-invert;
   }
-  html {
-    color-scheme: light;
-    background-color: var(--color-background);
-    font-family: 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
-    @variant dark {
-      color-scheme: dark;
-    }
-  }
+
   .fullPage {
     min-height: calc(100vh - 272px);
   }
 }
 
+/* 动画效果 =========================== */
 @layer base {
+  /* 淡入上升动画 */
   .fade-up {
     opacity: 0;
     transform: translateY(20px);
@@ -162,23 +224,7 @@
     }
   }
 
-  /* 滚动条样式 */
-  .scrollbarClass {
-    &::-webkit-scrollbar {
-      @apply w-2 h-2;
-    }
-    &::-webkit-scrollbar-track {
-      @apply bg-muted;
-    }
-    &::-webkit-scrollbar-thumb {
-      @apply bg-primary/10;
-      &:hover {
-        @apply bg-primary/30;
-      }
-    }
-  }
-
-  /* 添加主题过渡效果 */
+  /* 主题切换动画 */
   .theme-transition {
     transition:
       background-color 0.3s ease,
@@ -186,49 +232,32 @@
   }
 }
 
-@layer base {
-  @font-face {
-    font-family: 'Nubmers';
-    unicode-range: U+0030-0039;
-    src: url('/fonts/Geist[wght].woff2') format('woff2');
-    font-display: swap;
+/* 滚动条样式 =========================== */
+/* Firefox */
+@supports (scrollbar-width: auto) {
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: hsl(var(--scrollbar)) hsl(var(--scrollbar-bg));
   }
+}
 
-  @font-face {
-    font-family: 'Onest';
-    src: url('/fonts/Onest[wght].woff2') format('woff2');
-    font-display: swap;
+/* Webkit */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 8px;
   }
-
-  @font-face {
-    font-family: 'ShangguSansSCVF';
-    src: url('/fonts/ShangguSansSC-VF.ttf') format('ttf');
-    font-display: swap;
+  ::-webkit-scrollbar:horizontal {
+    height: 8px;
   }
-
-  @font-face {
-    font-family: 'CJKEmDash';
-    unicode-range: U+2014, U+2E3A-2E3B;
-    src: url('/fonts/ZhudouSansVF-subset.woff2') format('woff2');
-    font-display: swap;
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: hsl(var(--scrollbar-bg));
   }
-
-  @font-face {
-    font-family: 'Lexend';
-    src: url('/fonts/Lexend-VariableFont_wght.woff2') format('woff2');
-    font-display: swap;
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: hsl(var(--scrollbar));
   }
-
-  @font-face {
-    font-family: 'DM Mono';
-    src: url('/fonts/DMMono-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'DM Mono';
-    src: url('/fonts/DMMono-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--scrollbar) / 0.8);
   }
 }

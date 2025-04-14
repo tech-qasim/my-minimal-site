@@ -1,0 +1,127 @@
+@import 'rehype-callouts/theme/vitepress';
+@import url('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css');
+
+/* Markdown 主题配色 */
+.prose {
+  --md-text-light-mode: 225 15% 25%;
+  --md-text-secondary-light: 225 15% 35%;
+  --md-heading-light: 225 15% 15%;
+
+  --md-text: var(--md-text-light-mode);
+  --md-text-light: var(--md-text-secondary-light);
+  --md-heading: var(--md-heading-light);
+
+  --md-anchor: var(--md-text-light);
+}
+
+/* 暗色模式覆盖 */
+.dark .prose {
+  --md-text-dark-mode: 225 15% 80%;
+  --md-text-secondary-dark: 225 15% 60%;
+  --md-heading-dark: 225 15% 85%;
+
+  --md-text: var(--md-text-dark-mode);
+  --md-text-light: var(--md-text-secondary-dark);
+  --md-heading: var(--md-heading-dark);
+}
+
+.prose {
+  color: hsl(var(--md-text));
+  max-width: 75ch;
+  font-size: 1rem;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.prose h1 {
+  color: hsl(var(--md-heading));
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+
+.prose h2 {
+  color: hsl(var(--md-heading));
+  font-weight: 700;
+  font-size: 1.6em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.3333333;
+}
+.prose h3 {
+  color: inherit;
+  font-weight: 600;
+  font-size: 1.4em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+.prose h4 {
+  color: inherit;
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+.prose h5 {
+  color: inherit;
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
+}
+.prose h6 {
+  color: inherit;
+  font-weight: 600;
+  font-size: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+/* 段落样式 */
+.prose p {
+  margin: 1.5em 0;
+}
+
+/* 分割线样式 */
+.prose hr {
+  width: 50px;
+  margin: 2em auto;
+}
+
+/* rehypeAutolinkHeadings */
+a.header-anchor {
+  float: left;
+  margin-left: -0.8em;
+  border: 0 !important;
+  opacity: 0;
+  font-size: 1em;
+  text-decoration: none;
+  color: hsl(var(--md-anchor));
+}
+
+a.header-anchor:hover,
+a.header-anchor:focus {
+  text-decoration: none;
+  color: hsl(var(--md-anchor));
+}
+
+h1:hover .header-anchor,
+h1:focus .header-anchor,
+h2:hover .header-anchor,
+h2:focus .header-anchor,
+h3:hover .header-anchor,
+h3:focus .header-anchor,
+h4:hover .header-anchor,
+h4:focus .header-anchor,
+h5:hover .header-anchor,
+h5:focus .header-anchor,
+h6:hover .header-anchor,
+h6:focus .header-anchor {
+  opacity: 0.6;
+}
