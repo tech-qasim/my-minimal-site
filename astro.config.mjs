@@ -3,18 +3,32 @@ import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
-import { remarkPlugins } from './plugins'
+import { remarkPlugins, rehypePlugins } from './plugins'
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://litos.vercel.app/',
-  prefetch: true, // 启用预取
+  prefetch: true,
   vite: {
     plugins: [tailwindcss()],
     envDir: '.',
   },
   markdown: {
-    remarkPlugins: remarkPlugins,
+    remarkPlugins,
+    rehypePlugins,
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: true,
+    },
   },
-  integrations: [react(), mdx({ remarkPlugins: remarkPlugins })],
+  integrations: [
+    react(),
+    mdx({
+      remarkPlugins,
+      rehypePlugins,
+      shikiConfig: {
+        theme: 'github-dark',
+        wrap: true,
+      },
+    }),
+  ],
 })
