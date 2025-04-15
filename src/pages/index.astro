@@ -60,7 +60,9 @@ const posts = postsSort(allPosts).slice(0, size)
           SOLUTION_LINKS.map((item) => {
             const isGithub = item.name.toLowerCase() === 'github'
             if (isGithub && ENABLED && githubFollowerCount !== null) {
-              return <SocialLink icon={item.icon} count={githubFollowerCount} label="followers" aria-label="Follow on Github" />
+              return (
+                <SocialLink href={item.url} icon={item.icon} count={githubFollowerCount} label="followers" aria-label="Follow on Github" />
+              )
             }
             return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />
           })

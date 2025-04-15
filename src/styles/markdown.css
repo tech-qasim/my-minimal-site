@@ -7,11 +7,15 @@
   --md-text-secondary-light: 225 15% 35%;
   --md-heading-light: 225 15% 15%;
 
+  --md-anchor-light: 225 15% 45%;
+  --md-anchor-symbol-light: 250 60% 60%;
+
   --md-text: var(--md-text-light-mode);
   --md-text-light: var(--md-text-secondary-light);
   --md-heading: var(--md-heading-light);
 
   --md-anchor: var(--md-text-light);
+  --md-anchor-symbol: var(--md-anchor-symbol-light);
 }
 
 /* 暗色模式覆盖 */
@@ -20,9 +24,15 @@
   --md-text-secondary-dark: 225 15% 60%;
   --md-heading-dark: 225 15% 85%;
 
+  --md-anchor-dark: var(--md-text-secondary-dark);
+  --md-anchor-symbol-dark: 250 70% 70%;
+
   --md-text: var(--md-text-dark-mode);
   --md-text-light: var(--md-text-secondary-dark);
   --md-heading: var(--md-heading-dark);
+
+  --md-anchor: var(--md-text-light);
+  --md-anchor-symbol: var(--md-anchor-symbol-dark);
 }
 
 .prose {
@@ -102,13 +112,13 @@ a.header-anchor {
   opacity: 0;
   font-size: 1em;
   text-decoration: none;
-  color: hsl(var(--md-anchor));
+  color: hsl(var(--md-anchor-symbol));
 }
 
 a.header-anchor:hover,
 a.header-anchor:focus {
   text-decoration: none;
-  color: hsl(var(--md-anchor));
+  color: hsl(var(--md-anchor-symbol));
 }
 
 h1:hover .header-anchor,
@@ -124,4 +134,9 @@ h5:focus .header-anchor,
 h6:hover .header-anchor,
 h6:focus .header-anchor {
   opacity: 0.6;
+}
+
+/* rehypePrettyCode 样式 */
+.prose code {
+  font-family: 'DM Mono', 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', monospace;
 }

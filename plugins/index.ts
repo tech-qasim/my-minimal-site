@@ -10,7 +10,6 @@ import remarkReadingTime from './remark-reading-time'
 import rehypeSlug from 'rehype-slug'
 import rehypeUnwrapImages from 'rehype-unwrap-images'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeCallouts from 'rehype-callouts'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeKatex from 'rehype-katex'
@@ -52,7 +51,6 @@ export const rehypePlugins = [
       },
     },
   ],
-  rehypePrettyCode,
   [rehypeCallouts, { theme: 'vitepress' }],
   rehypeExternalLinks,
   rehypeKatex,
