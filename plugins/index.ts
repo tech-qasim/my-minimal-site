@@ -52,8 +52,8 @@ export const rehypePlugins = [
       },
     },
   ],
-  [rehypePrettyCode],
+  rehypePrettyCode,
   [rehypeCallouts, { theme: 'vitepress' }],
-  [rehypeExternalLinks],
-  rehypeKatex, // 渲染数学公式
+  rehypeExternalLinks,
+  rehypeKatex,
 ] as RehypePlugin[]
