@@ -12,8 +12,37 @@ export default defineEcConfig({
   },
   minSyntaxHighlightingColorContrast: 0,
 
-  plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
+  styleOverrides: {
+    uiFontFamily: "'DM Mono','Input Mono','Fira Code','ShangguSansSCVF', 'monospace'",
+    uiFontSize: '1em',
+    codeFontFamily: "'DM Mono','Input Mono','Fira Code','ShangguSansSCVF','monospace'",
+    codeFontSize: '14px',
+    codeLineHeight: '1.4',
+    borderRadius: '0',
+    codePaddingBlock: '0.8571429em',
+    codePaddingInline: '1.1428571em',
+    borderColor: ({ theme }) => (theme.type === 'dark' ? '#24273a' : '#e6e9ef'),
+
+    frames: {
+      frameBoxShadowCssValue: false,
+      inlineButtonBackgroundActiveOpacity: '0.2',
+      inlineButtonBackgroundHoverOrFocusOpacity: '0.1',
+    },
+    textMarkers: {
+      backgroundOpacity: '0.2',
+      borderOpacity: '0.4',
+    },
+  },
+
+  plugins: [
+    pluginCollapsibleSections({
+      defaultCollapsed: false,
+    }),
+    pluginLineNumbers(),
+  ],
 
   themes: ['catppuccin-macchiato', 'catppuccin-latte'],
   themeCssSelector: (theme) => (theme.name === 'catppuccin-macchiato' ? '.dark' : ':root:not(.dark)'),
+  useDarkModeMediaQuery: false,
+  useStyleReset: false,
 })

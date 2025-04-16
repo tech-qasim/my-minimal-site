@@ -50,7 +50,7 @@
   /* 中文字体 */
   @font-face {
     font-family: 'ShangguSansSCVF';
-    src: url('/fonts/ShangguSansSC-VF.ttf') format('ttf');
+    src: url('/fonts/ShangguSansSC-VF.ttf') format('truetype');
     font-display: swap;
   }
 
@@ -96,6 +96,7 @@
   :root {
     /* 字体族 */
     --font-lexend: 'Lexend', 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
+    --font-sans: 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', system-ui, sans-serif;
     --font-dm-mono: 'DM Mono', monospace;
 
     /* 基础色调 */
@@ -168,7 +169,8 @@
   html {
     color-scheme: light;
     background-color: var(--color-background);
-    font-family: 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
+    /* 修改基础字体 */
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
     @variant dark {
       color-scheme: dark;
