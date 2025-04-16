@@ -22,3 +22,7 @@ function test() {
   return 42
 }
 ```
+
+```js title="example.js"
+console.log('Hello World')
+```

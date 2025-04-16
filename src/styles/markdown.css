@@ -135,8 +135,3 @@ h6:hover .header-anchor,
 h6:focus .header-anchor {
   opacity: 0.6;
 }
-
-/* rehypePrettyCode 样式 */
-.prose code {
-  font-family: 'DM Mono', 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', monospace;
-}
