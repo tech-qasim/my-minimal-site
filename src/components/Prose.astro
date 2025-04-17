@@ -6,6 +6,19 @@ interface Props {
 const { class: className } = Astro.props
 ---
 
-<div class="prose dark:prose-zinc">
+<div class="markdown">
   <slot />
 </div>
+
+<script>
+  /* medium-zoom */
+  import mediumZoom from 'medium-zoom/dist/pure'
+  const zoom = mediumZoom({
+    background: 'rgb(0 0 0 / 0.8)',
+  })
+
+  document.addEventListener('astro:page-load', () => {
+    zoom.detach()
+    zoom.attach('.markdown img:not(.no-zoom):not(a img)')
+  })
+</script>

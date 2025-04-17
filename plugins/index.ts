@@ -28,16 +28,13 @@ export const remarkPlugins = [
           n: { text: 'NEW' },
         },
       },
-      // 链接配置
       link: {
-        // 网站图标 URL 模板
-        faviconSourceUrl: 'https://www.google.com/s2/favicons?domain={domain}&sz=128',
-        // 图标属性配置
+        faviconSourceUrl: 'https://icon.horse/icon/{domain}',
         imgProps: (node: Parameters<PropertiesFromTextDirective>[0]) => {
           const props: ReturnType<PropertiesFromTextDirective> = {
             'aria-hidden': 'true',
           }
-          if (node.attributes?.class?.includes('github')) props.src = 'https://www.google.com/s2/favicons?domain=github.com&sz=128'
+          if (node.attributes?.class?.includes('github')) props.src = 'https://icon.horse/icon/github.com'
 
           return props
         },

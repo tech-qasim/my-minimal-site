@@ -97,7 +97,7 @@
     /* 字体族 */
     --font-lexend: 'Lexend', 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', sans-serif;
     --font-sans: 'CJKEmDash', 'Nubmers', 'Onest', 'ShangguSansSCVF', system-ui, sans-serif;
-    --font-dm-mono: 'DM Mono', monospace;
+    --font-dm-mono: 'DM Mono', 'Input Mono', 'Fira Code', 'ShangguSansSCVF', monospace;
 
     /* 基础色调 */
     --background: 220 30% 98%;
