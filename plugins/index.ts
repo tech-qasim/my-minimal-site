@@ -1,5 +1,4 @@
 import { visit } from 'unist-util-visit'
-import remarkGfm from 'remark-gfm'
 import remarkSmartypants from 'remark-smartypants'
 import remarkDirective from 'remark-directive'
 import remarkDirectiveSugar from 'remark-directive-sugar'
@@ -19,69 +18,32 @@ import { type PropertiesFromTextDirective } from 'remark-directive-sugar'
 import { type CreateProperties } from 'rehype-external-links'
 
 export const remarkPlugins = [
-  remarkGfm,
   remarkSmartypants,
   remarkDirective,
   [
     remarkDirectiveSugar,
     {
-      // 徽章配置
       badge: {
         presets: {
-          n: {
-            text: 'NEW',
-            style: 'background-color: #22c55e; color: white; padding: 0.2em 0.5em; border-radius: 4px;',
-          },
-          a: {
-            text: 'ARTICLE',
-            style: 'background-color: #3b82f6; color: white; padding: 0.2em 0.5em; border-radius: 4px;',
-          },
-          v: {
-            text: 'VIDEO',
-            style: 'background-color: #ef4444; color: white; padding: 0.2em 0.5em; border-radius: 4px;',
-          },
+          n: { text: 'NEW' },
         },
       },
       // 链接配置
       link: {
         // 网站图标 URL 模板
-        faviconSourceUrl: 'https://icon.horse/icon/{domain}',
+        faviconSourceUrl: 'https://www.google.com/s2/favicons?domain={domain}&sz=128',
         // 图标属性配置
-        imgProps: (node: Parameters<PropertiesFromTextDirective>[0]) => ({
-          'aria-hidden': 'true',
-          'style': 'height: 1em; width: 1em; margin-right: 0.2em; vertical-align: -0.1em;',
-          'loading': 'lazy',
-        }),
-        // 特定网站配置
-        github: {
-          icon: true, // 使用 GitHub 图标
-          className: 'github-link',
-        },
-        npm: {
-          icon: true, // 使用 NPM 图标
-          className: 'npm-link',
+        imgProps: (node: Parameters<PropertiesFromTextDirective>[0]) => {
+          const props: ReturnType<PropertiesFromTextDirective> = {
+            'aria-hidden': 'true',
+          }
+          if (node.attributes?.class?.includes('github')) props.src = 'https://www.google.com/s2/favicons?domain=github.com&sz=128'
+
+          return props
         },
       },
-      // 图片配置
       image: {
-        figure: true, // 启用 figure 包装
-        figureClassName: 'image-figure',
-        captionClassName: 'image-caption',
-        link: true, // 图片可点击
-        stripParagraph: false, // 不移除外层段落
-      },
-      // 视频配置
-      video: {
-        youtube: {
-          width: '100%',
-          height: 'auto',
-          loading: 'lazy',
-        },
-        bilibili: {
-          width: '100%',
-          height: 'auto',
-          loading: 'lazy',
-        },
+        stripParagraph: false,
       },
     },
   ],
@@ -120,9 +82,6 @@ export const rehypePlugins = [
     {
       target: '_blank',
       rel: ['noopener', 'noreferrer'],
-      properties: {
-        className: ['external-link'],
-      },
     },
   ],
   rehypeKatex,

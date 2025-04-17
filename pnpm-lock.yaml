@@ -98,9 +98,6 @@ importers:
       remark-directive-sugar:
         specifier: ^1.1.2
         version: 1.1.2(remark-directive@4.0.0)
-      remark-gfm:
-        specifier: ^4.0.1
-        version: 4.0.1
       remark-imgattr:
         specifier: ^1.0.5
         version: 1.0.5

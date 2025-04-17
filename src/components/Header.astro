@@ -4,9 +4,11 @@ import ThemeToggle from '~/components/theme/ThemeToggle'
 import HeaderGradient from '~/components/theme/HeaderGradient'
 import SectionDivider from '~/components/SectionDivider.tsx'
 import HeaderLink from '~/components/HeaderLink.astro'
+
+const { pathname } = Astro.url
 ---
 
-<HeaderGradient />
+{!pathname.includes('/posts/') && <HeaderGradient />}
 <header>
   <div class="mx-auto max-w-3xl flex justify-between px-6 sm:px-8 py-4 lg:px-8">
     <div class="flex gap-6 items-center">

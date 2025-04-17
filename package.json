@@ -42,7 +42,6 @@
     "rehype-unwrap-images": "^1.0.0",
     "remark-directive": "^4.0.0",
     "remark-directive-sugar": "^1.1.2",
-    "remark-gfm": "^4.0.1",
     "remark-imgattr": "^1.0.5",
     "remark-math": "^6.0.0",
     "remark-smartypants": "^3.0.2",
