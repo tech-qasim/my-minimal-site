@@ -4,6 +4,8 @@ import Layout from '~/layouts/Layout.astro'
 import NoImageLayout from '~/components/post-layouts/NoImageLayout.astro'
 import HorizontalImageLayout from '~/components/post-layouts/HorizontalImageLayout.astro'
 import VerticalImageLayout from '~/components/post-layouts/VerticalImageLayout.astro'
+import TableOfContents from '~/components/TableOfContents.astro'
+import BackToTop from '~/components/BackToTop.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -24,8 +26,10 @@ const PostLayout = !hasImage ? NoImageLayout : isVertical ? VerticalImageLayout 
 
 <Layout title={frontmatter.title} description={frontmatter.description || frontmatter.title} image={frontmatter.ogImage}>
   <div class="fullPage relative">
+    <TableOfContents {headings} />
     <PostLayout {frontmatter} minutesRead={remarkPluginFrontmatter.minutesRead}>
       <Content />
     </PostLayout>
+    <BackToTop />
   </div>
 </Layout>

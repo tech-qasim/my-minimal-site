@@ -1,0 +1,123 @@
+---
+import type { MarkdownHeading } from 'astro'
+import { POSTS_CONFIG } from '~/config'
+import { cn } from '~/lib/utils'
+
+interface Props {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+
+const filteredHeadings = headings
+  .filter((heading) => heading.depth <= 4)
+  .filter((heading) => heading.text.trim() !== '')
+  .map((heading, index) => ({
+    ...heading,
+    order: index + 1,
+  }))
+
+const indentMap: Record<number, string> = {
+  2: '',
+  3: 'ml-4',
+  4: 'ml-8',
+}
+
+const getIndentClass = (depth: number) => {
+  return indentMap[depth] || ''
+}
+---
+
+<div class="fixed top-30 w-48 right-[calc(50%-384px)] translate-x-full">
+  <nav class="p-4 fade-up w-full hidden sm:block sm:w-64 md:w-72">
+    <h2 class="px-2 text-lg font-medium mb-4 text-foreground/80">{POSTS_CONFIG.tocText}</h2>
+    <div class="relative overflow-hidden h-[calc(100vh-24rem)]">
+      <ul class="space-y-2 pb-32 absolute w-full transition-transform duration-300" data-toc-list>
+        {
+          filteredHeadings.map((heading) => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                data-heading-link
+                class={cn(
+                  'group flex text-sm',
+                  'min-h-[1.75rem]',
+                  'w-full overflow-hidden relative',
+                  'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
+                  'transition-all duration-200 ease-in-out',
+                  heading.depth === 1 ? 'font-medium text-foreground' : 'text-foreground/60 hover:text-foreground/90',
+                  getIndentClass(heading.depth)
+                )}
+              >
+                <span
+                  class={cn(
+                    'flex items-center px-2 text-xs',
+                    'text-primary/40 group-hover:text-primary/60',
+                    'group-data-[active]:text-primary',
+                    'transition-all duration-200 ease-in-out'
+                  )}
+                >
+                  {heading.order.toString().padStart(2, '0')}
+                </span>
+                <span
+                  class={cn(
+                    'leading-[1.75rem] truncate pr-2',
+                    'transition-all duration-200 ease-in-out',
+                    'group-data-[active]:text-primary/90 group-data-[active]:font-medium'
+                  )}
+                  title={heading.slug}
+                >
+                  {heading.slug}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<script>
+  function updateActiveHeading() {
+    const headingElements = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')
+    const headingLinks = document.querySelectorAll('[data-heading-link]')
+    const tocList = document.querySelector('[data-toc-list]') as HTMLElement
+    const tocContainer = tocList?.parentElement as HTMLElement
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            headingLinks.forEach((link) => link.removeAttribute('data-active'))
+
+            const activeLink = document.querySelector(`[href="#${entry.target.id}"]`) as HTMLElement
+            if (activeLink && tocList && tocContainer) {
+              activeLink.setAttribute('data-active', '')
+
+              const containerHeight = tocContainer.offsetHeight
+              const activeLinkTop = activeLink.offsetTop
+              const maxTransform = tocList.offsetHeight - containerHeight
+
+              // 计算目标位置，使活动项居中显示
+              let targetTransform = activeLinkTop - containerHeight / 2 + activeLink.offsetHeight / 2
+
+              // 确保不会超出范围
+              targetTransform = Math.max(0, Math.min(targetTransform, maxTransform))
+
+              tocList.style.transform = `translateY(-${targetTransform}px)`
+            }
+          }
+        })
+      },
+      {
+        rootMargin: '-20% 0px -35% 0px',
+        threshold: 0.5,
+      }
+    )
+
+    headingElements.forEach((heading) => observer.observe(heading))
+  }
+
+  document.addEventListener('astro:page-load', updateActiveHeading)
+</script>

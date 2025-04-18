@@ -4,7 +4,7 @@
 
 /* 基础颜色 */
 .markdown {
-  --text: #5c6170;
+  --text: #333;
   --text-deep: #18181b;
   --heading: #18181b;
   --links: #18181b;
@@ -647,7 +647,6 @@ html:not(.dark) .img-dark {
   z-index: 300;
 }
 
-/* 暗色主题适配 */
 .dark .medium-zoom-overlay {
   background-color: rgba(0, 0, 0, 0.95) !important;
 }
