@@ -14,6 +14,7 @@ const filteredHeadings = headings
   .filter((heading) => heading.text.trim() !== '')
   .map((heading, index) => ({
     ...heading,
+    text: heading.text.replace(/\s*[Hh][1-6]$/g, ''),
     order: index + 1,
   }))
 
@@ -32,7 +33,7 @@ const getIndentClass = (depth: number) => {
   <nav class="p-4 fade-up w-full hidden sm:block sm:w-64 md:w-72">
     <h2 class="px-2 text-lg font-medium mb-4 text-foreground/80">{POSTS_CONFIG.tocText}</h2>
     <div class="relative overflow-hidden h-[calc(100vh-24rem)]">
-      <ul class="space-y-2 pb-32 absolute w-full transition-transform duration-300" data-toc-list>
+      <ul class="space-y-2 absolute w-full transition-transform duration-300" data-toc-list>
         {
           filteredHeadings.map((heading) => (
             <li>
@@ -45,6 +46,7 @@ const getIndentClass = (depth: number) => {
                   'w-full overflow-hidden relative',
                   'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
                   'transition-all duration-200 ease-in-out',
+                  'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent',
                   heading.depth === 1 ? 'font-medium text-foreground' : 'text-foreground/60 hover:text-foreground/90',
                   getIndentClass(heading.depth)
                 )}
@@ -65,9 +67,9 @@ const getIndentClass = (depth: number) => {
                     'transition-all duration-200 ease-in-out',
                     'group-data-[active]:text-primary/90 group-data-[active]:font-medium'
                   )}
-                  title={heading.slug}
+                  title={heading.text}
                 >
-                  {heading.slug}
+                  {heading.text}
                 </span>
               </a>
             </li>
@@ -84,6 +86,10 @@ const getIndentClass = (depth: number) => {
     const headingLinks = document.querySelectorAll('[data-heading-link]')
     const tocList = document.querySelector('[data-toc-list]') as HTMLElement
     const tocContainer = tocList?.parentElement as HTMLElement
+
+    console.log(headingLinks)
+    if (headingLinks && headingLinks.length === 0) return
+    headingLinks[0].setAttribute('data-active', '')
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -111,7 +117,7 @@ const getIndentClass = (depth: number) => {
         })
       },
       {
-        rootMargin: '0px 0px -85% 0px',
+        rootMargin: '-10px 0px -85% 0px',
         threshold: [0, 1],
       }
     )

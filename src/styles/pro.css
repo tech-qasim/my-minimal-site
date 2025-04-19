@@ -135,10 +135,11 @@
   position: absolute;
   background-color: var(--text);
   border-radius: 50%;
-  width: 0.375em;
-  height: 0.375em;
-  top: calc(0.875em - 0.1875em);
-  left: 0.25em;
+  width: 0.4em;
+  height: 0.4em;
+  top: calc(0.875em - 0.2em);
+  left: 0.2em;
+  opacity: 0.8;
 }
 
 .markdown hr {

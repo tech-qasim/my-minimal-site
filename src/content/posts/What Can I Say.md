@@ -17,7 +17,7 @@ Using AI can save a lot of time and quickly understand areas that one does not u
 
 I feel that the writing effect is decent.
 
-### 使用AI的优势与挑战使用AI的优势与挑战使用AI的优势与挑战
+### 使用AI的优势与挑战
 
 在使用AI的过程中，我发现它不仅能帮助我快速生成内容，还能提供多角度的思考视角。比如在写技术文档时，AI能够帮我梳理逻辑框架，提供更专业的表达方式。在学习新技术时，它就像一个随时待命的导师，能够深入浅出地解释复杂概念。
 
