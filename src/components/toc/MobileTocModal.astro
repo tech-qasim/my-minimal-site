@@ -1,0 +1,117 @@
+---
+import type { MarkdownHeading } from 'astro'
+import { POSTS_CONFIG } from '~/config'
+import { cn } from '~/lib/utils'
+
+interface Props {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+const filteredHeadings = headings
+  .filter((heading) => heading.depth <= 4)
+  .filter((heading) => heading.text.trim() !== '')
+  .map((heading, index) => ({
+    ...heading,
+    text: heading.text.replace(/\s*[Hh][1-6]$/g, ''),
+    order: index + 1,
+  }))
+---
+
+<div
+  id="tocModal"
+  class="lg:hidden fixed inset-0 z-50 bg-background/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-200"
+>
+  <div class="absolute right-4 bottom-24 w-72 max-h-[70vh] overflow-y-auto rounded-xl bg-background border shadow-lg no-scrollbar">
+    <div class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background/80 backdrop-blur-sm border-b">
+      <h2 class="text-sm font-medium">{POSTS_CONFIG.tocText}</h2>
+      <button id="tocClose" class="text-muted-foreground hover:text-foreground">
+        <span class="icon-[ph--x-bold] size-5"></span>
+      </button>
+    </div>
+    <ul class="p-4 text-sm space-y-2">
+      {
+        filteredHeadings.map((heading) => (
+          <li>
+            <a
+              href={`#${heading.slug}`}
+              data-heading-link
+              class={cn(
+                'block py-1 px-2 transition-colors relative',
+                'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
+                'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent',
+                heading.depth === 1 ? 'font-medium text-foreground' : 'text-muted-foreground',
+                heading.depth > 2 ? 'ml-4' : ''
+              )}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<script>
+  function setupTocModal() {
+    const tocModal = document.getElementById('tocModal')
+    const tocClose = document.getElementById('tocClose')
+    const tocLinks = tocModal?.querySelectorAll('[data-heading-link]')
+
+    // 处理关闭事件
+    tocClose?.addEventListener('click', () => {
+      tocModal?.classList.add('opacity-0', 'pointer-events-none')
+    })
+
+    tocModal?.addEventListener('click', (e) => {
+      if (e.target === tocModal) {
+        tocModal.classList.add('opacity-0', 'pointer-events-none')
+      }
+    })
+
+    // 处理点击链接事件
+    tocLinks?.forEach((link) => {
+      link.addEventListener('click', () => {
+        tocModal?.classList.add('opacity-0', 'pointer-events-none')
+      })
+    })
+
+    // 监听滚动，更新高亮
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0) {
+            const id = entry.target.id
+            tocLinks?.forEach((link) => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.setAttribute('data-active', '')
+              } else {
+                link.removeAttribute('data-active')
+              }
+            })
+          }
+        })
+      },
+      {
+        rootMargin: '-10px 0px -85% 0px',
+        threshold: [0, 1],
+      }
+    )
+
+    // 观察所有标题元素
+    document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]').forEach((heading) => {
+      observer.observe(heading)
+    })
+
+    // 清理函数
+    return () => observer.disconnect()
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const cleanup = setupTocModal()
+    document.addEventListener('astro:before-swap', () => {
+      cleanup?.()
+    })
+  })
+</script>

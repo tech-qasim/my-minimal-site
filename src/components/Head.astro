@@ -11,12 +11,11 @@ type Props = {
 const { title, description, image }: Props = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const ogImage = new URL(image || '/og-image.png', Astro.url)
+const ogImage = new URL(image || SITE.ogImage, Astro.url)
 ---
 
 <script is:inline src="/js/theme.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
-
 
 <!-- 页面内SEO  On-Page SEO -->
 <meta charset="UTF-8" />

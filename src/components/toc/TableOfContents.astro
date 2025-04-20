@@ -5,9 +5,10 @@ import { cn } from '~/lib/utils'
 
 interface Props {
   headings: MarkdownHeading[]
+  class?: string
 }
 
-const { headings } = Astro.props
+const { headings, class: className } = Astro.props
 
 const filteredHeadings = headings
   .filter((heading) => heading.depth <= 4)
@@ -29,9 +30,9 @@ const getIndentClass = (depth: number) => {
 }
 ---
 
-<div class="fixed top-30 w-48 right-[calc(50%-384px)] translate-x-full">
-  <nav class="p-4 fade-up w-full hidden sm:block sm:w-64 md:w-72">
-    <h2 class="px-2 text-lg font-medium mb-4 text-foreground/80">{POSTS_CONFIG.tocText}</h2>
+<div class={cn('fixed top-30 right-[calc(50%-384px)] translate-x-full w-64', className)}>
+  <nav class="p-4">
+    <h2 class="text-lg font-medium mb-4 text-foreground/80">{POSTS_CONFIG.tocText}</h2>
     <div class="relative overflow-hidden h-[calc(100vh-24rem)]">
       <ul class="space-y-2 absolute w-full transition-transform duration-300" data-toc-list>
         {
@@ -87,32 +88,45 @@ const getIndentClass = (depth: number) => {
     const tocList = document.querySelector('[data-toc-list]') as HTMLElement
     const tocContainer = tocList?.parentElement as HTMLElement
 
-    console.log(headingLinks)
-    if (headingLinks && headingLinks.length === 0) return
-    headingLinks[0].setAttribute('data-active', '')
+    if (!headingLinks.length) return
+
+    // 移除调试日志
+    // console.log(headingLinks)
+
+    // 初始化时不再默认设置第一项为激活状态
+    // headingLinks[0].setAttribute('data-active', '')
+
+    let currentActiveHeading: string | null = null
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            headingLinks.forEach((link) => link.removeAttribute('data-active'))
+          // 使用 ratio 来判断可见性
+          if (entry.intersectionRatio > 0) {
+            const id = entry.target.id
 
-            const activeLink = document.querySelector(`[href="#${entry.target.id}"]`) as HTMLElement
-            if (activeLink && tocList && tocContainer) {
-              activeLink.setAttribute('data-active', '')
+            // 如果已经是当前激活的标题，则不需要更新
+            if (currentActiveHeading === id) return
 
-              const containerHeight = tocContainer.offsetHeight
-              const activeLinkTop = activeLink.offsetTop
-              const maxTransform = tocList.offsetHeight - containerHeight
+            currentActiveHeading = id
+            headingLinks.forEach((link) => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.setAttribute('data-active', '')
 
-              // 计算目标位置，使活动项居中显示
-              let targetTransform = activeLinkTop - containerHeight / 2 + activeLink.offsetHeight / 2
-
-              // 确保不会超出范围
-              targetTransform = Math.max(0, Math.min(targetTransform, maxTransform))
-
-              tocList.style.transform = `translateY(-${targetTransform}px)`
-            }
+                // 滚动目录到可见区域
+                if (tocList && tocContainer) {
+                  const containerHeight = tocContainer.offsetHeight
+                  const activeLinkTop = (link as HTMLElement).offsetTop
+                  const maxTransform = tocList.offsetHeight - containerHeight
+                  // Adjust the scroll position to center the active link
+                  let targetTransform = Math.max(0, activeLinkTop - (containerHeight - (link as HTMLElement).offsetHeight) / 2)
+                  targetTransform = Math.min(targetTransform, maxTransform)
+                  tocList.style.transform = `translateY(-${targetTransform}px)`
+                }
+              } else {
+                link.removeAttribute('data-active')
+              }
+            })
           }
         })
       },
@@ -123,7 +137,32 @@ const getIndentClass = (depth: number) => {
     )
 
     headingElements.forEach((heading) => observer.observe(heading))
+
+    // 页面加载时检查当前可见的标题
+    setTimeout(() => {
+      const visibleHeading = Array.from(headingElements).find((heading) => {
+        const rect = heading.getBoundingClientRect()
+        return rect.top > 10 && rect.top < window.innerHeight * 0.33
+      })
+      if (visibleHeading) {
+        const link = document.querySelector(`[href="#${visibleHeading.id}"]`)
+        link?.setAttribute('data-active', '')
+      } else {
+        headingLinks[0]?.setAttribute('data-active', '')
+      }
+    }, 100)
+
+    // 清理函数
+    return () => observer.disconnect()
   }
 
-  document.addEventListener('astro:page-load', updateActiveHeading)
+  // 确保在页面内容加载完成后初始化
+  document.addEventListener('astro:page-load', () => {
+    const cleanup = updateActiveHeading()
+
+    // 在页面切换时清理
+    document.addEventListener('astro:before-swap', () => {
+      cleanup?.()
+    })
+  })
 </script>

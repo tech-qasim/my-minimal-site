@@ -5,12 +5,14 @@
  * @property {string} description - 站点描述 / Site description
  * @property {string} author - 作者名称 / Author name
  * @property {string} website - 网站地址 / Website address
+ * @property {string} ogImage - OGP 图片地址 / OGP image address
  */
 export type Site = {
   title: string
   description: string
   author: string
   website: string
+  ogImage: string
 }
 
 /**

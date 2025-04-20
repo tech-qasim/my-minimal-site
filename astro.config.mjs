@@ -9,7 +9,6 @@ import { SITE } from './src/config'
 
 export default defineConfig({
   site: SITE.website,
-  base: '/',
   prefetch: true,
   vite: {
     plugins: [tailwindcss()],

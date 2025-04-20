@@ -9,6 +9,7 @@ export const SITE: Site = {
   description: 'Litos is a blog theme built with Astro.js and Dnzzk2.',
   author: 'Dnzzk2',
   website: 'https://litos.vercel.app/',
+  ogImage: '/og-image.png',
 }
 
 /**
@@ -21,7 +22,7 @@ export const SITE: Site = {
  * @property {PostCardPageConfig} postPageConfig - 文章列表页展示配置 / Posts list page display configuration
  * @property {string} defaultHeroImage - 默认文章封面图 / Default hero image for posts
  * @property {HeroImageAspectRatio} defaultHeroImageAspectRatio - 默认图片宽高比 / Default image aspect ratio
- * @property {string} tocText - 目录文本 / Table of contents text
+ * @property {string} tocText - 目录显示文本 / Table of contents text
  */
 export const POSTS_CONFIG: PostConfig = {
   title: 'Posts',
@@ -41,7 +42,7 @@ export const POSTS_CONFIG: PostConfig = {
   },
   defaultHeroImage: '/og-image.png',
   defaultHeroImageAspectRatio: '16/9',
-  tocText: 'catalogue',
+  tocText: 'Catalogue',
 }
 
 /**
