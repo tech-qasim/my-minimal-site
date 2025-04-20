@@ -10,71 +10,71 @@ interface Props {
 
 const { headings, class: className } = Astro.props
 
-const filteredHeadings = headings
-  .filter((heading) => heading.depth <= 4)
-  .filter((heading) => heading.text.trim() !== '')
-  .map((heading, index) => ({
-    ...heading,
-    text: heading.text.replace(/\s*[Hh][1-6]$/g, ''),
-    order: index + 1,
-  }))
+// 优化过滤逻辑，减少遍历次数
+const filteredHeadings = headings.reduce(
+  (acc, heading) => {
+    if (heading.depth <= 4 && heading.text.trim()) {
+      acc.push({
+        ...heading,
+        text: heading.text.replace(/\s*[Hh][1-6]$/g, ''),
+        order: acc.length + 1,
+      })
+    }
+    return acc
+  },
+  [] as (MarkdownHeading & { order: number })[]
+)
 
-const indentMap: Record<number, string> = {
-  2: '',
-  3: 'ml-4',
-  4: 'ml-8',
-}
-
-const getIndentClass = (depth: number) => {
-  return indentMap[depth] || ''
-}
+// 使用 Map 代替对象，提高查找效率
+const indentClass = new Map([
+  [2, ''],
+  [3, 'ml-4'],
+  [4, 'ml-8'],
+])
 ---
 
 <div class={cn('fixed top-30 right-[calc(50%-384px)] translate-x-full w-64', className)}>
   <nav class="p-4">
+    {/* 添加 loading="eager" 提高渲染优先级 */}
     <h2 class="text-lg font-medium mb-4 text-foreground/80">{POSTS_CONFIG.tocText}</h2>
     <div class="relative overflow-hidden h-[calc(100vh-24rem)]">
-      <ul class="space-y-2 absolute w-full transition-transform duration-300" data-toc-list>
+      {/* 使用 will-change 提示浏览器优化渲染 */}
+      <ul
+        class="space-y-2 absolute w-full transition-transform duration-300 will-change-transform"
+        data-desktop-toc-list
+        style="content-visibility: auto;"
+      >
         {
-          filteredHeadings.map((heading) => (
-            <li>
-              <a
-                href={`#${heading.slug}`}
-                data-heading-link
-                class={cn(
-                  'group flex text-sm',
-                  'min-h-[1.75rem]',
-                  'w-full overflow-hidden relative',
-                  'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
-                  'transition-all duration-200 ease-in-out',
-                  'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent',
-                  heading.depth === 1 ? 'font-medium text-foreground' : 'text-foreground/60 hover:text-foreground/90',
-                  getIndentClass(heading.depth)
-                )}
-              >
-                <span
+          filteredHeadings.map((heading) => {
+            // 预计算样式类，减少运行时计算
+            const depthClass = heading.depth === 1 ? 'font-medium text-foreground' : 'text-foreground/60 hover:text-foreground/90'
+
+            return (
+              <li>
+                <a
+                  href={`#${heading.slug}`}
+                  data-desktop-heading-link
                   class={cn(
-                    'flex items-center px-2 text-xs',
-                    'text-primary/40 group-hover:text-primary/60',
-                    'group-data-[active]:text-primary',
-                    'transition-all duration-200 ease-in-out'
+                    'group flex text-sm min-h-[1.75rem] w-full overflow-hidden relative',
+                    'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
+                    'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent',
+                    depthClass,
+                    indentClass.get(heading.depth) || ''
                   )}
                 >
-                  {heading.order.toString().padStart(2, '0')}
-                </span>
-                <span
-                  class={cn(
-                    'leading-[1.75rem] truncate pr-2',
-                    'transition-all duration-200 ease-in-out',
-                    'group-data-[active]:text-primary/90 group-data-[active]:font-medium'
-                  )}
-                  title={heading.text}
-                >
-                  {heading.text}
-                </span>
-              </a>
-            </li>
-          ))
+                  <span class="flex items-center px-2 text-xs text-primary/40 group-hover:text-primary/60 group-data-[active]:text-primary">
+                    {heading.order.toString().padStart(2, '0')}
+                  </span>
+                  <span
+                    class="leading-[1.75rem] truncate pr-2 group-data-[active]:text-primary/90 group-data-[active]:font-medium"
+                    title={heading.text}
+                  >
+                    {heading.text}
+                  </span>
+                </a>
+              </li>
+            )
+          })
         }
       </ul>
     </div>
@@ -84,28 +84,20 @@ const getIndentClass = (depth: number) => {
 <script>
   function updateActiveHeading() {
     const headingElements = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')
-    const headingLinks = document.querySelectorAll('[data-heading-link]')
-    const tocList = document.querySelector('[data-toc-list]') as HTMLElement
+    const headingLinks = document.querySelectorAll('[data-desktop-heading-link]')
+    const tocList = document.querySelector('[data-desktop-toc-list]') as HTMLElement
     const tocContainer = tocList?.parentElement as HTMLElement
 
     if (!headingLinks.length) return
 
-    // 移除调试日志
-    // console.log(headingLinks)
-
-    // 初始化时不再默认设置第一项为激活状态
-    // headingLinks[0].setAttribute('data-active', '')
-
     let currentActiveHeading: string | null = null
+    let scrollTimeout: number | null = null
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // 使用 ratio 来判断可见性
           if (entry.intersectionRatio > 0) {
             const id = entry.target.id
-
-            // 如果已经是当前激活的标题，则不需要更新
             if (currentActiveHeading === id) return
 
             currentActiveHeading = id
@@ -113,16 +105,28 @@ const getIndentClass = (depth: number) => {
               if (link.getAttribute('href') === `#${id}`) {
                 link.setAttribute('data-active', '')
 
-                // 滚动目录到可见区域
-                if (tocList && tocContainer) {
-                  const containerHeight = tocContainer.offsetHeight
-                  const activeLinkTop = (link as HTMLElement).offsetTop
-                  const maxTransform = tocList.offsetHeight - containerHeight
-                  // Adjust the scroll position to center the active link
-                  let targetTransform = Math.max(0, activeLinkTop - (containerHeight - (link as HTMLElement).offsetHeight) / 2)
-                  targetTransform = Math.min(targetTransform, maxTransform)
-                  tocList.style.transform = `translateY(-${targetTransform}px)`
+                // 使用 requestAnimationFrame 优化滚动性能
+                if (scrollTimeout) {
+                  window.cancelAnimationFrame(scrollTimeout)
                 }
+
+                scrollTimeout = window.requestAnimationFrame(() => {
+                  if (tocList && tocContainer) {
+                    const containerHeight = tocContainer.offsetHeight
+                    const activeLinkElement = link as HTMLElement
+                    const activeLinkTop = activeLinkElement.offsetTop
+                    const activeLinkHeight = activeLinkElement.offsetHeight
+                    const tocListHeight = tocList.offsetHeight
+
+                    // 计算目标滚动位置，使活动链接居中
+                    let targetTransform = Math.max(0, activeLinkTop - containerHeight / 2 + activeLinkHeight / 2)
+                    targetTransform = Math.min(targetTransform, tocListHeight - containerHeight)
+
+                    // 添加平滑滚动效果
+                    tocList.style.transition = 'transform 0.3s ease-out'
+                    tocList.style.transform = `translateY(-${targetTransform}px)`
+                  }
+                })
               } else {
                 link.removeAttribute('data-active')
               }

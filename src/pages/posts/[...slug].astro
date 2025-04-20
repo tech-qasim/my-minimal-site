@@ -26,12 +26,18 @@ export async function getStaticPaths() {
 const { post, posts, prev, next } = Astro.props
 const { data: frontmatter } = post
 const { Content, headings, remarkPluginFrontmatter } = await post.render()
-// 检查文章是否有封面图
-const hasImage = frontmatter.heroImage || false
-// 判断封面图是否为垂直布局（3:4 比例）
+
+const hasValidHeadings = headings.length > 1
+const hasImage = !!frontmatter.heroImage
 const isVertical = frontmatter.heroImageAspectRatio === '3/4'
-// 根据封面图状态选择对应的布局组件：
-const PostLayout = !hasImage ? NoImageLayout : isVertical ? VerticalImageLayout : HorizontalImageLayout
+const layoutMap = {
+  'no-image': NoImageLayout,
+  'vertical': VerticalImageLayout,
+  'horizontal': HorizontalImageLayout,
+}
+
+const layoutKey = !hasImage ? 'no-image' : isVertical ? 'vertical' : 'horizontal'
+const PostLayout = layoutMap[layoutKey]
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description || frontmatter.title} image={frontmatter.ogImage}>
@@ -40,6 +46,6 @@ const PostLayout = !hasImage ? NoImageLayout : isVertical ? VerticalImageLayout 
       <Content />
       <PostNavigation {prev} {next} />
     </PostLayout>
-    <PostFeatures {post} {posts} {headings} />
+    {hasValidHeadings && <PostFeatures {post} {posts} {headings} />}
   </div>
 </Layout>
