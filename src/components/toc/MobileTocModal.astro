@@ -8,21 +8,27 @@ interface Props {
 }
 
 const { headings } = Astro.props
-const filteredHeadings = headings
-  .filter((heading) => heading.depth <= 4)
-  .filter((heading) => heading.text.trim() !== '')
-  .map((heading, index) => ({
-    ...heading,
-    text: heading.text.replace(/\s*[Hh][1-6]$/g, ''),
-    order: index + 1,
-  }))
+// 优化过滤逻辑，减少遍历次数
+const filteredHeadings = headings.reduce(
+  (acc, heading) => {
+    if (heading.depth <= 4 && heading.text.trim()) {
+      acc.push({
+        ...heading,
+        text: heading.text.replace(/\s*[Hh][1-6]$/g, ''),
+        order: acc.length + 1,
+      })
+    }
+    return acc
+  },
+  [] as (MarkdownHeading & { order: number })[]
+)
 ---
 
 <div
   id="tocModal"
   class="lg:hidden fixed inset-0 z-50 bg-background/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-200"
 >
-  <div class="absolute right-4 bottom-24 w-72 max-h-[70vh] overflow-y-auto rounded-xl bg-background border shadow-lg no-scrollbar">
+  <div class="absolute right-4 bottom-24 w-72 max-h-[70vh] overflow-y-auto  bg-background border shadow-lg no-scrollbar">
     <div class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background/80 backdrop-blur-sm border-b">
       <h2 class="text-sm font-medium">{POSTS_CONFIG.tocText}</h2>
       <button id="tocClose" class="text-muted-foreground hover:text-foreground">
