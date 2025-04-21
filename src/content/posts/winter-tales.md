@@ -1,10 +1,10 @@
 ---
-title: '冬日絮语'
+title: 'Winter Tales'
 pubDate: 2024-02-14
 description: '一篇关于冬天的随想，记录寒冬中的温暖与思考。'
 tags: ['散文', '随想', '冬天']
 heroImage: 'https://images.unsplash.com/photo-1483664852095-d6cc6870702d'
-heroImageLayout: 'vertical'
+heroImageLayout: 'right'
 heroImageAspectRatio: '3/4'
 ---
 

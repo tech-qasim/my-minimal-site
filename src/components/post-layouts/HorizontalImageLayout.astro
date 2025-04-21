@@ -16,7 +16,7 @@ const { frontmatter, minutesRead } = Astro.props
       <div class="md:w-[55%] space-y-6">
         <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/85">
           <div class="flex items-center gap-1.5">
-            <span class="icon-[mdi--calendar] w-4 h-4 opacity-85"></span>
+            <span class="icon-[ph--calendar-blank] w-4 h-4 opacity-85"></span>
             <time datetime={frontmatter.pubDate.toISOString()}>
               {formatDate(frontmatter.pubDate)}
             </time>
@@ -24,7 +24,7 @@ const { frontmatter, minutesRead } = Astro.props
           {
             frontmatter.updatedDate && (
               <div class="flex items-center gap-1.5">
-                <span class="icon-[mdi--calendar-refresh] w-4 h-4 opacity-85" />
+                <span class="icon-[ph--clock-clockwise-light] w-4 h-4 opacity-85" />
                 <time datetime={frontmatter.updatedDate.toISOString()}>{formatDate(frontmatter.updatedDate)}</time>
               </div>
             )
@@ -33,7 +33,7 @@ const { frontmatter, minutesRead } = Astro.props
             minutesRead && (
               <div class="flex items-center gap-1.5">
                 <span class="icon-[mdi--clock-outline] w-4 h-4 opacity-85" />
-                <span>{minutesRead}</span>
+                <span>{minutesRead} mins read</span>
               </div>
             )
           }
@@ -65,11 +65,7 @@ const { frontmatter, minutesRead } = Astro.props
       </div>
       <div class="md:w-[45%]">
         <div class="aspect-[16/9] overflow-hidden">
-          <img
-            src={frontmatter.heroImage}
-            alt={frontmatter.title}
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-          />
+          <img src={frontmatter.heroImage} alt={frontmatter.title} class="w-full h-full object-cover" />
         </div>
       </div>
     </div>
