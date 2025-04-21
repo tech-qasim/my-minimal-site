@@ -187,7 +187,13 @@
   font-size: 0.875em;
   line-height: 1.4285714;
   margin-top: 0.8571429em;
+  text-align: center;
 }
+
+.dark .markdown figure figcaption {
+  color: #a5a6b3;
+}
+
 .markdown code {
   color: var(--inline-code-text);
   font-family: var(--font-dm-mono);
