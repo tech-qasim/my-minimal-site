@@ -1,8 +1,3 @@
----
-description: 开发一款Astro博客
-globs: 
-alwaysApply: false
----
 You are an expert in JavaScript, TypeScript, and Astro framework for scalable web development.
 
 Key Principles
