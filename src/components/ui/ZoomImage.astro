@@ -1,0 +1,40 @@
+---
+interface Props {
+  src: string
+  alt: string
+  class?: string
+}
+
+const { src, alt, class: className } = Astro.props
+---
+
+<img 
+  src={src} 
+  alt={alt} 
+  class={className} 
+  data-zoomable
+/>
+
+<script>
+  import mediumZoom from 'medium-zoom'
+  
+  let zoom: ReturnType<typeof mediumZoom> | null = null
+
+  function cleanupZoom() {
+    if (zoom) {
+      zoom.close()
+      zoom.detach()
+      zoom = null
+    }
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    cleanupZoom()
+    zoom = mediumZoom('[data-zoomable]', {
+      margin: 24,
+      background: 'var(--medium-zoom-bg)',
+    })
+  })
+
+  document.addEventListener('astro:before-swap', cleanupZoom)
+</script>

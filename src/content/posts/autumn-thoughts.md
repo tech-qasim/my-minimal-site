@@ -4,7 +4,7 @@ pubDate: 2024-02-14
 updatedDate: 2025-02-14
 description: '一篇关于秋天的随想散文，记录秋日的感悟与思考。'
 tags: ['散文', '随想', '秋天']
-heroImage: 'https://images.unsplash.com/photo-1507371341162-763b5e419408'
+heroImage: 'https://images.unsplash.com/photo-1508255139162-e1f7b7288ab7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 heroImageAspectRatio: '16/9'
 ---
 

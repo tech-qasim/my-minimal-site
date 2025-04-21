@@ -1,6 +1,7 @@
 ---
 import { formatDate } from '~/lib/utils'
 import Prose from '~/components/Prose.astro'
+import ZoomImage from '~/components/ui/ZoomImage.astro'
 
 interface Props {
   frontmatter: any
@@ -14,7 +15,7 @@ const { frontmatter, minutesRead } = Astro.props
   <div class="px-6 sm:px-8 py-6">
     <div class="max-w-4xl mx-auto">
       <header class="relative mb-12 bg-muted/30 overflow-hidden backdrop-blur-sm">
-        <div class="md:min-h-[600px] flex flex-col md:flex-row">
+        <div class="flex flex-col-reverse md:flex-row md:min-h-[600px]">
           <div class="md:w-1/2 relative z-10 p-8 md:p-12 flex flex-col justify-center">
             <div class="space-y-6">
               <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/85">
@@ -43,11 +44,15 @@ const { frontmatter, minutesRead } = Astro.props
               </div>
               <div class="space-y-3">
                 <h1
-                  class="text-2xl sm:text-3xl font-serif leading-tight tracking-wide bg-gradient-to-r from-foreground/90 to-foreground/70 bg-clip-text text-transparent"
+                  class="text-2xl sm:text-3xl md:text-4xl font-serif leading-tight tracking-wide bg-gradient-to-r from-foreground/90 to-foreground/70 bg-clip-text text-transparent"
                 >
                   {frontmatter.title}
                 </h1>
-                {frontmatter.description && <p class="text-muted-foreground/90 leading-relaxed">{frontmatter.description}</p>}
+                {
+                  frontmatter.description && (
+                    <p class="text-base sm:text-lg text-muted-foreground/90 leading-relaxed">{frontmatter.description}</p>
+                  )
+                }
                 <div class="flex gap-2 sm:gap-3 flex-wrap">
                   {
                     frontmatter.tags?.map((tag: string) => (
@@ -69,9 +74,7 @@ const { frontmatter, minutesRead } = Astro.props
           </div>
 
           <div class="md:w-1/2 md:absolute md:right-0 md:top-0 md:bottom-0">
-            <div class="h-full">
-              <img src={frontmatter.heroImage} alt={frontmatter.title} class="w-full h-full object-cover" />
-            </div>
+            <ZoomImage src={frontmatter.heroImage} alt={frontmatter.title} class="w-full h-full object-fill" />
           </div>
         </div>
       </header>
