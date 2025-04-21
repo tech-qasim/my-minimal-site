@@ -31,8 +31,7 @@ const { src, alt, class: className } = Astro.props
   document.addEventListener('astro:page-load', () => {
     cleanupZoom()
     zoom = mediumZoom('[data-zoomable]', {
-      margin: 24,
-      background: 'var(--medium-zoom-bg)',
+      background: 'rgba(0, 0, 0, 0.8)',
     })
   })
 

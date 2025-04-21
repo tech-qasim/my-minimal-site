@@ -12,7 +12,7 @@ const { frontmatter, minutesRead } = Astro.props
 ---
 
 <article class="relative fade-up">
-  <header class="bg-muted/30 backdrop-blur-sm px-6 sm:px-8 py-8 sm:py-10 border-b border-border/50">
+  <header class="bg-accent/50 backdrop-blur-sm px-6 sm:px-8 py-8 sm:py-10 border-b border-border/50">
     <div class="max-w-4xl mx-auto">
       <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/85 mb-8">
         <div class="flex items-center gap-1.5">
@@ -57,7 +57,7 @@ const { frontmatter, minutesRead } = Astro.props
                   <a
                     href={`/tags/${tag}`}
                     class="px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs tracking-widest 
-                     bg-tag-bg text-tag-text border border-tag-border rounded-full
+                     bg-muted text-tag-text border border-tag-border rounded-full
                      hover:bg-tag-bg-hover hover:border-primary/30 hover:text-foreground
                      transition-all duration-300 group"
                     aria-label={`View posts tagged with ${tag}`}
