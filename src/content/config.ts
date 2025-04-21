@@ -9,7 +9,7 @@ const posts = defineCollection({
     // 文章标题（必需）
     title: z.string(),
     // 文章描述（可选）
-    description: z.string().optional(),
+    description: z.string(),
     // 发布日期（必需）
     pubDate: z.date(),
     // 更新日期（可选）

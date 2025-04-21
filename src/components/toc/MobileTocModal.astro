@@ -28,156 +28,158 @@ const filteredHeadings = headings.reduce(
   id="tocModal"
   class="lg:hidden fixed inset-0 z-50 bg-background/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-200"
 >
-  <div class="absolute right-4 bottom-24 w-72 max-h-[70vh] overflow-y-auto  bg-background border shadow-lg no-scrollbar">
-    <div class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background/80 backdrop-blur-sm border-b">
+  <div class="absolute right-4 bottom-24 w-72 max-h-[70vh] overflow-hidden bg-background border shadow-lg">
+    <div class="sticky top-0 z-20 flex items-center justify-between p-4 bg-background border-b">
       <h2 class="text-sm font-medium">{POSTS_CONFIG.tocText}</h2>
       <button id="tocClose" class="text-muted-foreground hover:text-foreground">
         <span class="icon-[ph--x-bold] size-5"></span>
       </button>
     </div>
-    <ul class="p-4 text-sm space-y-2">
-      {
-        filteredHeadings.map((heading) => (
-          <li>
-            <a
-              href={`#${heading.slug}`}
-              data-heading-link
-              class={cn(
-                'block py-1 px-2 transition-colors relative',
-                'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
-                'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent',
-                heading.depth === 1 ? 'font-medium text-foreground' : 'text-muted-foreground',
-                heading.depth > 2 ? 'ml-4' : ''
-              )}
-            >
-              {heading.text}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="overflow-y-auto max-h-[calc(70vh-3.5rem)] no-scrollbar">
+      <ul class="p-4 text-sm space-y-2">
+        {
+          filteredHeadings.map((heading) => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                data-heading-link
+                class={cn(
+                  'block py-1 px-2 transition-colors relative',
+                  'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
+                  'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent',
+                  heading.depth === 1 ? 'font-medium text-foreground' : 'text-muted-foreground',
+                  heading.depth > 2 ? 'ml-4' : ''
+                )}
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
-</div>
 
-<script>
-  function setupTocModal() {
-    const tocModal = document.getElementById('tocModal')
-    const tocClose = document.getElementById('tocClose')
-    const tocLinks = tocModal?.querySelectorAll('[data-heading-link]')
-    const tocList = tocModal?.querySelector('ul')
-    let isScrolling = false
-    let scrollTimeout: ReturnType<typeof setTimeout> | undefined
+  <script>
+    function setupTocModal() {
+      const tocModal = document.getElementById('tocModal')
+      const tocClose = document.getElementById('tocClose')
+      const tocLinks = tocModal?.querySelectorAll('[data-heading-link]')
+      const tocList = tocModal?.querySelector('ul')
+      let isScrolling = false
+      let scrollTimeout: ReturnType<typeof setTimeout> | undefined
 
-    // 使用事件委托处理所有点击事件
-    tocModal?.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement
+      // 使用事件委托处理所有点击事件
+      tocModal?.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement
 
-      // 处理关闭按钮点击
-      if (target.closest('#tocClose')) {
-        tocModal.classList.add('opacity-0', 'pointer-events-none')
-        return
-      }
+        // 处理关闭按钮点击
+        if (target.closest('#tocClose')) {
+          tocModal.classList.add('opacity-0', 'pointer-events-none')
+          return
+        }
 
-      // 处理模态框背景点击
-      if (target === tocModal) {
-        tocModal.classList.add('opacity-0', 'pointer-events-none')
-        return
-      }
+        // 处理模态框背景点击
+        if (target === tocModal) {
+          tocModal.classList.add('opacity-0', 'pointer-events-none')
+          return
+        }
 
-      // 处理链接点击
-      const link = target.closest('[data-heading-link]')
-      if (link) {
-        tocModal.classList.add('opacity-0', 'pointer-events-none')
-      }
-    })
-
-    // 优化滚动处理
-    const updateActiveHeading = (entries: IntersectionObserverEntry[]) => {
-      if (isScrolling) return
-
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0) {
-          const id = entry.target.id
-
-          // 使用 requestAnimationFrame 优化 DOM 更新
-          requestAnimationFrame(() => {
-            tocLinks?.forEach((link) => {
-              if (link.getAttribute('href') === `#${id}`) {
-                link.setAttribute('data-active', '')
-              } else {
-                link.removeAttribute('data-active')
-              }
-            })
-          })
+        // 处理链接点击
+        const link = target.closest('[data-heading-link]')
+        if (link) {
+          tocModal.classList.add('opacity-0', 'pointer-events-none')
         }
       })
-    }
 
-    const observer = new IntersectionObserver(updateActiveHeading, {
-      rootMargin: '-10px 0px -85% 0px',
-      threshold: [0, 1],
-    })
+      // 优化滚动处理
+      const updateActiveHeading = (entries: IntersectionObserverEntry[]) => {
+        if (isScrolling) return
 
-    // 观察所有标题元素
-    const headingElements = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')
-    headingElements.forEach((heading) => observer.observe(heading))
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0) {
+            const id = entry.target.id
 
-    // 优化模态框显示事件
-    const tocTrigger = document.getElementById('tocTrigger')
-    const scrollToActiveLink = () => {
-      const activeLink = tocModal?.querySelector('[data-active]') as HTMLElement
-      if (!activeLink) return
+            // 使用 requestAnimationFrame 优化 DOM 更新
+            requestAnimationFrame(() => {
+              tocLinks?.forEach((link) => {
+                if (link.getAttribute('href') === `#${id}`) {
+                  link.setAttribute('data-active', '')
+                } else {
+                  link.removeAttribute('data-active')
+                }
+              })
+            })
+          }
+        })
+      }
 
-      const container = activeLink.closest('.overflow-y-auto') as HTMLElement
-      if (!container) return
+      const observer = new IntersectionObserver(updateActiveHeading, {
+        rootMargin: '-10px 0px -85% 0px',
+        threshold: [0, 1],
+      })
 
-      isScrolling = true
-      const targetScroll = activeLink.offsetTop - container.offsetHeight / 2 + activeLink.offsetHeight / 2
+      // 观察所有标题元素
+      const headingElements = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')
+      headingElements.forEach((heading) => observer.observe(heading))
 
-      // 使用 requestAnimationFrame 实现平滑滚动
-      const startScroll = container.scrollTop
-      const distance = targetScroll - startScroll
-      const duration = 300
-      const startTime = performance.now()
+      // 优化模态框显示事件
+      const tocTrigger = document.getElementById('tocTrigger')
+      const scrollToActiveLink = () => {
+        const activeLink = tocModal?.querySelector('[data-active]') as HTMLElement
+        if (!activeLink) return
 
-      const animateScroll = (currentTime: number) => {
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / duration, 1)
+        const container = activeLink.closest('.overflow-y-auto') as HTMLElement
+        if (!container) return
 
-        // 使用 easeInOutCubic 缓动函数
-        const easing = progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2
+        isScrolling = true
+        const targetScroll = activeLink.offsetTop - container.offsetHeight / 2 + activeLink.offsetHeight / 2
 
-        container.scrollTop = startScroll + distance * easing
+        // 使用 requestAnimationFrame 实现平滑滚动
+        const startScroll = container.scrollTop
+        const distance = targetScroll - startScroll
+        const duration = 300
+        const startTime = performance.now()
 
-        if (progress < 1) {
-          requestAnimationFrame(animateScroll)
-        } else {
-          isScrolling = false
+        const animateScroll = (currentTime: number) => {
+          const elapsed = currentTime - startTime
+          const progress = Math.min(elapsed / duration, 1)
+
+          // 使用 easeInOutCubic 缓动函数
+          const easing = progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+          container.scrollTop = startScroll + distance * easing
+
+          if (progress < 1) {
+            requestAnimationFrame(animateScroll)
+          } else {
+            isScrolling = false
+          }
+        }
+
+        requestAnimationFrame(animateScroll)
+      }
+
+      tocTrigger?.addEventListener('click', () => {
+        // 等待模态框显示动画完成后滚动
+        setTimeout(scrollToActiveLink, 200)
+      })
+
+      // 清理函数
+      return () => {
+        observer.disconnect()
+        tocTrigger?.removeEventListener('click', scrollToActiveLink)
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout)
         }
       }
-
-      requestAnimationFrame(animateScroll)
     }
 
-    tocTrigger?.addEventListener('click', () => {
-      // 等待模态框显示动画完成后滚动
-      setTimeout(scrollToActiveLink, 200)
+    document.addEventListener('astro:page-load', () => {
+      const cleanup = setupTocModal()
+      document.addEventListener('astro:before-swap', () => {
+        cleanup?.()
+      })
     })
-
-    // 清理函数
-    return () => {
-      observer.disconnect()
-      tocTrigger?.removeEventListener('click', scrollToActiveLink)
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout)
-      }
-    }
-  }
-
-  document.addEventListener('astro:page-load', () => {
-    const cleanup = setupTocModal()
-    document.addEventListener('astro:before-swap', () => {
-      cleanup?.()
-    })
-  })
-</script>
+  </script>
+</div>

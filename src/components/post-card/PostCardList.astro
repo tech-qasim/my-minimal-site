@@ -36,6 +36,6 @@ const spacingClass = customSpacing || POST_CARD_SPACING_CLASSES[type]
 const PostCardElement = POST_CARD_COMPONENTS[type]
 ---
 
-<div class={cn(spacingClass)}>
+<div class={cn(spacingClass, 'content-visibility: auto')}>
   {posts.map((post, index) => <PostCardElement {post} {index} {heroImageLayout} />)}
 </div>
