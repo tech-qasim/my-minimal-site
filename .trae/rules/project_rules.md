@@ -122,3 +122,27 @@ Performance Metrics
 - Implement performance budgets and monitoring.
 
 Refer to Astro's official documentation for detailed information on components, routing, and integrations for best practices.
+
+
+Sharp 图像处理
+
+- 使用 Sharp 进行高性能的图像处理和优化
+- 实现以下 Sharp 最佳实践：
+  - 使用 Sharp 的异步操作处理图像转换
+  - 实现响应式图像处理和优化
+  - 利用 Sharp 的缓存机制提高性能
+  - 合理配置图像质量和压缩参数
+
+Sharp 性能优化
+
+- 实现图像批处理以提高效率
+- 使用 Sharp 的流式处理处理大型图像
+- 实现适当的错误处理和资源清理
+- 优化内存使用，避免内存泄漏
+
+Sharp 集成最佳实践
+
+- 与 Astro 的图像组件系统无缝集成
+- 实现自动化的图像优化工作流
+- 使用 Sharp 的元数据功能进行图像分析
+- 实现图像格式的自动转换（WebP、AVIF等）

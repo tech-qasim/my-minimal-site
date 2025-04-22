@@ -3,7 +3,7 @@ title: 'What Can AI Do For Me?'
 pubDate: 2024-02-14
 description: '一篇关于冬天的随想，记录寒冬中的温暖与思考。'
 tags: ['散文', '随想', '冬天']
-heroImage: 'https://images.unsplash.com/photo-1744871783125-21a510d12fc1?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+heroImage: '/src/assets/images/flower.png'
 heroImageLayout: 'right'
 heroImageAspectRatio: '3/4'
 ---
@@ -15,7 +15,7 @@ I have been using AI to write this topic recently, and now I have to queue up fo
 Using AI can save a lot of time and quickly understand areas that one does not understand.
 
 :::image-figure[og-image.png]{style="text-align:center;"}
-![og](/og-image.png)(style:width:300px)
+![og](/src/assets/images/og-image.png)(style:width:300px)
 :::
 
 I feel that the writing effect is decent.

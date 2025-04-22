@@ -4,7 +4,7 @@ pubDate: 2024-02-14
 updatedDate: 2025-02-14
 description: '一篇关于秋天的随想散文，记录秋日的感悟与思考。'
 tags: ['散文', '随想', '秋天']
-heroImage: 'https://images.unsplash.com/photo-1508255139162-e1f7b7288ab7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+heroImage: '/src/assets/images/antumn.png'
 heroImageAspectRatio: '16/9'
 ---
 
@@ -15,7 +15,7 @@ I have been using AI to write this topic recently, and now I have to queue up fo
 Using AI can save a lot of time and quickly understand areas that one does not understand.
 
 :::image-figure-polaroid
-![og](https://images.unsplash.com/photo-1508255139162-e1f7b7288ab7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+![og](/src/assets/images/antumn.png)
 
 water
 :::
@@ -23,7 +23,7 @@ water
 I feel that the writing effect is decent.
 
 :::image-figure[我们的照片]
-![og](/og-image.png)(style:width:300px)
+![og](/src/assets/images/og-image.png)(style:width:300px)
 :::
 
 ### 使用AI的优势与挑战
