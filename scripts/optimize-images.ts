@@ -2,11 +2,16 @@
 import sharp from 'sharp'
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url' // 导入 fileURLToPath
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import chalk from 'chalk'
 import ora from 'ora'
-import cliProgress from 'cli-progress'
+import { t } from './utils.ts'
+
+// 在 ES Modules 中获取目录名
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // 定义支持的图片格式
 const SUPPORTED_FORMATS = ['jpg', 'jpeg', 'png', 'webp', 'avif'] as const
@@ -21,69 +26,6 @@ interface ImageConfig {
   recursive: boolean
   outputDir?: string
 }
-
-// 多语言支持
-const i18n = {
-  zh: {
-    cli: {
-      input: '输入文件或目录路径',
-      quality: '图片质量 (1-100)',
-      width: '最大宽度',
-      format: '输出格式',
-      keepOriginal: '保留原始文件',
-      recursive: '递归处理子目录',
-      outputDir: '输出目录',
-    },
-    messages: {
-      processing: '正在处理',
-      success: '处理成功',
-      error: '处理失败',
-      complete: '处理完成',
-      skipped: '已跳过',
-      invalidPath: '无效的路径',
-      createOutputDir: '创建输出目录',
-      stats: '统计信息',
-      saved: '节省空间',
-    },
-  },
-  en: {
-    cli: {
-      input: 'Input file or directory path',
-      quality: 'Image quality (1-100)',
-      width: 'Maximum width',
-      format: 'Output format',
-      keepOriginal: 'Keep original files',
-      recursive: 'Process subdirectories recursively',
-      outputDir: 'Output directory',
-    },
-    messages: {
-      processing: 'Processing',
-      success: 'Success',
-      error: 'Error',
-      complete: 'Complete',
-      skipped: 'Skipped',
-      invalidPath: 'Invalid path',
-      createOutputDir: 'Creating output directory',
-      stats: 'Statistics',
-      saved: 'Space saved',
-    },
-  },
-}
-
-// 检测系统语言
-const lang = (process.env.LANG || process.env.LANGUAGE || '').toLowerCase().includes('zh') ? 'zh' : 'en'
-const t = i18n[lang]
-
-// 进度条配置
-const progressBar = new cliProgress.SingleBar(
-  {
-    format: `${chalk.blue('{bar}')} {percentage}% | {value}/{total}`,
-    barCompleteChar: '█',
-    barIncompleteChar: '░',
-    hideCursor: true,
-  },
-  cliProgress.Presets.shades_grey
-)
 
 // 文件大小格式化
 const formatBytes = (bytes: number): string => {
@@ -108,53 +50,114 @@ class ImageProcessor {
     this.config = config
   }
 
-  private async processImage(inputPath: string, outputPath: string): Promise<void> {
+  private async processImage(inputPath: string, outputPath: string): Promise<boolean> {
+    const isOverwriting = inputPath === outputPath;
+    const tempOutputPath = isOverwriting ? `${outputPath}.${Date.now()}.tmp` : outputPath; // Use timestamp for uniqueness
+
     try {
-      const originalStats = fs.statSync(inputPath)
-      this.stats.originalSize += originalStats.size
+      const originalStats = fs.statSync(inputPath);
+      // Only add original size if it's the first time processing this file path in this run
+      // This check might need refinement if multiple inputs could lead to the same output path
+      if (!isOverwriting || this.stats.originalSize === 0) { // Simplified check
+          this.stats.originalSize += originalStats.size;
+      }
 
-      let sharpInstance = sharp(inputPath)
-      const metadata = await sharpInstance.metadata()
+      let sharpInstance = sharp(inputPath);
+      const metadata = await sharpInstance.metadata();
 
-      // 只在需要时调整大小
+      // Resize logic (no changes needed here)
       if (this.config.width > 0 && metadata.width && metadata.width > this.config.width) {
         sharpInstance = sharpInstance.resize({
           width: this.config.width,
           withoutEnlargement: true,
           fit: 'inside',
-        })
+        });
       }
 
-      // 根据选择的格式进行转换
+      // Format conversion logic (write to tempOutputPath)
       switch (this.config.format) {
         case 'webp':
-          await sharpInstance.webp({ quality: this.config.quality }).toFile(outputPath)
-          break
+          await sharpInstance.webp({ quality: this.config.quality }).toFile(tempOutputPath);
+          break;
         case 'avif':
-          await sharpInstance.avif({ quality: this.config.quality }).toFile(outputPath)
-          break
+          await sharpInstance.avif({ quality: this.config.quality }).toFile(tempOutputPath);
+          break;
         case 'png':
-          await sharpInstance.png({ quality: this.config.quality }).toFile(outputPath)
-          break
-        default:
-          await sharpInstance.jpeg({ quality: this.config.quality }).toFile(outputPath)
+          // Add PNG specific options if needed, e.g., compressionLevel
+          await sharpInstance.png({ quality: this.config.quality /*, compressionLevel: 9 */ }).toFile(tempOutputPath);
+          break;
+        default: // jpeg
+          await sharpInstance.jpeg({ quality: this.config.quality }).toFile(tempOutputPath);
       }
 
-      const optimizedStats = fs.statSync(outputPath)
-      this.stats.optimizedSize += optimizedStats.size
-      this.stats.processed++
+      // Wait briefly for file handle release before stat or rename
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
-      console.log(chalk.green(`\n✓ ${t.messages.success}: ${path.basename(inputPath)}`))
+      // If overwriting, replace original file with temp file
+      if (isOverwriting) {
+        try {
+          // Verify temp file exists before proceeding
+          if (!fs.existsSync(tempOutputPath)) {
+             throw new Error('Temporary file creation failed.');
+          }
+          // On Windows, renaming over an existing file might require deleting first.
+          // However, fs.rename should handle this. Let's try rename directly first.
+           fs.renameSync(tempOutputPath, outputPath);
+        } catch (renameError: any) {
+           // If direct rename fails (e.g., EPERM on Windows), try delete then rename
+           if (renameError.code === 'EPERM' || renameError.code === 'EACCES') {
+               console.warn(chalk.yellow(`Direct rename failed (${renameError.code}), attempting delete then rename for: ${path.basename(inputPath)}`));
+               try {
+                   fs.unlinkSync(inputPath); // Delete original
+                   fs.renameSync(tempOutputPath, outputPath); // Rename temp to final
+               } catch (retryError) {
+                   // If retry also fails, cleanup temp and throw
+                   if (fs.existsSync(tempOutputPath)) fs.unlinkSync(tempOutputPath);
+                   throw retryError; // Re-throw the error after cleanup attempt
+               }
+           } else {
+               // If it's another error, cleanup temp and throw
+               if (fs.existsSync(tempOutputPath)) fs.unlinkSync(tempOutputPath);
+               throw renameError;
+           }
+        }
+      }
+
+      // Get stats from the final output path
+      const optimizedStats = fs.statSync(outputPath);
+      this.stats.optimizedSize += optimizedStats.size;
+      this.stats.processed++;
+
+      console.log(chalk.green(`\n✓ ${t.messages.success}: ${path.basename(inputPath)}`));
+      return true; // 处理成功
+
     } catch (error) {
-      this.stats.errors++
-      console.log(chalk.red(`\n✗ ${t.messages.error}: ${path.basename(inputPath)} - ${error}`))
+      this.stats.errors++;
+      console.log(chalk.red(`\n✗ ${t.messages.error}: ${path.basename(inputPath)} - ${error}`));
+      // Clean up temporary file if it exists on error
+      if (isOverwriting && fs.existsSync(tempOutputPath)) {
+        try {
+          fs.unlinkSync(tempOutputPath);
+        } catch (cleanupError) {
+          console.error(chalk.red(`Failed to clean up temporary file ${tempOutputPath}: ${cleanupError}`));
+        }
+      }
+      return false; // 处理失败
     }
   }
 
   private getOutputPath(inputPath: string): string {
-    const filename = path.basename(inputPath, path.extname(inputPath))
-    const outputFilename = `${filename}.${this.config.format}`
-    return this.config.outputDir ? path.join(this.config.outputDir, outputFilename) : path.join(path.dirname(inputPath), outputFilename)
+    const originalExt = path.extname(inputPath); // Keep original extension info if needed
+    const filename = path.basename(inputPath, originalExt);
+    const outputFilename = `${filename}.${this.config.format}`; // Output uses the target format extension
+
+    // Determine the base directory for the output
+    const baseOutputDir = this.config.outputDir ? this.config.outputDir : path.dirname(inputPath);
+
+    // If an output directory is specified, ensure it exists (should be created in `process` method)
+    // If not outputDir is specified, the output path will be in the same directory as the input.
+
+    return path.join(baseOutputDir, outputFilename);
   }
 
   private isImageFile(filepath: string): boolean {
@@ -180,10 +183,12 @@ class ImageProcessor {
     return files
   }
 
-  async process(inputPath: string): Promise<void> {
+  async process(inputPath: string): Promise<string[]> {
+    // 返回需要删除的文件列表
+    const filesToDelete: string[] = []
     if (!fs.existsSync(inputPath)) {
       console.error(chalk.red(t.messages.invalidPath))
-      return
+      return filesToDelete // 返回空列表
     }
 
     // 创建输出目录
@@ -204,12 +209,18 @@ class ImageProcessor {
     for (let i = 0; i < files.length; i++) {
       const file = files[i]
       const outputPath = this.getOutputPath(file)
-      await this.processImage(file, outputPath)
-      spinner.text = `${t.messages.processing} ${i + 1 + 1}/${files.length}`
+      const success = await this.processImage(file, outputPath) // 等待处理完成
+
+      // 只有处理成功且不保留原文件时才加入删除列表
+      if (success && !this.config.keepOriginal && file !== outputPath) {
+        filesToDelete.push(file)
+      }
+      spinner.text = `${t.messages.processing} ${i + 1}/${files.length}` // 修正进度显示
     }
 
     spinner.stop()
     this.printStats()
+    return filesToDelete // 返回列表
   }
 
   private printStats(): void {
@@ -280,7 +291,28 @@ async function main() {
     outputDir: argv.outputDir,
   })
 
-  await processor.process(argv.input)
+  // 执行处理并获取待删除列表
+  const filesToDelete = await processor.process(argv.input)
+
+  // --- 将待删除列表写入文件 ---
+  if (!argv.keepOriginal && filesToDelete.length > 0) {
+    const deleteListPath = path.join(__dirname, 'delete-list.json') // 确保 __dirname 已正确定义
+    try {
+      fs.writeFileSync(deleteListPath, JSON.stringify(filesToDelete, null, 2)) // 写入 JSON 格式，带缩进
+      console.log(chalk.yellow(`\n📝 ${filesToDelete.length} 个待删除文件列表已写入: ${deleteListPath}`))
+      console.log(chalk.yellow(`👉 请在完成后运行清理脚本来删除这些文件:`))
+      console.log(chalk.cyan(`   pnpm cleanup`)) // Updated command based on package.json
+    } catch (error) {
+      console.error(chalk.red(`\n❌ 写入删除列表文件失败: ${error}`))
+    }
+  } else if (argv.keepOriginal) {
+    console.log(chalk.blue('\n配置为保留原始文件，跳过生成删除列表。'))
+  } else {
+    console.log(chalk.blue('\n没有需要删除的文件。'))
+  }
 }
 
-main().catch(console.error)
+main().catch((error) => {
+  console.error(chalk.red('\n发生未处理的错误:'), error)
+  process.exit(1) // 确保在错误时退出
+})

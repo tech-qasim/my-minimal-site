@@ -4,7 +4,6 @@ pubDate: 2024-02-14
 updatedDate: 2025-02-14
 description: '一篇关于秋天的随想散文，记录秋日的感悟与思考。'
 tags: ['散文', '随想', '秋天']
-heroImage: 'antumn.webp'
 heroImageAspectRatio: '16/9'
 ---
 

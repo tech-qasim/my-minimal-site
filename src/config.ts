@@ -9,7 +9,7 @@ export const SITE: Site = {
   description: 'Litos is a blog theme built with Astro.js and Dnzzk2.',
   author: 'Dnzzk2',
   website: 'https://litos.vercel.app/',
-  ogImage: '/og-image.png',
+  ogImage: '/og-image.jpg',
 }
 
 /**
@@ -40,7 +40,7 @@ export const POSTS_CONFIG: PostConfig = {
     size: 10,
     type: 'time-line',
   },
-  defaultHeroImage: '/og-image.png',
+  defaultHeroImage: '/og-image.jpg',
   defaultHeroImageAspectRatio: '16/9',
   tocText: 'Catalogue',
 }

@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "optimize": "tsx scripts/optimize-images.ts",
+    "cleanup": "tsx scripts/cleanup-images.ts",
     "format": "prettier . --check --ignore-unknown",
     "format:write": "prettier . --write --ignore-unknown --cache"
   },

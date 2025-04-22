@@ -8,16 +8,11 @@ interface Props {
 const { src, alt, class: className } = Astro.props
 ---
 
-<img 
-  src={src} 
-  alt={alt} 
-  class={className} 
-  data-zoomable
-/>
+<img {src} {alt} class={className} data-zoomable />
 
 <script>
   import mediumZoom from 'medium-zoom'
-  
+
   let zoom: ReturnType<typeof mediumZoom> | null = null
 
   function cleanupZoom() {
