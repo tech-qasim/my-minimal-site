@@ -308,7 +308,7 @@ class ImageProcessor {
           this.stats.errors++ // 将删除失败计入错误统计
         }
       }
-      spinner.text = `${t.messages.processing} ${i + 1}/${files.length}`;
+      spinner.text = `${t.messages.processing} ${i + 2}/${files.length}`;
     }
 
     spinner.stop()
