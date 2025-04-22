@@ -1,11 +1,11 @@
 ---
-title: 'What Can AI Do For Me?'
+title: 'What Can I Say About Autumn?'
 pubDate: 2024-02-14
-description: '一篇关于冬天的随想，记录寒冬中的温暖与思考。'
-tags: ['散文', '随想', '冬天']
-heroImage: 'flower.webp'
-heroImageLayout: 'right'
-heroImageAspectRatio: '3/4'
+updatedDate: 2025-02-14
+description: '一篇关于秋天的随想散文，记录秋日的感悟与思考。'
+tags: ['散文', '随想', '秋天']
+heroImage: 'antumn.png'
+heroImageAspectRatio: '16/9'
 ---
 
 ## Intro
@@ -14,11 +14,17 @@ I have been using AI to write this topic recently, and now I have to queue up fo
 
 Using AI can save a lot of time and quickly understand areas that one does not understand.
 
-:::image-figure[og-image.png]{style="text-align:center;"}
-![og](../../assets/images/og-image.png)
+:::image-figure-polaroid
+![og](../../assets/images/antumn.png)
+
+water
 :::
 
 I feel that the writing effect is decent.
+
+:::image-figure[我们的照片]
+![og](../../assets/images/og-image.png)(style:width:300px)
+:::
 
 ### 使用AI的优势与挑战
 

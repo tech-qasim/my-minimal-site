@@ -197,7 +197,7 @@ class ImageProcessor {
     const files = stats.isDirectory() ? await this.processDirectory(inputPath) : [inputPath]
 
     const spinner = ora({
-      text: `${t.messages.processing} 0/${files.length}`,
+      text: `${t.messages.processing} 1/${files.length}`,
       spinner: 'dots',
     }).start()
 
@@ -205,7 +205,7 @@ class ImageProcessor {
       const file = files[i]
       const outputPath = this.getOutputPath(file)
       await this.processImage(file, outputPath)
-      spinner.text = `${t.messages.processing} ${i + 1}/${files.length}`
+      spinner.text = `${t.messages.processing} ${i + 1 + 1}/${files.length}`
     }
 
     spinner.stop()
@@ -237,7 +237,7 @@ async function main() {
       alias: 'q',
       type: 'number',
       description: t.cli.quality,
-      default: 80,
+      default: 40,
     })
     .option('width', {
       alias: 'w',
