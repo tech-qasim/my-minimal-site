@@ -19,9 +19,15 @@ const posts = defineCollection({
     // 文章作者，默认使用全局配置中的作者
     author: z.string().default(POSTS_CONFIG.author),
     // 文章封面图（可选）
-    heroImage: z.string().optional(),
+    heroImage: z
+      .string()
+      .transform((val) => (val ? `/hero-images/${val}` : undefined))
+      .optional(),
     // Open Graph 图片（可选）
-    ogImage: z.string().optional(),
+    ogImage: z
+      .string()
+      .transform((val) => (val ? `/og-images/${val}` : undefined))
+      .optional(),
     // 封面图布局方式（可选）
     heroImageLayout: z.custom<HeroImageLayout>().optional(),
     // 封面图宽高比，默认使用全局配置
