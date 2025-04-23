@@ -71,6 +71,7 @@ export const FOOTER_LINKS: Link[] = [
   },
 ]
 
+// get from https://icon-sets.iconify.design/
 export const SOLUTION_LINKS: SocialLink[] = [
   {
     name: 'github',
