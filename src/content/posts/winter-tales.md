@@ -3,9 +3,7 @@ title: 'What Can AI Do For Me?'
 pubDate: 2024-02-14
 description: '一篇关于冬天的随想，记录寒冬中的温暖与思考。'
 tags: ['散文', '随想', '冬天']
-heroImageLayout: 'right'
 heroImage: '/image2.jpg'
-heroImageAspectRatio: '3/4'
 ---
 
 ## Intro
