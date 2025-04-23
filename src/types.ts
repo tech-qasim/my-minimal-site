@@ -2,6 +2,7 @@
  * 站点基础信息类型 / Site basic information type
  * @description 包含站点标题和描述 / Contains site title and description
  * @property {string} title - 站点标题 / Site title
+ * @property {string} base - 站点基础路径 / Site base path
  * @property {string} description - 站点描述 / Site description
  * @property {string} author - 作者名称 / Author name
  * @property {string} website - 网站地址 / Website address
@@ -9,6 +10,7 @@
  */
 export type Site = {
   title: string
+  base: string
   description: string
   author: string
   website: string
