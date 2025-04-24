@@ -1,49 +1,21 @@
 ---
-title: 'Getter Start'
-pubDate: 2025-04-11
-updatedDate: 2025-04-11
-description: 'Getting Started with the Latest Theme Versions and Managing Project Dependencies'
+title: 'Getting Started'
+pubDate: 2025-04-25
+description: 'Getting Started with the Litos Theme'
 recommend: true
-tags: ['Getter', 'Markdown', 'Themes']
+tags: ['Tutorial']
+heroImage: 'Getting-Started.png'
+ogImage: 'Getting-Started.png'
 ---
 
-## Introduction
+Welcome to Litos Astro theme! This guide will guide you through quickly setting up and launching a project.
 
-Opening this post suggests that you may already be using the [Astro AntfuStyle Theme](https://github.com/lin-stephanie/astro-antfustyle-theme) — thanks for choosing it!
+## Preparation
 
-This guide provides instructions on how to stay up-to-date with the latest theme versions and manage your project dependencies effectively. Let's dive into the steps!
+Before starting, please ensure that the following software is installed in your development environment:
 
-That's it! Keeping your project updated may seem like work initially, but it becomes easier over time. Plus, it's worth it to enjoy the new features and improvements with each update.
+- Node.js (version 16 or higher)
+- npm (Node Package Manager)
+- Git
 
-Happy coding, and may your projects continue to thrive! 🚀
-
-```js
-console.log('This code is syntax highlighted!')
-```
-
-```js title="my-test-file.js"
-console.log('Title attribute example')
-```
-
-```html
-<!-- src/content/index.html -->
-<div>File name comment example</div>
-```
-
-```bash
-echo "This terminal frame has no title"
-```
-
-```powershell title="PowerShell terminal example"
-Write-Output "This one has a title!"
-```
-
-```sh frame="none"
-echo "Look ma, no frame!"
-```
-
-```ps frame="code" title="PowerShell Profile.ps1"
-# Without overriding, this would be a terminal frame
-function Watch-Tail { Get-Content -Tail 20 -Wait $args }
-New-Alias tail Watch-Tail
-```
+## Installation

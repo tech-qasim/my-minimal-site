@@ -44,7 +44,7 @@ const PostLayout = layoutMap[layoutKey]
   <div class="fullPage relative">
     <PostLayout {frontmatter} minutesRead={remarkPluginFrontmatter.minutesRead}>
       <Content />
-      <PostNavigation {prev} {next} />
+      {posts.length > 1 && <PostNavigation {prev} {next} />}
     </PostLayout>
     {hasValidHeadings && <PostFeatures {post} {posts} {headings} />}
   </div>

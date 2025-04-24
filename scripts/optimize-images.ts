@@ -51,7 +51,7 @@ class ImageProcessor {
     // 规范化路径以进行准确比较
     const normalizedInputPath = path.normalize(inputPath)
     const normalizedOutputPath = path.normalize(outputPath)
-    const isOverwriting = normalizedInputPath === normalizedOutputPath; // 使用规范化路径判断
+    const isOverwriting = normalizedInputPath === normalizedOutputPath // 使用规范化路径判断
 
     // 临时文件路径生成逻辑
     const tempFilenameBase = isOverwriting
@@ -201,27 +201,31 @@ class ImageProcessor {
   }
 
   private getOutputPath(inputPath: string): string {
-    const originalExtWithDot = path.extname(inputPath);
-    const originalExt = originalExtWithDot.toLowerCase().slice(1) as ImageFormat; // 获取原始格式
-    const filename = path.basename(inputPath, originalExtWithDot);
+    const originalExtWithDot = path.extname(inputPath)
+    const originalExt = originalExtWithDot.toLowerCase().slice(1) as ImageFormat // 获取原始格式
+    const filename = path.basename(inputPath, originalExtWithDot)
 
     // 确定目标格式：如果用户指定了格式，则使用用户指定的；否则，使用原始格式
-    const targetFormat = this.config.format ? this.config.format : originalExt;
+    const targetFormat = this.config.format ? this.config.format : originalExt
 
     // 确保目标格式是支持的（理论上isImageFile已过滤，但加一层保险）
     if (!SUPPORTED_FORMATS.includes(targetFormat)) {
-        // 如果原始格式不在支持列表（例如 .gif），这里会出问题
-        // 但 isImageFile 应该已经阻止了这种情况
-        // 如果需要更严格处理，可以在这里抛出错误或跳过
-        console.warn(chalk.yellow(`Target format '${targetFormat}' determined for ${path.basename(inputPath)} is not in the supported list. Using original extension anyway.`));
+      // 如果原始格式不在支持列表（例如 .gif），这里会出问题
+      // 但 isImageFile 应该已经阻止了这种情况
+      // 如果需要更严格处理，可以在这里抛出错误或跳过
+      console.warn(
+        chalk.yellow(
+          `Target format '${targetFormat}' determined for ${path.basename(inputPath)} is not in the supported list. Using original extension anyway.`
+        )
+      )
     }
 
-    const outputFilename = `${filename}.${targetFormat}`; // 使用确定的目标格式
+    const outputFilename = `${filename}.${targetFormat}` // 使用确定的目标格式
 
     // Determine the base directory for the output
-    const baseOutputDir = this.config.outputDir ? this.config.outputDir : path.dirname(inputPath);
+    const baseOutputDir = this.config.outputDir ? this.config.outputDir : path.dirname(inputPath)
 
-    return path.join(baseOutputDir, outputFilename);
+    return path.join(baseOutputDir, outputFilename)
   }
 
   private isImageFile(filepath: string): boolean {
@@ -272,31 +276,31 @@ class ImageProcessor {
     }).start()
 
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const originalExt = path.extname(file).toLowerCase().slice(1) as ImageFormat;
+      const file = files[i]
+      const originalExt = path.extname(file).toLowerCase().slice(1) as ImageFormat
 
       // 再次确定目标格式，用于传递给 processImage
-      const targetFormat = this.config.format ? this.config.format : originalExt;
+      const targetFormat = this.config.format ? this.config.format : originalExt
 
       // 增加一个检查，如果最终确定的格式不支持，则跳过
       if (!SUPPORTED_FORMATS.includes(targetFormat)) {
-          spinner.stop(); // 停止 spinner 以打印警告
-          console.warn(chalk.yellow(`\n⚠ Skipping ${path.basename(file)}: Determined output format '${targetFormat}' is not supported.`));
-          spinner.start(); // 重新开始 spinner
-          this.stats.skipped++;
-          continue; // 跳过这个文件
+        spinner.stop() // 停止 spinner 以打印警告
+        console.warn(chalk.yellow(`\n⚠ Skipping ${path.basename(file)}: Determined output format '${targetFormat}' is not supported.`))
+        spinner.start() // 重新开始 spinner
+        this.stats.skipped++
+        continue // 跳过这个文件
       }
 
-      const outputPath = this.getOutputPath(file); // getOutputPath 内部已包含格式判断逻辑
+      const outputPath = this.getOutputPath(file) // getOutputPath 内部已包含格式判断逻辑
 
       // --- Recalculate isOverwriting here based on normalized paths for deletion logic ---
-      const normalizedFile = path.normalize(file);
-      const normalizedOutputPath = path.normalize(outputPath);
-      const isOverwriting = normalizedFile === normalizedOutputPath;
+      const normalizedFile = path.normalize(file)
+      const normalizedOutputPath = path.normalize(outputPath)
+      const isOverwriting = normalizedFile === normalizedOutputPath
       // ---
 
       // 将确定的 targetFormat 传递给 processImage
-      const success = await this.processImage(file, outputPath, targetFormat);
+      const success = await this.processImage(file, outputPath, targetFormat)
 
       // 修改删除逻辑：仅在处理成功、不保留原文件且 *不是* 覆盖操作时删除
       if (success && !this.config.keepOriginal && !isOverwriting) {
@@ -308,7 +312,7 @@ class ImageProcessor {
           this.stats.errors++ // 将删除失败计入错误统计
         }
       }
-      spinner.text = `${t.messages.processing} ${i + 2}/${files.length}`;
+      spinner.text = `${t.messages.processing} ${i + 2}/${files.length}`
     }
 
     spinner.stop()
@@ -343,7 +347,7 @@ async function main() {
       alias: 'q',
       type: 'number',
       description: t.cli.quality,
-      default: 40,
+      default: 80,
     })
     .option('width', {
       alias: 'w',
