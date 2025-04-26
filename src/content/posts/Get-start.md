@@ -8,14 +8,13 @@ heroImage: 'Getting-Started.png'
 ogImage: 'Getting-Started.png'
 ---
 
-Welcome to Litos Astro theme! This guide will guide you through quickly setting up and launching a project.
+Welcome to  **[Litos Theme](https://github.com/Dnzzk2/Litos)** ! This guide will guide you through quickly setting up and launching a project.
 
 ## Preparation
 
-Before starting, please ensure that the following software is installed in your development environment:
+Before starting, please ensure that the following software or tools is installed in your development environment:
 
-- Node.js (version 16 or higher)
-- npm (Node Package Manager)
-- Git
-
-## Installation
+- :link[Node.js]{id=https://nodejs.org/en/download} - Run the environment and development project locally.
+- :link[pnpm]{id=https://pnpm.io/installation} - Used for managing project dependencies.
+- :link[Git]{id=https://git-scm.com/} - Used for version control.
+- :link[VS Code]{id=https://code.visualstudio.com/} - Provide a good code editing experience.
