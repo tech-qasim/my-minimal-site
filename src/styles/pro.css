@@ -718,8 +718,8 @@ html:not(.dark) .img-dark {
     padding-left: 0.875em;
   }
 
-  .markdown img,
-  .markdown video {
+  .markdown > img,
+  .markdown > video {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
   }
