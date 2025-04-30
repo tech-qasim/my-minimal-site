@@ -1,4 +1,4 @@
-import type { GithubConfig, Link, PostConfig, Site, SocialLink, TagsConfig } from '~/types'
+import type { GithubConfig, Link, PostConfig, Project, ProjectConfig, Site, SocialLink, TagsConfig } from '~/types'
 
 export const SITE: Site = {
   title: 'Litos',
@@ -8,6 +8,55 @@ export const SITE: Site = {
   website: 'https://litos.vercel.app/',
   ogImage: '/og-image.jpg',
 }
+
+export const HEADER_LINKS: Link[] = [
+  {
+    name: 'Posts',
+    url: '/posts',
+  },
+  {
+    name: 'Projects',
+    url: '/projects',
+  },
+]
+
+export const FOOTER_LINKS: Link[] = [
+  {
+    name: 'Readme',
+    url: '/',
+  },
+  {
+    name: 'Posts',
+    url: '/posts',
+  },
+  {
+    name: 'Projects',
+    url: '/projects',
+  },
+  {
+    name: 'Tags',
+    url: '/tags',
+  },
+]
+
+// get icon https://icon-sets.iconify.design/
+export const SOLUTION_LINKS: SocialLink[] = [
+  {
+    name: 'github',
+    url: 'https://github.com/yourname',
+    icon: 'icon-[ri--github-fill]',
+  },
+  {
+    name: 'twitter',
+    url: 'https://x.com/yourname',
+    icon: 'icon-[ri--twitter-x-fill]',
+  },
+  {
+    name: 'bilibili',
+    url: 'https://space.bilibili.com/yourSpaceId',
+    icon: 'icon-[ri--bilibili-fill]',
+  },
+]
 
 export const POSTS_CONFIG: PostConfig = {
   title: 'Posts',
@@ -41,51 +90,29 @@ export const GITHUB_CONFIG: GithubConfig = {
   USE_MOCK_DATA_FOR_DEVELOPMENT: true,
 }
 
-export const HEADER_LINKS: Link[] = [
-  {
-    name: 'Posts',
-    url: '/posts',
-  },
-  {
-    name: 'Projects',
-    url: '/projects',
-  },
-]
+export const PROJECTS_CONFIG: ProjectConfig = {
+  title: 'Projects',
+  description: 'The examples of my projects.',
+}
 
-export const FOOTER_LINKS: Link[] = [
+// get icon https://icon-sets.iconify.design/
+export const ProjectList: Project[] = [
   {
-    name: 'Readme',
-    url: '/',
-  },
-  {
-    name: 'Posts',
-    url: '/posts',
-  },
-  {
-    name: 'Projects',
-    url: '/projects',
-  },
-  {
-    name: 'Tags',
-    url: '/tags',
-  },
-]
-
-// get from https://icon-sets.iconify.design/
-export const SOLUTION_LINKS: SocialLink[] = [
-  {
-    name: 'github',
-    url: 'https://github.com/yourname',
+    name: 'Litos',
+    description: 'A blog theme built with Astro.js and Dnzzk2.',
+    githubUrl: 'https://github.com/Dnzzk2/Litos',
+    website: 'https://litos.vercel.app/',
+    type: 'icon',
     icon: 'icon-[ri--github-fill]',
+    star: 1,
   },
   {
-    name: 'twitter',
-    url: 'https://x.com/yourname',
-    icon: 'icon-[ri--twitter-x-fill]',
-  },
-  {
-    name: 'bilibili',
-    url: 'https://space.bilibili.com/yourSpaceId',
-    icon: 'icon-[ri--bilibili-fill]',
+    name: 'Litos',
+    description: 'A blog theme built with Astro.js and Dnzzk2.',
+    githubUrl: 'https://github.com/Dnzzk2/Litos',
+    website: 'https://litos.vercel.app/',
+    type: 'image',
+    icon: '/projects/logo.png',
+    star: 1,
   },
 ]

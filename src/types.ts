@@ -118,3 +118,44 @@ export type SocialLink = {
   icon: string
   count?: number
 }
+
+export type FooterLinks = {
+  main: Link[]
+  solution: SocialLink[]
+}
+
+/**
+ * 项目配置接口 / Project configuration interface
+ * @property {string} title - 项目标题 / Project title
+ * @property {string} description - 项目描述 / Project description
+ */
+export interface ProjectConfig {
+  title: string
+  description: string
+}
+
+// 项目图标类型 / Project icon type
+export type IconType = 'icon' | 'image'
+
+/**
+ * 项目类型 / Project type
+ * @property {string} name - 项目名称 / Project name
+ * @property {string} description - 项目描述 / Project description
+ * @property {string} url - 项目URL / Project URL
+ * @property {string} githubUrl - 项目github地址 / Project github address
+ * @property {IconType} type - 项目图标类型 / Project icon type
+ * @property {string} icon - 项目图标 / Project icon
+ * @property {number} star - 项目star数量 / Project star count
+ * @property {number} fork - 项目fork数量 / Project fork count
+ */
+
+export interface Project {
+  name: string
+  description: string
+  website?: string
+  githubUrl?: string
+  type: IconType
+  icon: string
+  star?: number
+  fork?: number
+}

@@ -29,7 +29,7 @@ export const remarkPlugins = [
         },
       },
       link: {
-        // 1000 / month
+        // 1000/month
         // faviconSourceUrl: 'https://icon.horse/icon/{domain}',
         // recommended ✨
         faviconSourceUrl: 'https://www.google.com/s2/favicons?domain={domain}&sz=128',
