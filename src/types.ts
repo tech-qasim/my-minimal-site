@@ -145,6 +145,7 @@ export type IconType = 'icon' | 'image'
  * @property {string} githubUrl - 项目github地址 / Project github address
  * @property {IconType} type - 项目图标类型 / Project icon type
  * @property {string} icon - 项目图标 / Project icon
+ * @property {string} imageClass - 项目图片样式类名 / Project image style class name
  * @property {number} star - 项目star数量 / Project star count
  * @property {number} fork - 项目fork数量 / Project fork count
  */
@@ -156,6 +157,7 @@ export interface Project {
   githubUrl?: string
   type: IconType
   icon: string
+  imageClass?: string
   star?: number
   fork?: number
 }

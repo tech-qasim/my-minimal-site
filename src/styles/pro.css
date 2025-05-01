@@ -116,6 +116,7 @@
 
 .markdown strong {
   font-weight: 600;
+  color: var(--table-text);
 }
 
 .markdown ol > li {

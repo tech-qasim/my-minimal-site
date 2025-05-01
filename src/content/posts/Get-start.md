@@ -18,3 +18,31 @@ Before starting, please ensure that the following software or tools is installed
 - :link[pnpm]{id=https://pnpm.io/installation} - Used for managing project dependencies.
 - :link[Git]{id=https://git-scm.com/} - Used for version control.
 - :link[VS Code]{id=https://code.visualstudio.com/} - Provide a good code editing experience.
+
+If you have other alternative tools, it's also a good choice.
+
+## Create Project
+
+After having the above development environment, you can create a new project using the following methods:
+
+**Github**
+
+Create a new project by [forking](https://github.com/Dnzzk2/Litos/fork) the code of this project, and then clone it locally:
+
+```bash
+git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPO_NAME].git
+```
+
+## Startup the project
+
+After cloning the project, you can start the project by running the following command:
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start project
+pnpm dev
+```
+
+## Configuration the project
