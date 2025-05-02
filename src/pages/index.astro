@@ -5,10 +5,10 @@ import { GITHUB_CONFIG, POSTS_CONFIG } from '~/config.ts'
 import { padMissingWeeks, postsSort } from '~/lib/utils'
 import { getCollection } from 'astro:content'
 import Layout from '~/layouts/Layout.astro'
-import SectionDivider from '~/components/SectionDivider'
+import SectionDivider from '~/components/base/SectionDivider.tsx'
 import GithubContributions from '~/components/GithubContributions.astro'
 import SocialLink from '~/components/SocialLink.astro'
-import PostCardList from '~/components/post-card/PostCardList.astro'
+import List from '~/components/posts/card/List.astro'
 
 const { ENABLED } = GITHUB_CONFIG
 const { size, type } = POSTS_CONFIG.homePageConfig
@@ -87,7 +87,7 @@ const posts = postsSort(allPosts).slice(0, size)
       <p class="text-muted-foreground mb-6 mt-1">
         Recent {posts.length} blog posts, hoping to be helpful.
       </p>
-      <PostCardList {posts} {type} heroImageLayout={POSTS_CONFIG.homePageConfig?.heroImageLayout} />
+      <List {posts} {type} heroImageLayout={POSTS_CONFIG.homePageConfig?.heroImageLayout} />
     </div>
   </div>
 </Layout>

@@ -1,9 +1,9 @@
 ---
 import type { HeroImageLayout, PostCardType } from '~/types'
 import type { CollectionEntry } from 'astro:content'
-import PostCardCompact from '~/components/post-card/PostCardCompact.astro'
-import PostCardImage from '~/components/post-card/PostCardImage.astro'
-import PostCardTimeLine from '~/components/post-card/PostCardTimeLine.astro'
+import Compact from './Compact.astro'
+import ImageShow from './ImageShow.astro'
+import TimeLine from './TimeLine.astro'
 import { cn } from '~/lib/utils'
 
 export type CardProps = {
@@ -13,9 +13,9 @@ export type CardProps = {
 }
 
 const POST_CARD_COMPONENTS = {
-  'compact': PostCardCompact,
-  'image': PostCardImage,
-  'time-line': PostCardTimeLine,
+  'compact': Compact,
+  'image': ImageShow,
+  'time-line': TimeLine,
 } as const
 
 const POST_CARD_SPACING_CLASSES = {

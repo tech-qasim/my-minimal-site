@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content'
 import { POSTS_CONFIG } from '~/config'
 import { postsSort } from '~/lib/utils'
 import Layout from '~/layouts/Layout.astro'
-import Pagination from '~/components/Pagination.astro'
-import PostCardList from '~/components/post-card/PostCardList.astro'
+import Pagination from '~/components/base/Pagination.astro'
+import List from '~/components/posts/card/List.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allPosts = await getCollection('posts')
@@ -62,11 +62,7 @@ const description = `Posts with the tag #${tag}`
     </div>
 
     <div class="fade-up space-y-8">
-      <PostCardList
-        posts={page.data}
-        type={POSTS_CONFIG.tagsPageConfig.type}
-        heroImageLayout={POSTS_CONFIG.tagsPageConfig?.heroImageLayout}
-      />
+      <List posts={page.data} type={POSTS_CONFIG.tagsPageConfig.type} heroImageLayout={POSTS_CONFIG.tagsPageConfig?.heroImageLayout} />
     </div>
 
     <Pagination {page} baseUrl={`/tags/${tag}`} class="mt-12" />

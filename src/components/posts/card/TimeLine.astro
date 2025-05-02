@@ -1,7 +1,7 @@
 ---
 import { formatDate } from '~/lib/utils'
-import PostTag from '~/components/ui/PostTag.astro'
-import type { CardProps } from './PostCardList.astro'
+import PostTag from '~/components/posts/base/PostTag.astro'
+import type { CardProps } from './List.astro'
 
 interface Props extends CardProps {}
 
@@ -14,7 +14,7 @@ const { post }: Props = Astro.props
     <div class="flex-1 w-0.5 bg-gradient-to-b from-transparent via-muted-foreground/20 to-transparent"></div>
   </div>
 
-  <div class="absolute right-0 top-[0.1rem] hidden sm:flex flex items-end gap-2">
+  <div class="absolute right-0 top-[0.1rem] hidden sm:flex items-end gap-2">
     <div class="flex items-center gap-1.5">
       <span class="icon-[ph--calendar-blank] w-3.5 h-3.5 text-muted-foreground/70"></span>
       <time class="text-sm text-muted-foreground whitespace-nowrap">

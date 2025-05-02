@@ -1,6 +1,6 @@
 ---
 title: 'Getting Started'
-pubDate: 2025-04-25
+pubDate: 2025-05-05
 description: 'Getting Started with the Litos Theme'
 recommend: true
 tags: ['Tutorial']
@@ -33,7 +33,7 @@ Create a new project by [forking](https://github.com/Dnzzk2/Litos/fork) the code
 git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPO_NAME].git
 ```
 
-## Startup the project
+## Startup Project
 
 After cloning the project, you can start the project by running the following command:
 
@@ -45,4 +45,6 @@ pnpm install
 pnpm dev
 ```
 
-## Configuration the project
+## Configure Project
+
+Before configuring a project, we should first understand the [project structure](/posts/project-structure)  .

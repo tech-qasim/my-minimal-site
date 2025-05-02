@@ -2,11 +2,11 @@
 import { getCollection } from 'astro:content'
 import { postsSort } from '~/lib/utils'
 import Layout from '~/layouts/Layout.astro'
-import NoImageLayout from '~/components/post-layouts/NoImageLayout.astro'
-import HorizontalImageLayout from '~/components/post-layouts/HorizontalImageLayout.astro'
-import VerticalImageLayout from '~/components/post-layouts/VerticalImageLayout.astro'
-import PostNavigation from '~/components/PostNavigation.astro'
-import PostFeatures from '~/components/toc/PostFeatures.astro'
+import NoImage from '~/components/posts/layouts/NoImage.astro'
+import Horizontal from '~/components/posts/layouts/Horizontal.astro'
+import Vertical from '~/components/posts/layouts/Vertical.astro'
+import PostNavigation from '~/components/posts/base/PostNavigation.astro'
+import PostFeatures from '~/components/posts/toc/PostFeatures.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -31,9 +31,9 @@ const hasValidHeadings = headings.length > 1
 const hasImage = !!frontmatter.heroImage
 const isVertical = frontmatter.heroImageAspectRatio === '3/4'
 const layoutMap = {
-  'no-image': NoImageLayout,
-  'vertical': VerticalImageLayout,
-  'horizontal': HorizontalImageLayout,
+  'no-image': NoImage,
+  'vertical': Vertical,
+  'horizontal': Horizontal,
 }
 
 const layoutKey = !hasImage ? 'no-image' : isVertical ? 'vertical' : 'horizontal'

@@ -1,7 +1,7 @@
 ---
 import { formatDate } from '~/lib/utils'
-import Prose from '~/components/Prose.astro'
-import ZoomImage from '~/components/ui/ZoomImage.astro'
+import Prose from '~/components/posts/base/Prose.astro'
+import ZoomImage from '~/components/base/ZoomImage.astro'
 
 interface Props {
   frontmatter: any
@@ -58,7 +58,7 @@ const { frontmatter, minutesRead } = Astro.props
                     frontmatter.tags?.map((tag: string) => (
                       <a
                         href={`/tags/${tag}`}
-                        class="px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs tracking-widest 
+                        class="px-3 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs tracking-widest
                          bg-muted text-tag-text border border-tag-border rounded-full
                          hover:bg-tag-bg-hover hover:border-primary/30 hover:text-foreground
                          transition-all duration-300 group"

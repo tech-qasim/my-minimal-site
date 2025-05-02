@@ -5,8 +5,8 @@ import { getCollection } from 'astro:content'
 import { POSTS_CONFIG } from '~/config'
 import { postsSort } from '~/lib/utils'
 import Layout from '~/layouts/Layout.astro'
-import Pagination from '~/components/Pagination.astro'
-import PostCardList from '~/components/post-card/PostCardList.astro'
+import Pagination from '~/components/base/Pagination.astro'
+import List from '~/components/posts/card/List.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const allPosts = await getCollection('posts')
@@ -33,11 +33,7 @@ const { title, description } = POSTS_CONFIG
     </div>
 
     <div class="fade-up mt-12">
-      <PostCardList
-        posts={page.data}
-        type={POSTS_CONFIG.postPageConfig.type}
-        heroImageLayout={POSTS_CONFIG.postPageConfig?.heroImageLayout}
-      />
+      <List posts={page.data} type={POSTS_CONFIG.postPageConfig.type} heroImageLayout={POSTS_CONFIG.postPageConfig?.heroImageLayout} />
     </div>
 
     <Pagination {page} baseUrl="/posts" />

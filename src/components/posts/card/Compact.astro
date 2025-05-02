@@ -2,9 +2,9 @@
 import type { HeroImageAspectRatio } from '~/types'
 import { formatDate } from '~/lib/utils'
 import { POSTS_CONFIG } from '~/config'
-import PostTag from '~/components/ui/PostTag.astro'
-import RecommendBadge from '~/components/ui/RecommendBadge.astro'
-import type { CardProps } from './PostCardList.astro'
+import PostTag from '~/components/posts/base/PostTag.astro'
+import RecommendBadge from '~/components/posts/base/RecommendBadge.astro'
+import type { CardProps } from './List.astro'
 
 interface Props extends CardProps {}
 
