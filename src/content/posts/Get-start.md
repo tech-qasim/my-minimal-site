@@ -45,6 +45,32 @@ pnpm install
 pnpm dev
 ```
 
+> [!note]+
+>
+> After the project is launched, there will be:
+>
+> ``` text
+> Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+> 1. You might have mismatching versions of React and the renderer (such as React DOM)
+> 2. You might be breaking the Rules of Hooks
+> 3. You might have more than one copy of React in the same app
+> See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+> ```
+>
+> This is caused by the **React plugin** and **MDX plugin**, and the Astro official statement in Issues states that this warning can be ignored.
+
 ## Configure Project
 
 Before configuring a project, we should first understand the [project structure](/posts/project-structure)  .
+
+We can start with the following three configuration files:
+
+- [**Basic configuration**](/posts/basic-configuration): Can be configured in the `src/config.ts` file.
+- [**ExpressiveCode configuration**](/posts/expressivecode-configuration): Can be configured in the `ec.config.mjs` file.
+- [**MD configuration**](/posts/md-configuration): Can be configured in the `/plugins/index.ts` file.
+
+## Markdown Syntax
+
+This theme supports both basic and enhanced markdown syntax.
+
+The support for markdown enhanced syntax comes from [**plugins**](/posts/md-configuration), and you can add plugins to support more.
