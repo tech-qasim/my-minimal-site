@@ -81,7 +81,7 @@ Configuration Description:
 :::image-figure
 ![socia-link.png](~/assets/images/Basic-configuration/socia-link-light.png)(class:img-light)
 
-![socia-link.png](~/assets/images/Basic-configuration/socia-link-dark.png)(class:img-dark)
+![socia-link.png](~/assets/images/Basic-configuration/socia-link-dark.png)(class:img-dark noDarken)
 :::
 
 ```ts
