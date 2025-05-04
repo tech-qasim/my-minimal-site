@@ -59,6 +59,7 @@ export interface PostCardPageConfig {
  * @property {PostCardPageConfig} tagsPageConfig - 标签页文章展示配置 / Post display configuration for tags page
  * @property {string} defaultHeroImage - 默认文章封面图 / Default hero image for posts
  * @property {HeroImageAspectRatio} defaultHeroImageAspectRatio - 默认图片宽高比 / Default image aspect ratio
+ * @property {boolean} imageDarkenInDark - 是否在暗黑模式下对图片进行暗化处理 / Whether to darken images in dark mode
  * @property {string} tocText - 目录文本 / Table of contents text
  */
 export interface PostConfig {
@@ -70,6 +71,7 @@ export interface PostConfig {
   tagsPageConfig: PostCardPageConfig
   defaultHeroImage: string
   defaultHeroImageAspectRatio: HeroImageAspectRatio
+  imageDarkenInDark: boolean
   tocText: string
 }
 

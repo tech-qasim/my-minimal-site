@@ -1,4 +1,6 @@
 ---
+import { POSTS_CONFIG } from '~/config'
+
 interface Props {
   class?: string
 }
@@ -21,4 +23,44 @@ const { class: className } = Astro.props
     zoom.detach()
     zoom.attach('.markdown img:not(.no-zoom):not(a img)')
   })
+</script>
+
+<script define:vars={{ enabled: POSTS_CONFIG.imageDarkenInDark }}>
+  if (enabled) {
+    const darkModeHandler = () => {
+      const isDark = document.documentElement.classList.contains('dark')
+      document.querySelectorAll('.markdown img:not(:hover):not(.medium-zoom-image--opened)').forEach((img) => {
+        if (isDark) {
+          img.style.setProperty('filter', 'brightness(0.75) contrast(1.1)')
+        } else {
+          img.style.removeProperty('filter')
+        }
+      })
+    }
+
+    // 监听暗色模式变化
+    const observer = new MutationObserver(() => {
+      darkModeHandler()
+    })
+
+    document.addEventListener('astro:page-load', () => {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      })
+      darkModeHandler()
+
+      // 监听 hover 事件
+      document.querySelectorAll('.markdown img').forEach((img) => {
+        img.addEventListener('mouseenter', () => {
+          img.style.removeProperty('filter')
+        })
+        img.addEventListener('mouseleave', () => {
+          if (document.documentElement.classList.contains('dark')) {
+            img.style.setProperty('filter', 'brightness(0.75) contrast(1.1)')
+          }
+        })
+      })
+    })
+  }
 </script>

@@ -2,10 +2,10 @@ import type { GithubConfig, Link, PostConfig, Project, ProjectConfig, Site, Soci
 
 export const SITE: Site = {
   title: 'Litos',
-  base: '/',
   description: 'Litos is a blog theme built with Astro.js and Dnzzk2.',
-  author: 'Dnzzk2',
   website: 'https://litos.vercel.app/',
+  base: '/',
+  author: 'Dnzzk2',
   ogImage: '/og-image.jpg',
 }
 
@@ -42,9 +42,7 @@ export const FOOTER_LINKS: Link[] = [
  * GitHub配置 / GitHub configuration
  *
  * @property {boolean} ENABLED - 是否启用GitHub功能 / Whether to enable GitHub features
- *
  * @property {number} CACHE_DURATION - 缓存持续时间(秒) / Cache duration in seconds
- *
  * @property {boolean} USE_MOCK_DATA_FOR_DEVELOPMENT - 开发时使用模拟数据 / Use mock data in development
  */
 
@@ -55,7 +53,7 @@ export const GITHUB_CONFIG: GithubConfig = {
 }
 
 // get icon https://icon-sets.iconify.design/
-export const SOLUTION_LINKS: SocialLink[] = [
+export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'github',
     url: 'https://github.com/yourname',
@@ -91,6 +89,7 @@ export const POSTS_CONFIG: PostConfig = {
   },
   defaultHeroImage: '/og-image.jpg',
   defaultHeroImageAspectRatio: '16/9',
+  imageDarkenInDark: true,
   tocText: 'Catalogue',
 }
 

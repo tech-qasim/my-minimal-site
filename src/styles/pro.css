@@ -281,6 +281,12 @@
 .markdown figure img {
   margin-block: 0;
 }
+.dark .markdown figure img.noDarken {
+  filter: none !important;
+}
+.dark .markdown figure img.darken {
+  filter: brightness(0.75) contrast(1.1);
+}
 .markdown video {
   margin-top: 2em;
   margin-bottom: 2em;
@@ -656,16 +662,9 @@ html:not(.dark) .img-dark {
 }
 
 /* Medium Zoom 样式 */
-.medium-zoom-overlay {
-  z-index: 300;
-}
-
+.medium-zoom-overlay,
 .medium-zoom-image--opened {
   z-index: 300;
-}
-
-.dark .medium-zoom-overlay {
-  background-color: rgba(0, 0, 0, 0.95) !important;
 }
 
 /* callouts */

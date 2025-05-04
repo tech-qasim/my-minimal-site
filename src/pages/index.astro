@@ -1,5 +1,5 @@
 ---
-import { SITE, SOLUTION_LINKS } from '~/config.ts'
+import { SITE, SOCIAL_LINKS } from '~/config.ts'
 import { GET } from './api/github.ts'
 import { GITHUB_CONFIG, POSTS_CONFIG } from '~/config.ts'
 import { padMissingWeeks, postsSort } from '~/lib/utils'
@@ -57,7 +57,7 @@ const posts = postsSort(allPosts).slice(0, size)
       </div>
       <div class="mt-6 flex gap-6">
         {
-          SOLUTION_LINKS.map((item) => {
+          SOCIAL_LINKS.map((item) => {
             const isGithub = item.name.toLowerCase() === 'github'
             if (isGithub && ENABLED && githubFollowerCount !== null) {
               return (
