@@ -24,4 +24,9 @@ export default defineConfig({
     rehypePlugins,
   },
   integrations: [sitemap(), robotsTxt(), react(), expressiveCode(), mdx()],
+  server: {
+    headers: {
+      'cache-control': 'public, max-age=31536000, immutable',
+    },
+  },
 })
