@@ -8,11 +8,13 @@ heroImage: 'Basic-configuration.png'
 ogImage: 'Basic-configuration.png'
 ---
 
-The basic configuration is in the `src/config.ts` file. This file contains all the essential settings for your Litos theme website.
+Welcome to the Litos theme configuration guide. All essential settings for your website are managed through the `src/config.ts` file. This comprehensive guide will walk you through each configuration section to help you customize your site effectively.
 
-## Basic configuration of the site
+## Core Site Configuration
 
-```ts
+The `SITE` object contains fundamental settings that define your website's identity and metadata:
+
+```ts title="src/config.ts"
 export const SITE: Site = {
   title: 'Litos',        // Your website title
   description: 'Litos is a blog theme built with Astro.js and Dnzzk2.',  // Site description
@@ -23,31 +25,43 @@ export const SITE: Site = {
 }
 ```
 
-Each field serves a specific purpose:
+Here's a detailed explanation of each configuration property:
 
-- **title** : Essential for SEO and branding - displayed in browser tabs, search results, and social sharing.
-- **description** : Critical for SEO - provides a concise summary of your site for search engines and social sharing.
-- **website** : Your production URL - required for canonical links and absolute URL generation.
-- **base** : Important for deployment configuration - set this if your site is not at the domain root.
-- **author** : Attribution information - used in meta tags.
-- **ogImage** : Social media presence - preview image when sharing on platforms like Twitter, Facebook (1200×630px recommended).
+| Property | Description | Details |
+|---|---|---|
+| **title** | Website Title | Displayed in browser tabs and search results, crucial for SEO and brand identity |
+| **description** | Site Overview | Shown in search results and social media shares, should include keywords for SEO optimization |
+| **website** | Production URL | Used for generating canonical links and ensuring proper URL resolution |
+| **base** | Base Path | Keep as '/' when deployed at root, or set subdirectory (e.g., '/blog/') |
+| **author** | Author Name | Used in meta tags and attribution information |
+| **ogImage** | Default Social Media Preview Image | Image displayed when shared on social platforms (recommended size: 1200×630px) |
 
-## Navigation configuration
+## Navigation Structure
 
-The website navigation is divided into two parts: top navigation (`HEADER_LINKS`) and bottom navigation (`FOOTER-LINKS`).
+Litos provides a dual-navigation system to enhance user experience and site accessibility. The navigation is split into two main components: header navigation (`HEADER_LINKS`) for primary routes and footer navigation (`FOOTER_LINKS`) for comprehensive site mapping.
 
-```ts
+### Header Navigation
+
+The header navigation contains your most important and frequently accessed pages:
+
+```ts title="src/config.ts"
 export const HEADER_LINKS: Link[] = [
   {
-    name: 'Posts',
-    url: '/posts',
+    name: 'Posts',    // Display text in navigation
+    url: '/posts',    // Route path
   },
   {
     name: 'Projects',
     url: '/projects',
   },
 ]
+```
 
+### Footer Navigation
+
+The footer navigation provides a complete sitemap and additional important links:
+
+```ts title="src/config.ts"
 export const FOOTER_LINKS: Link[] = [
   {
     name: 'Readme',
@@ -66,35 +80,43 @@ export const FOOTER_LINKS: Link[] = [
     url: '/tags',
   },
 ]
-
 ```
 
-Configuration Description:
+### Navigation Configuration Guide
 
-- **HEADER_LINKS**: Configure the main navigation bar at the top of the website, usually placing the most important and frequently used page links.
-- **FOOTER-LINKS**: Configure the navigation links at the bottom of the website to include more auxiliary links and secondary entrances.
-- Each navigation item is an object containing a name (display text) and a URL (link address).
-- The link address should start with/, indicating the path relative to the website root directory.
+Navigation Link Configuration Details:
 
-## Social links
+| Property | Description | Usage |
+|------|------|------|
+| **name** | Display Text | The text shown in the navigation menu |
+| **url** | Target Path | Must start with '/' for the target page path |
+
+>[!tip]
+>
+> 1. Header Navigation: Focus on primary content sections
+> 2. Footer Navigation: Include secondary pages and site resources
+> 3. Path Settings: All paths are relative to the site root
+> 4. Link Consistency: Ensure consistency between header and footer navigation links
+
+## Social Media Integration
+
+Litos includes a built-in social media integration feature that allows you to showcase your social media presence. The social links appear in a designated area of your site:
 
 :::image-figure
-![social-link.png](~/assets/images/Basic-configuration/social-link-dark.png)(class:img-light)
+![Social links appearance in light mode](~/assets/images/Basic-configuration/social-link-dark.png)(class:img-light)
 
-![social-link.png](~/assets/images/Basic-configuration/social-link-light.png)(class:img-dark)
+![Social links appearance in dark mode](~/assets/images/Basic-configuration/social-link-light.png)(class:img-dark)
 :::
 
-The area enclosed by a rectangle in `social-link.png` is the location of Social-Links.
+Configure your social media links in the `src/config.ts` file:
 
-The following is the configuration of the content in this area:
-
-```ts
+```ts title="src/config.ts"
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    name: 'github',
-    url: 'https://github.com/yourname',
-    icon: 'icon-[ri--github-fill]',
-    count: 9
+    name: 'github',    // Platform identifier
+    url: 'https://github.com/yourname',    // Your profile URL
+    icon: 'icon-[ri--github-fill]',    // Iconify icon class
+    count: 9    // Optional: follower count
   },
   {
     name: 'twitter',
@@ -109,12 +131,23 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ]
 ```
 
-- **name**: The name of the social media platform, used for display purposes.
-- **url**: The URL of the social media platform.
-- **icon**: The icon of the social media platform, using the [Iconify](https://icon-sets.iconify.design/). This is a class, and you can also modify the style of the icon through tailwindcss.
-- **count?**: The number of followers or subscribers of the social media platform.
+Each social link object supports the following properties:
 
-## Github Configuration
+| Property | Description | Details |
+|------|------|------|
+| **name** | Platform Identifier | Used for internal reference and accessibility |
+| **url** | Profile URL | Direct link to your profile page on the platform |
+| **icon** | Icon Class Name | Icon class from [Iconify](https://icon-sets.iconify.design/), customizable through Tailwind CSS |
+| **count** | Follower Count | Optional, displays follower count; automatically updates GitHub followers when GitHub integration is enabled |
+
+> [!TIP]
+>
+> 1. Browse and select your preferred social media icons from [Iconify](https://icon-sets.iconify.design/)
+> 2. Maintain consistent icon styles across all social links
+> 3. Enable GitHub integration for automatic follower count updates
+> 4. Test social links visibility in both light and dark theme modes
+
+## Github configuration
 
 :::image-figure
 ![spotlight.png](~/assets/images/Basic-configuration/spotlight-dark.png)(class:img-light)
@@ -122,9 +155,32 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ![spotlight.png](~/assets/images/Basic-configuration/spotlight-light.png)(class:img-dark)
 :::
 
-When you are on the homepage, you can see the spotlight in the picture, which is enabled through the settings below:
+When you visit the homepage, you'll notice the GitHub data display area (Spotlight) as shown in the image. This feature can be enabled through the following configuration.
 
-```ts
+### Obtaining a Github Token
+
+1. Visit the [Github Token settings page](https://github.com/settings/tokens)
+2. Click "Generate new token" > "Generate new token (classic)"
+3. Set a Token name (Note)
+4. Select the following required permissions:
+   - `repo`: Full repository access permissions
+   - `user`: Read user information permissions
+5. Set an appropriate expiration time (Token expiration)
+6. Click "Generate token" and save the generated Token
+
+Create a `.env` file in the project root directory and add the following content:
+
+```ts title=".env"
+SECRET_GITHUB_TOKEN=YOUR_GITHUB_TOKEN
+```
+
+Replace `YOUR_GITHUB_TOKEN` with the Github Token you just generated.
+
+### Configuration Details
+
+Configure GitHub-related features in the `src/config.ts` file:
+
+```ts title="src/config.ts"
 export const GITHUB_CONFIG: GithubConfig = {
   ENABLED: true,
   CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5,
@@ -132,19 +188,21 @@ export const GITHUB_CONFIG: GithubConfig = {
 }
 ```
 
-- **ENABLED**: Whether to enable the spotlight feature.
-- **CACHE_DURATION**: The cache duration of the spotlight data, in seconds.
-- **USE_MOCK_DATA_FOR_DEVELOPMENT**: Whether to use mock data for development.
+Configuration options explained:
 
-If **ENABLED** is true, the spotlight will be displayed and the number of followers on GitHub in [**Social links**](/posts/basic-configuration#social-links) will replace the count set in the settings. That is to say, in this case, the count priority in the settings is the lowest. Of course, it only affects the number of followers on GitHub.
+| Property | Description | Details |
+|---|---|---|
+| **ENABLED** | Enable GitHub Features | Type: boolean, Default: true. When enabled, displays Spotlight and automatically updates GitHub follower count in Social Links |
+| **CACHE_DURATION** | GitHub Data Cache Duration | Type: number, Default: 5700 seconds. Calculated as: 1.5 hours (5400 seconds) + 5 minutes (300 seconds) |
+| **USE_MOCK_DATA_FOR_DEVELOPMENT** | Development Mode Data Source | Type: boolean, Default: true. When enabled, uses mock data to avoid frequent GitHub API requests |
 
-If **USE_MOCK_DATA_FOR_DEVELOPMENT** is true, Mock's GitHub data will be used for display. If false, then real GitHub data will be used.
+### Mock Data Configuration
 
-You can set the mock data in the **DEFAULT_GITHUB_RESPONSE** constant in the `src/pages/api/github.ts` file.
+If you choose to use mock data (`USE_MOCK_DATA_FOR_DEVELOPMENT: true`), you can set the data format in the `DEFAULT_GITHUB_RESPONSE` constant within the `src/pages/api/github.ts` file.
 
-> [!Warning]
-> The format of the default data you set should be correct, just like the default data I set (which can be seen in the project code, so I won't go into detail here, it's too long 😊).
+> [!TIP]
+> To ensure correct mock data format, it's recommended to first fetch real data using an actual Token and copy the returned data structure as a template for mock data. This prevents display issues caused by mismatched data structures.
 >
-> If you want to obtain the correct data, my suggestion is to request and print the obtained data once, and then copy these data into mock data.
+> Note: When GitHub integration is enabled, the actual follower count from your GitHub account takes precedence and automatically overrides github manually configured count in SOCIAL_LINKS configuration.
 
 ## Posts Configuration

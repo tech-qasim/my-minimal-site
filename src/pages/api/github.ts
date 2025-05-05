@@ -1763,7 +1763,7 @@ export const GET: APIRoute = async () => {
   }
 }
 
-// 新增独立的数据获取函数
+// 数据获取函数
 async function fetchGitHubData() {
   const query = `{
     viewer {
