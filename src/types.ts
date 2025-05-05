@@ -121,11 +121,6 @@ export type SocialLink = {
   count?: number
 }
 
-export type FooterLinks = {
-  main: Link[]
-  solution: SocialLink[]
-}
-
 /**
  * 项目配置接口 / Project configuration interface
  * @property {string} title - 项目标题 / Project title

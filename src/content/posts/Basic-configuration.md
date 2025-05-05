@@ -79,10 +79,14 @@ Configuration Description:
 ## Social links
 
 :::image-figure
-![socia-link.png](~/assets/images/Basic-configuration/socia-link-light.png)(class:img-light)
+![social-link.png](~/assets/images/Basic-configuration/social-link-dark.png)(class:img-light)
 
-![socia-link.png](~/assets/images/Basic-configuration/socia-link-dark.png)(class:img-dark noDarken)
+![social-link.png](~/assets/images/Basic-configuration/social-link-light.png)(class:img-dark)
 :::
+
+The area enclosed by a rectangle in `social-link.png` is the location of Social-Links.
+
+The following is the configuration of the content in this area:
 
 ```ts
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -104,3 +108,43 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 ```
+
+- **name**: The name of the social media platform, used for display purposes.
+- **url**: The URL of the social media platform.
+- **icon**: The icon of the social media platform, using the [Iconify](https://icon-sets.iconify.design/). This is a class, and you can also modify the style of the icon through tailwindcss.
+- **count?**: The number of followers or subscribers of the social media platform.
+
+## Github Configuration
+
+:::image-figure
+![spotlight.png](~/assets/images/Basic-configuration/spotlight-dark.png)(class:img-light)
+
+![spotlight.png](~/assets/images/Basic-configuration/spotlight-light.png)(class:img-dark)
+:::
+
+When you are on the homepage, you can see the spotlight in the picture, which is enabled through the settings below:
+
+```ts
+export const GITHUB_CONFIG: GithubConfig = {
+  ENABLED: true,
+  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5,
+  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
+}
+```
+
+- **ENABLED**: Whether to enable the spotlight feature.
+- **CACHE_DURATION**: The cache duration of the spotlight data, in seconds.
+- **USE_MOCK_DATA_FOR_DEVELOPMENT**: Whether to use mock data for development.
+
+If **ENABLED** is true, the spotlight will be displayed and the number of followers on GitHub in [**Social links**](/posts/basic-configuration#social-links) will replace the count set in the settings. That is to say, in this case, the count priority in the settings is the lowest. Of course, it only affects the number of followers on GitHub.
+
+If **USE_MOCK_DATA_FOR_DEVELOPMENT** is true, Mock's GitHub data will be used for display. If false, then real GitHub data will be used.
+
+You can set the mock data in the **DEFAULT_GITHUB_RESPONSE** constant in the `src/pages/api/github.ts` file.
+
+> [!Warning]
+> The format of the default data you set should be correct, just like the default data I set (which can be seen in the project code, so I won't go into detail here, it's too long 😊).
+>
+> If you want to obtain the correct data, my suggestion is to request and print the obtained data once, and then copy these data into mock data.
+
+## Posts Configuration

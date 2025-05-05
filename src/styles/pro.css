@@ -281,11 +281,14 @@
 .markdown figure img {
   margin-block: 0;
 }
-.dark .markdown figure img.noDarken {
+.dark .markdown img.noDarken {
   filter: none !important;
 }
-.dark .markdown figure img.darken {
+.dark .markdown img.darken {
   filter: brightness(0.75) contrast(1.1);
+}
+.dark .markdown img.medium-zoom-image {
+  transition-property: filter, transform !important;
 }
 .markdown video {
   margin-top: 2em;

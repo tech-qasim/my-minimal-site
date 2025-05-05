@@ -38,19 +38,6 @@ export const FOOTER_LINKS: Link[] = [
     url: '/tags',
   },
 ]
-/**
- * GitHub配置 / GitHub configuration
- *
- * @property {boolean} ENABLED - 是否启用GitHub功能 / Whether to enable GitHub features
- * @property {number} CACHE_DURATION - 缓存持续时间(秒) / Cache duration in seconds
- * @property {boolean} USE_MOCK_DATA_FOR_DEVELOPMENT - 开发时使用模拟数据 / Use mock data in development
- */
-
-export const GITHUB_CONFIG: GithubConfig = {
-  ENABLED: true,
-  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5,
-  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
-}
 
 // get icon https://icon-sets.iconify.design/
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -70,6 +57,20 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: 'icon-[ri--bilibili-fill]',
   },
 ]
+
+/**
+ * GitHub配置 / GitHub configuration
+ *
+ * @property {boolean} ENABLED - 是否启用GitHub功能 / Whether to enable GitHub features
+ * @property {number} CACHE_DURATION - 缓存持续时间(秒) / Cache duration in seconds
+ * @property {boolean} USE_MOCK_DATA_FOR_DEVELOPMENT - 开发时使用模拟数据 / Use mock data in development
+ */
+
+export const GITHUB_CONFIG: GithubConfig = {
+  ENABLED: true,
+  CACHE_DURATION: 60 * 60 * 1.5 + 60 * 5,
+  USE_MOCK_DATA_FOR_DEVELOPMENT: true,
+}
 
 export const POSTS_CONFIG: PostConfig = {
   title: 'Posts',
