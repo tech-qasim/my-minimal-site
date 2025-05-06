@@ -60,7 +60,13 @@ export interface PostCardPageConfig {
  * @property {string} defaultHeroImage - 默认文章封面图 / Default hero image for posts
  * @property {HeroImageAspectRatio} defaultHeroImageAspectRatio - 默认图片宽高比 / Default image aspect ratio
  * @property {boolean} imageDarkenInDark - 是否在暗黑模式下对图片进行暗化处理 / Whether to darken images in dark mode
+ * @property {string} readMoreText - "阅读更多"按钮文本 / "Read more" button text
+ * @property {string} prevPageText - 上一页按钮文本 / Previous page button text
+ * @property {string} nextPageText - 下一页按钮文本 / Next page button text
  * @property {string} tocText - 目录文本 / Table of contents text
+ * @property {string} backToPostsText - 返回文章列表按钮文本 / Back to posts list button text
+ * @property {string} nextPostText - 下一篇文章按钮文本 / Next post button text
+ * @property {string} prevPostText - 上一篇文章按钮文本 / Previous post button text
  */
 export interface PostConfig {
   title: string
@@ -72,7 +78,13 @@ export interface PostConfig {
   defaultHeroImage: string
   defaultHeroImageAspectRatio: HeroImageAspectRatio
   imageDarkenInDark: boolean
+  readMoreText: string
+  prevPageText: string
+  nextPageText: string
   tocText: string
+  backToPostsText: string
+  nextPostText: string
+  prevPostText: string
 }
 
 /**

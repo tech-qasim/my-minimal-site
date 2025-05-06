@@ -91,7 +91,13 @@ export const POSTS_CONFIG: PostConfig = {
   defaultHeroImage: '/og-image.jpg',
   defaultHeroImageAspectRatio: '16/9',
   imageDarkenInDark: true,
+  readMoreText: 'Read more',
+  prevPageText: 'Previous',
+  nextPageText: 'Next',
   tocText: 'Catalogue',
+  backToPostsText: 'Back to Posts',
+  nextPostText: 'Next Post',
+  prevPostText: 'Previous Post',
 }
 
 export const TAGS_CONFIG: TagsConfig = {

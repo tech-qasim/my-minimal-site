@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import { POSTS_CONFIG } from '~/config'
 
 interface Props {
   prev: CollectionEntry<'posts'> | null
@@ -17,7 +18,7 @@ const { prev, next } = Astro.props
           <span class="icon-[ph--arrow-left] size-4 text-primary" />
         </div>
         <div class=" group-hover:pl-6 transition-all duration-200">
-          <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">上一篇</span>
+          <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">{POSTS_CONFIG.prevPostText}</span>
           <p class="font-serif mt-1.5 text-base text-foreground/90 group-hover:text-primary transition-colors line-clamp-1">
             {next.data.title}
           </p>
@@ -33,7 +34,7 @@ const { prev, next } = Astro.props
           <span class="icon-[ph--arrow-right] size-4 text-primary" />
         </div>
         <div class=" group-hover:pr-6 transition-all duration-200">
-          <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">下一篇</span>
+          <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">{POSTS_CONFIG.nextPostText}</span>
           <p class="font-serif mt-1.5 text-base text-foreground/90 group-hover:text-primary transition-colors line-clamp-1">
             {prev.data.title}
           </p>

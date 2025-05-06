@@ -206,3 +206,62 @@ If you choose to use mock data (`USE_MOCK_DATA_FOR_DEVELOPMENT: true`), you can 
 > Note: When GitHub integration is enabled, the actual follower count from your GitHub account takes precedence and automatically overrides github manually configured count in SOCIAL_LINKS configuration.
 
 ## Posts Configuration
+
+Litos provides comprehensive configuration options for blog posts through the `POSTS_CONFIG` object in `src/config.ts`. This section covers post display settings, pagination, and layout options.
+
+```ts title="src/config.ts"
+export const POSTS_CONFIG: PostConfig = {
+  title: 'Posts',
+  description: 'Posts by Dnzzk2',
+  author: 'Dnzzk2',
+  homePageConfig: {
+    size: 5,
+    type: 'compact',
+  },
+  postPageConfig: {
+    size: 10,
+    type: 'image',
+  },
+  tagsPageConfig: {
+    size: 10,
+    type: 'time-line',
+  },
+  defaultHeroImage: '/og-image.jpg',
+  defaultHeroImageAspectRatio: '16/9',
+  imageDarkenInDark: true,
+  readMoreText: 'Read more',
+  prevPageText: 'Previous',
+  nextPageText: 'Next',
+  tocText: 'Catalogue',
+  backToPostsText: 'Back to Posts',
+  nextPostText: 'Next Post',
+  prevPostText: 'Previous Post',
+}
+```
+
+The following is a detailed explanation of the various properties in the POSTSCONFIG configuration object:
+
+| Property | Description | Details |
+|---|---|---|
+| **title** | Posts Page Title | Displayed in the browser tab and search results |
+| **description** | Posts Page Description | Used for SEO |
+| **author** | Posts Author | Used in meta tags and attribution information |
+| **homePageConfig** | Homepage Post Display Settings | Configures the display of posts on the homepage |
+| &nbsp;&nbsp;size | Number of Posts per Page | The upper limit of displayed posts |
+| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list |
+| **postPageConfig** | Individual Post Display Settings | Configures the display of individual posts |
+| &nbsp;&nbsp;size | Number of Posts per Page | The number of pages in pagination |
+| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list |
+| **tagsPageConfig** | Tags Page Display Settings | Configures the display of posts by tags |
+| &nbsp;&nbsp;size | Number of Posts per Page | The number of pages in pagination |
+| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list |
+| **defaultHeroImage** | Default Hero Image | The default cover image displayed in image mode in the post list |
+| **defaultHeroImageAspectRatio** | Default Hero Image Aspect Ratio | The aspect ratio of the default cover image |
+| **imageDarkenInDark** | Darken Hero Image in Dark Mode | Whether to darken the cover image in dark mode |
+| **readMoreText** | Read More Text | The text content of "Read More" under the picture card |
+| **prevPageText** | Previous Page Text | The text displayed on the previous page button |
+| **nextPageText** | Next Page Text | The text displayed on the next page button |
+| **tocText** | Table of Contents Text | The text displayed in the table of contents |
+| **backToPostsText** | Back to Posts Text | The text displayed on the back to posts button |
+| **nextPostText** | Next Post Text | The text displayed on the next post button |
+| **prevPostText** | Previous Post Text | The text displayed on the previous post button |

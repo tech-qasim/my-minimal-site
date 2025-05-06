@@ -42,7 +42,7 @@ const defaultHeroImage = POSTS_CONFIG.defaultHeroImage
           href={`/posts/${post.slug}`}
           class="hidden md:inline-flex mt-4 items-center gap-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors group/read"
         >
-          Read More
+          {POSTS_CONFIG.readMoreText}
           <span class="icon-[ph--arrow-right-light] size-4 transition-transform group-hover/read:translate-x-1" />
         </a>
       )
@@ -87,7 +87,7 @@ const defaultHeroImage = POSTS_CONFIG.defaultHeroImage
       href={`/posts/${post.slug}`}
       class={`${isVertical ? 'md:inline-flex' : 'md:hidden'} mt-3 inline-flex items-center gap-2 text-sm font-medium text-foreground/90 hover:text-primary transition-colors group/read`}
     >
-      Read More
+      {POSTS_CONFIG.readMoreText}
       <span class="icon-[ph--arrow-right-light] size-4 transition-transform group-hover/read:translate-x-1"></span>
     </a>
   </div>
