@@ -102,10 +102,10 @@ Navigation Link Configuration Details:
 
 Litos includes a built-in social media integration feature that allows you to showcase your social media presence. The social links appear in a designated area of your site:
 
-:::image-figure
-![Social links appearance in light mode](~/assets/images/Basic-configuration/social-link-dark.png)(class:img-light)
+:::image-figure[Social-links]
+![](~/assets/images/Basic-configuration/social-link-dark.jpg)(class:img-light)
 
-![Social links appearance in dark mode](~/assets/images/Basic-configuration/social-link-light.png)(class:img-dark)
+![](~/assets/images/Basic-configuration/social-link-light.jpg)(class:img-dark)
 :::
 
 Configure your social media links in the `src/config.ts` file:
@@ -149,10 +149,10 @@ Each social link object supports the following properties:
 
 ## Github configuration
 
-:::image-figure
-![spotlight.png](~/assets/images/Basic-configuration/spotlight-dark.png)(class:img-light)
+:::image-figure[spotlight]
+![](~/assets/images/Basic-configuration/spotlight-dark.jpg)(class:img-light)
 
-![spotlight.png](~/assets/images/Basic-configuration/spotlight-light.png)(class:img-dark)
+![](~/assets/images/Basic-configuration/spotlight-light.jpg)(class:img-dark)
 :::
 
 When you visit the homepage, you'll notice the GitHub data display area (Spotlight) as shown in the image. This feature can be enabled through the following configuration.
@@ -239,7 +239,7 @@ export const POSTS_CONFIG: PostConfig = {
 }
 ```
 
-The following is a detailed explanation of the various properties in the POSTSCONFIG configuration object:
+The following is a detailed explanation of the various properties in the POSTS_CONFIG configuration object:
 
 | Property | Description | Details |
 |---|---|---|
@@ -248,13 +248,13 @@ The following is a detailed explanation of the various properties in the POSTSCO
 | **author** | Posts Author | Used in meta tags and attribution information |
 | **homePageConfig** | Homepage Post Display Settings | Configures the display of posts on the homepage |
 | &nbsp;&nbsp;size | Number of Posts per Page | The upper limit of displayed posts |
-| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list |
+| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list: `compact`、`image`、`time-line` |
 | **postPageConfig** | Individual Post Display Settings | Configures the display of individual posts |
 | &nbsp;&nbsp;size | Number of Posts per Page | The number of pages in pagination |
-| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list |
+| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list: `compact`、`image`、`time-line` |
 | **tagsPageConfig** | Tags Page Display Settings | Configures the display of posts by tags |
 | &nbsp;&nbsp;size | Number of Posts per Page | The number of pages in pagination |
-| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list |
+| &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list: `compact`、`image`、`time-line` |
 | **defaultHeroImage** | Default Hero Image | The default cover image displayed in image mode in the post list |
 | **defaultHeroImageAspectRatio** | Default Hero Image Aspect Ratio | The aspect ratio of the default cover image |
 | **imageDarkenInDark** | Darken Hero Image in Dark Mode | Whether to darken the cover image in dark mode |
@@ -265,3 +265,27 @@ The following is a detailed explanation of the various properties in the POSTSCO
 | **backToPostsText** | Back to Posts Text | The text displayed on the back to posts button |
 | **nextPostText** | Next Post Text | The text displayed on the next post button |
 | **prevPostText** | Previous Post Text | The text displayed on the previous post button |
+
+There are three places in this theme that display the Post list, so three properties are used to configure them.
+
+There are three places in this theme that display the Post list, so three properties are used to configure them. They are `homePageConfig`, `postPageConfig`, and `tagsPageConfig`. Matching the homepage, post page, and detailed tag page respectively.
+
+In order to maintain the richness of the page style, I have set three values for the type attribute under these three attributes, corresponding to three post cards, which are: `compact`、`image`、`time-line`.
+
+:::image-figure[compact]
+![](~/assets/images/Basic-configuration/compact-dark.jpg)(class:img-light)
+
+![](~/assets/images/Basic-configuration/compact-light.jpg)(class:img-dark)
+:::
+
+:::image-figure[image]
+![](~/assets/images/Basic-configuration/image-dark.jpg)(class:img-light)
+
+![](~/assets/images/Basic-configuration/image-light.jpg)(class:img-dark)
+:::
+
+:::image-figure[time-line]
+![](~/assets/images/Basic-configuration/time-line-dark.jpg)(class:img-light)
+
+![](~/assets/images/Basic-configuration/time-line-light.jpg)(class:img-dark)
+:::
