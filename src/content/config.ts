@@ -21,12 +21,18 @@ const posts = defineCollection({
     // 文章封面图（可选）
     heroImage: z
       .string()
-      .transform((val) => (val ? `/hero-images/${val}` : undefined))
+      .transform((val) => {
+        if (!val) return undefined
+        return val.startsWith('http') ? val : `/hero-images/${val}`
+      })
       .optional(),
     // Open Graph 图片（可选）
     ogImage: z
       .string()
-      .transform((val) => (val ? `/og-images/${val}` : undefined))
+      .transform((val) => {
+        if (!val) return undefined
+        return val.startsWith('http') ? val : `/og-images/${val}`
+      })
       .optional(),
     // 封面图布局方式（可选）
     heroImageLayout: z.custom<HeroImageLayout>().optional(),

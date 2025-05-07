@@ -103,9 +103,9 @@ Navigation Link Configuration Details:
 Litos includes a built-in social media integration feature that allows you to showcase your social media presence. The social links appear in a designated area of your site:
 
 :::image-figure[Social-links]
-![](~/assets/images/Basic-configuration/social-link-dark.jpg)(class:img-light)
+![](~/assets/images/basic-configuration/social-link-dark.jpg)(class:img-light)
 
-![](~/assets/images/Basic-configuration/social-link-light.jpg)(class:img-dark)
+![](~/assets/images/basic-configuration/social-link-light.jpg)(class:img-dark)
 :::
 
 Configure your social media links in the `src/config.ts` file:
@@ -138,7 +138,7 @@ Each social link object supports the following properties:
 | **name** | Platform Identifier | Used for internal reference and accessibility |
 | **url** | Profile URL | Direct link to your profile page on the platform |
 | **icon** | Icon Class Name | Icon class from [Iconify](https://icon-sets.iconify.design/), customizable through Tailwind CSS |
-| **count** | Follower Count | Optional, displays follower count; automatically updates GitHub followers when GitHub integration is enabled |
+| **count** (optional) | Follower Count | Optional, displays follower count; automatically updates GitHub followers when GitHub integration is enabled |
 
 > [!TIP]
 >
@@ -150,9 +150,9 @@ Each social link object supports the following properties:
 ## Github configuration
 
 :::image-figure[spotlight]
-![](~/assets/images/Basic-configuration/spotlight-dark.jpg)(class:img-light)
+![](~/assets/images/basic-configuration/spotlight-dark.jpg)(class:img-light)
 
-![](~/assets/images/Basic-configuration/spotlight-light.jpg)(class:img-dark)
+![](~/assets/images/basic-configuration/spotlight-light.jpg)(class:img-dark)
 :::
 
 When you visit the homepage, you'll notice the GitHub data display area (Spotlight) as shown in the image. This feature can be enabled through the following configuration.
@@ -227,7 +227,7 @@ export const POSTS_CONFIG: PostConfig = {
     type: 'time-line',
   },
   defaultHeroImage: '/og-image.jpg',
-  defaultHeroImageAspectRatio: '16/9',
+  defaultHeroImageAspectRatio: '16/9', // '16/9' || '3/4'
   imageDarkenInDark: true,
   readMoreText: 'Read more',
   prevPageText: 'Previous',
@@ -249,12 +249,15 @@ The following is a detailed explanation of the various properties in the POSTS_C
 | **homePageConfig** | Homepage Post Display Settings | Configures the display of posts on the homepage |
 | &nbsp;&nbsp;size | Number of Posts per Page | The upper limit of displayed posts |
 | &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list: `compact`、`image`、`time-line` |
+| &nbsp;&nbsp;heroImageLayout | Position of the image | The position of the image in the card: `left`、`right`. When the type is an image, it can be used. The default is one left and one right. This attribute can be used to force changes, but its priority is not as high as the **frontmatter** inside MD |
 | **postPageConfig** | Individual Post Display Settings | Configures the display of individual posts |
 | &nbsp;&nbsp;size | Number of Posts per Page | The number of pages in pagination |
 | &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list: `compact`、`image`、`time-line` |
+| &nbsp;&nbsp;heroImageLayout | Position of the image | The position of the image in the card: `left`、`right`. When the type is an image, it can be used. The default is one left and one right. This attribute can be used to force changes, but its priority is not as high as the **frontmatter** inside MD |
 | **tagsPageConfig** | Tags Page Display Settings | Configures the display of posts by tags |
 | &nbsp;&nbsp;size | Number of Posts per Page | The number of pages in pagination |
 | &nbsp;&nbsp;type | Post Display Type | The card types displayed in the post list: `compact`、`image`、`time-line` |
+| &nbsp;&nbsp;heroImageLayout | Position of the image | The position of the image in the card: `left`、`right`. When the type is an image, it can be used. The default is one left and one right. This attribute can be used to force changes, but its priority is not as high as the **frontmatter** inside MD |
 | **defaultHeroImage** | Default Hero Image | The default cover image displayed in image mode in the post list |
 | **defaultHeroImageAspectRatio** | Default Hero Image Aspect Ratio | The aspect ratio of the default cover image |
 | **imageDarkenInDark** | Darken Hero Image in Dark Mode | Whether to darken the cover image in dark mode |
@@ -273,19 +276,86 @@ There are three places in this theme that display the Post list, so three proper
 In order to maintain the richness of the page style, I have set three values for the type attribute under these three attributes, corresponding to three post cards, which are: `compact`、`image`、`time-line`.
 
 :::image-figure[compact]
-![](~/assets/images/Basic-configuration/compact-dark.jpg)(class:img-light)
+![](~/assets/images/basic-configuration/compact-dark.jpg)(class:img-light,style:width:80%)
 
-![](~/assets/images/Basic-configuration/compact-light.jpg)(class:img-dark)
+![](~/assets/images/basic-configuration/compact-light.jpg)(class:img-dark,style:width:80%)
 :::
 
 :::image-figure[image]
-![](~/assets/images/Basic-configuration/image-dark.jpg)(class:img-light)
+![](~/assets/images/basic-configuration/image-dark.jpg)(class:img-light,style:width:80%)
 
-![](~/assets/images/Basic-configuration/image-light.jpg)(class:img-dark)
+![](~/assets/images/basic-configuration/image-light.jpg)(class:img-dark,style:width:80%)
 :::
 
 :::image-figure[time-line]
-![](~/assets/images/Basic-configuration/time-line-dark.jpg)(class:img-light)
+![](~/assets/images/basic-configuration/time-line-dark.jpg)(class:img-light,style:width:80%)
 
-![](~/assets/images/Basic-configuration/time-line-light.jpg)(class:img-dark)
+![](~/assets/images/basic-configuration/time-line-light.jpg)(class:img-dark,style:width:80%)
 :::
+
+Configure the style you think is suitable on three pages, and of course, you can also create your own card style by creating your card file in `src/components/posts/card` and importing it to `List.astro` in the same directory for configuration.
+
+## Tags Configuration
+
+Tags Configuration only provides two basic configuration properties:
+
+```ts title="src/config.ts"
+export const TAGS_CONFIG: TagsConfig = {
+  title: 'Tags',
+  description: 'Tags by Dnzzk2',
+}
+```
+
+| Property | Description | Details |
+|---|---|---|
+| **title** | Tags Page Title | Displayed in the browser tab and search results |
+| **description** | Tags Page Description | Used for SEO |
+
+## Projects Configuration
+
+Projects Configuration only provides two basic configurations:
+
+```ts title="src/config.ts"
+export const PROJECTS_CONFIG: ProjectsConfig = {
+  title: 'Projects',
+  description: 'Projects by Dnzzk2',
+}
+```
+
+In addition, it also provides configuration for ProjectList.
+
+```ts title="src/config.ts"
+export const ProjectList: Project[] = [
+  {
+    name: 'Litos',
+    description: 'A blog theme built with Astro.js and Dnzzk2.',
+    githubUrl: 'https://github.com/Dnzzk2/Litos',
+    website: 'https://litos.vercel.app/',
+    type: 'icon',
+    icon: 'icon-[ri--github-fill]',
+    star: 1,
+  },
+  {
+    name: 'Litos',
+    description: 'A blog theme built with Astro.js and Dnzzk2.',
+    githubUrl: 'https://github.com/Dnzzk2/Litos',
+    website: 'https://litos.vercel.app/',
+    type: 'image',
+    icon: '/projects/logo.png',
+    star: 1,
+  },
+]
+
+```
+
+| Property | Description | Details |
+|---|---|---|
+| **name** | Project Name | Project name |
+| **description** | Project Description | Project description |
+| **githubUrl** (optional) | Project GitHub URL | Project github address |
+| **website** (optional)| Project Website URL | Project URL |
+| **type** | Project Type | Used for displaying the project type: `icon`、`image` |
+| **icon** | Project Icon | When the type is icon, use iconify to display the icon. When it is image, use it for the image address. Put the image address in `public/projects` |
+| **imageClass** (optional) | Project Image Class | When type is an image, it is used to modify the image |
+| **star** (optional) | Project Star | Number of stars |
+| **fork** (optional) | Project Fork | Number of fork |
