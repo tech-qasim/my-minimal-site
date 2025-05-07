@@ -290,6 +290,16 @@
 .dark .markdown img.medium-zoom-image {
   transition-property: filter, transform !important;
 }
+
+.dark .markdown a img {
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
+  transition-property: filter, transform !important;
+}
+
+.dark .markdown figure img {
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
+  transition-property: filter, transform !important;
+}
 .markdown video {
   margin-top: 2em;
   margin-bottom: 2em;
@@ -584,8 +594,7 @@ html:not(.dark) .img-dark {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 0.5rem;
-  margin: 5rem 0;
+  margin: 2rem 0;
   transform: scale(1, 1) !important;
 }
 

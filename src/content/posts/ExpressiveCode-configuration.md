@@ -3,8 +3,8 @@ title: 'ExpressiveCode Configuration Guide'
 description: 'A comprehensive guide to configuring and customizing code blocks in Litos theme'
 pubDate: 2025-05-02
 tags: ['Configuration', 'Code Blocks', 'Styling']
-heroImage: 'ExpressiveCode-Configuration.png'
-ogImage: 'ExpressiveCode-Configuration.png'
+heroImage: 'ExpressiveCode-Configuration.webp'
+ogImage: 'ExpressiveCode-Configuration.webp'
 recommend: true
 ---
 

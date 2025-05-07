@@ -1,4 +1,11 @@
 /* 拍立得风格图片 */
+
+image-div-polaroid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em 0;
+}
 image-figure-polaroid {
   display: inline-block;
   background: white;
@@ -7,7 +14,7 @@ image-figure-polaroid {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   transform: rotate(-1deg);
   transition: all 0.2s ease;
-  margin: 1em 25%;
+  width: 60%;
 }
 
 image-figure-polaroid:hover {

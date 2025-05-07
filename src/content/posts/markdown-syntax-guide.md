@@ -2,9 +2,9 @@
 title: 'Markdown Writing Guide for Delicious Recipes'
 description: 'Learn Markdown basics through a delicious pasta recipe'
 pubDate: 2025-04-30
-tags: ['Markdown', 'Writing Guide', 'Food']
-heroImage: 'Markdown-syntax-guide.png'
-ogImage: 'Markdown-syntax-guide.png'
+tags: ['Markdown', 'Guide', 'Food']
+heroImage: 'Markdown-syntax-guide.webp'
+ogImage: 'Markdown-syntax-guide.webp'
 ---
 
 This guide will show you how to format text using Markdown through a delicious pasta recipe. Let's explore the world of food while learning Markdown syntax!
@@ -121,7 +121,7 @@ Nutritional Information:
 For more culinary inspiration, visit: [Food Forum](https://example.com/cooking "Food Forum")
 
 Final dish presentation:
-![Pasta dish](~/assets/images/md-configuration/food.jpg)(style:width:50%)
+![Pasta dish](~/assets/images/md-configuration/food.webp)(style:width:50%)
 
 ### Horizontal Rule
 

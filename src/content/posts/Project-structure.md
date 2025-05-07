@@ -4,8 +4,8 @@ description: 'The project structure of Litos Theme Project'
 pubDate: 2025-05-04
 tags: ['Project-structure']
 recommend: true
-heroImage: 'Project-structure.png'
-ogImage: 'Project-structure.png'
+heroImage: 'Project-structure.webp'
+ogImage: 'Project-structure.webp'
 ---
 
 This post will help you quickly understand the project structure of [Litos theme](https://github.com/Dnzzk2/Litos) .

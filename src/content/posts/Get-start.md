@@ -4,8 +4,8 @@ pubDate: 2025-05-05
 description: 'Getting Started with the Litos Theme'
 recommend: true
 tags: ['Tutorial']
-heroImage: 'Getting-Started.png'
-ogImage: 'Getting-Started.png'
+heroImage: 'Getting-Started.webp'
+ogImage: 'Getting-Started.webp'
 ---
 
 Welcome to  **[Litos Theme](https://github.com/Dnzzk2/Litos)** ! This guide will guide you through quickly setting up and launching a project.

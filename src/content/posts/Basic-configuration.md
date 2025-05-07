@@ -4,8 +4,8 @@ description: 'Basic setup instructions for Litos theme'
 pubDate: 2025-05-03
 tags: ['Configuration']
 recommend: true
-heroImage: 'Basic-configuration.png'
-ogImage: 'Basic-configuration.png'
+heroImage: 'Basic-configuration.webp'
+ogImage: 'Basic-configuration.webp'
 ---
 
 Welcome to the Litos theme configuration guide. All essential settings for your website are managed through the `src/config.ts` file. This comprehensive guide will walk you through each configuration section to help you customize your site effectively.
@@ -103,9 +103,9 @@ Navigation Link Configuration Details:
 Litos includes a built-in social media integration feature that allows you to showcase your social media presence. The social links appear in a designated area of your site:
 
 :::image-figure[Social-links]
-![](~/assets/images/basic-configuration/social-link-dark.jpg)(class:img-light)
+![](~/assets/images/base-configuration/social-link-dark.jpg)(class:img-light)
 
-![](~/assets/images/basic-configuration/social-link-light.jpg)(class:img-dark)
+![](~/assets/images/base-configuration/social-link-light.jpg)(class:img-dark)
 :::
 
 Configure your social media links in the `src/config.ts` file:
@@ -150,9 +150,9 @@ Each social link object supports the following properties:
 ## Github configuration
 
 :::image-figure[spotlight]
-![](~/assets/images/basic-configuration/spotlight-dark.jpg)(class:img-light)
+![](~/assets/images/base-configuration/spotlight-dark.jpg)(class:img-light)
 
-![](~/assets/images/basic-configuration/spotlight-light.jpg)(class:img-dark)
+![](~/assets/images/base-configuration/spotlight-light.jpg)(class:img-dark)
 :::
 
 When you visit the homepage, you'll notice the GitHub data display area (Spotlight) as shown in the image. This feature can be enabled through the following configuration.
@@ -276,21 +276,21 @@ There are three places in this theme that display the Post list, so three proper
 In order to maintain the richness of the page style, I have set three values for the type attribute under these three attributes, corresponding to three post cards, which are: `compact`、`image`、`time-line`.
 
 :::image-figure[compact]
-![](~/assets/images/basic-configuration/compact-dark.jpg)(class:img-light,style:width:80%)
+![](~/assets/images/base-configuration/compact-dark.jpg)(class:img-light,style:width:80%)
 
-![](~/assets/images/basic-configuration/compact-light.jpg)(class:img-dark,style:width:80%)
+![](~/assets/images/base-configuration/compact-light.jpg)(class:img-dark,style:width:80%)
 :::
 
 :::image-figure[image]
-![](~/assets/images/basic-configuration/image-dark.jpg)(class:img-light,style:width:80%)
+![](~/assets/images/base-configuration/image-dark.jpg)(class:img-light,style:width:80%)
 
-![](~/assets/images/basic-configuration/image-light.jpg)(class:img-dark,style:width:80%)
+![](~/assets/images/base-configuration/image-light.jpg)(class:img-dark,style:width:80%)
 :::
 
 :::image-figure[time-line]
-![](~/assets/images/basic-configuration/time-line-dark.jpg)(class:img-light,style:width:80%)
+![](~/assets/images/base-configuration/time-line-dark.jpg)(class:img-light,style:width:80%)
 
-![](~/assets/images/basic-configuration/time-line-light.jpg)(class:img-dark,style:width:80%)
+![](~/assets/images/base-configuration/time-line-light.jpg)(class:img-dark,style:width:80%)
 :::
 
 Configure the style you think is suitable on three pages, and of course, you can also create your own card style by creating your card file in `src/components/posts/card` and importing it to `List.astro` in the same directory for configuration.

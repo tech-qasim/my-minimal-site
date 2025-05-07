@@ -51,7 +51,7 @@ const { class: className } = Astro.props
       darkModeHandler()
 
       // 监听 hover 事件
-      document.querySelectorAll('.markdown img:not(.noDarken)').forEach((img) => {
+      document.querySelectorAll('.markdown :not(image-figure-polaroid) img:not(.noDarken)').forEach((img) => {
         img.addEventListener('mouseenter', () => {
           img.style.removeProperty('filter')
         })

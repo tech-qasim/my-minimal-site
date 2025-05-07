@@ -1,7 +1,10 @@
 {
   "Astro Post Frontmatter (No Image)": {
     "scope": "markdown,mdx,astro",
-    "prefix": ["postfm", "postnoimg"],
+    "prefix": [
+      "postfm",
+      "postnoimg"
+    ],
     "body": [
       "---",
       "title: '${1:Your Post Title}'",
@@ -15,11 +18,14 @@
       "",
       "$0",
     ],
-    "description": "创建不包含图片的博客文章 frontmatter",
+    "description": "Create a blog post frontmatter without images",
   },
   "Astro Post Frontmatter (16:9 Image)": {
     "scope": "markdown,mdx,astro",
-    "prefix": ["postfm16", "post169"],
+    "prefix": [
+      "postfm16",
+      "post169"
+    ],
     "body": [
       "---",
       "title: '${1:Your Post Title}'",
@@ -36,11 +42,14 @@
       "",
       "$0",
     ],
-    "description": "创建包含 16:9 图片的博客文章 frontmatter",
+    "description": "Create a blog post on frontmatter that includes 16:9 images",
   },
   "Astro Post Frontmatter (3:4 Image)": {
     "scope": "markdown,mdx,astro",
-    "prefix": ["postfm34", "post34"],
+    "prefix": [
+      "postfm34",
+      "post34"
+    ],
     "body": [
       "---",
       "title: '${1:Your Post Title}'",
@@ -57,6 +66,6 @@
       "",
       "$0",
     ],
-    "description": "创建包含 3:4 图片的博客文章 frontmatter",
+    "description": "Create a blog post on frontmatter that includes 3:4 images",
   },
 }
