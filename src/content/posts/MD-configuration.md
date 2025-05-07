@@ -9,6 +9,13 @@ ogImage: 'MD-Configuration.png'
 
 This document provides a comprehensive guide for Markdown configuration in the Litos theme, including front matter settings and image display options.
 
+## Create a New Post
+
+To create a new Markdown file, follow these steps:
+
+1. Navigate to the `src/content/posts` directory.
+2. Create a new Markdown file with a `.md` extension.
+
 ## Front Matter Configuration
 
 The front matter in Markdown files is managed through Astro Content Collections, which enforces a consistent structure across all posts. Below is a detailed specification of available front matter properties:
