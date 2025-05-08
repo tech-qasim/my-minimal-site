@@ -1,6 +1,6 @@
 ---
 title: 'Thank you'
-description: 'Thank you here for some open source projects and reference websites'
+description: 'Thanks for the open source project and some reference websites'
 pubDate: 2025-04-28
 author: 'Thank-you'
 heroImage: 'Thank-you.webp'

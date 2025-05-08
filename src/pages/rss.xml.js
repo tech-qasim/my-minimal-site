@@ -20,7 +20,6 @@ export async function GET(context) {
       pubDate: post.data.pubDate,
       description: post.data.description,
       link: `/posts/${post.slug}/`,
-      content: sanitizeHtml(parser.render(post.body || '')),
       customData: `<author>${post.data.author || SITE.author}</author>`,
       updatedDate: post.data.updatedDate,
     })),
