@@ -1,14 +1,14 @@
 ---
-title: 'Markdown Post Configuration'
-description: 'Comprehensive guide for Markdown post configuration in Litos theme'
+title: 'Post Configuration'
+description: 'Comprehensive guide for  post configuration in Litos theme'
 pubDate: 2025-05-01
-tags: ['Configuration','Images','Markdown']
+tags: ['Configuration','Images','Post']
 recommend: true
 heroImage: 'MD-Configuration.webp'
 ogImage: 'MD-Configuration.webp'
 ---
 
-This document provides a comprehensive guide for Markdown configuration in the Litos theme, including front matter settings and image display options.
+This document provides a comprehensive guide for post configuration in the Litos theme, including front matter settings and image display options.
 
 ## Create a New Post
 

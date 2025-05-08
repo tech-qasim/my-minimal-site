@@ -277,6 +277,7 @@
 .markdown img {
   margin-block: 2em;
   margin-inline: auto;
+  will-change: transform, filter;
 }
 .markdown figure img {
   margin-block: 0;
@@ -288,17 +289,20 @@
   filter: brightness(0.75) contrast(1.1);
 }
 .dark .markdown img.medium-zoom-image {
-  transition-property: filter, transform !important;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s cubic-bezier(0.2, 0, 0.2, 1) !important;
 }
 
-.dark .markdown a img {
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
-  transition-property: filter, transform !important;
+.dark image-figure-polaroid img {
+  filter: none !important;
 }
 
+.dark .markdown a img,
 .dark .markdown figure img {
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
-  transition-property: filter, transform !important;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s cubic-bezier(0.2, 0, 0.2, 1) !important;
 }
 .markdown video {
   margin-top: 2em;
@@ -763,4 +767,23 @@ html:not(.dark) .img-dark {
     margin-left: -1.25em;
     font-size: 0.75em;
   }
+}
+
+/* KaTeX 公式适配 */
+.markdown .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.5em 0;
+}
+
+.markdown .katex-display > .katex {
+  max-width: 100%;
+}
+
+.markdown .katex-display > .katex > .katex-html {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25em;
 }

@@ -449,6 +449,8 @@ The custom directive wraps an image inside a link, making it clickable.
 
 Polaroid style images with a border and shadow.
 
+In order to ensure the style size on the phone, I have set a minimum width of 300px, and you can modify and expand the style in `src/styles/picture.css`.
+
 ```md title=':::image-figure-polaroid.md'
 :::::image-div-polaroid
 :::image-figure-polaroid[This is a **figcaption** with _`<img>` attrs_.]
@@ -466,6 +468,13 @@ markdown-extension-syntax.png
 
 :::::image-div-polaroid
 :::image-figure-polaroid
+![OG image](~/assets/images/markdown-extension-syntax/markdown-extension-syntax.png)
+:::
+:::::
+
+<!-- change style -->
+:::::image-div-polaroid
+:::image-figure-polaroid{style="width:500px;"}
 ![OG image](~/assets/images/markdown-extension-syntax/markdown-extension-syntax.png)
 :::
 :::::
@@ -487,6 +496,12 @@ markdown-extension-syntax.png
 
 :::::image-div-polaroid
 :::image-figure-polaroid
+![OG image](~/assets/images/markdown-extension-syntax/markdown-extension-syntax.png)
+:::
+:::::
+
+:::::image-div-polaroid
+:::image-figure-polaroid{style="width:500px;"}
 ![OG image](~/assets/images/markdown-extension-syntax/markdown-extension-syntax.png)
 :::
 :::::

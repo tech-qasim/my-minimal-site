@@ -1,76 +1,92 @@
 ---
 title: 'Getting Started'
 pubDate: 2025-05-05
-description: 'Getting Started with the Litos Theme'
+description: 'A comprehensive guide to getting started with the Litos Theme'
 recommend: true
 tags: ['Tutorial']
 heroImage: 'Getting-Started.webp'
 ogImage: 'Getting-Started.webp'
 ---
 
-Welcome to  **[Litos Theme](https://github.com/Dnzzk2/Litos)** ! This guide will guide you through quickly setting up and launching a project.
+Welcome to **[Litos Theme](https://github.com/Dnzzk2/Litos)**! This comprehensive guide will walk you through setting up and launching your project with Litos, a modern blog theme built with Astro.js.
 
-## Preparation
+## Prerequisites
 
-Before starting, please ensure that the following software or tools is installed in your development environment:
+Before starting, ensure you have the following tools installed in your development environment:
 
-- :link[Node.js]{id=https://nodejs.org/en/download} - Run the environment and development project locally.
-- :link[pnpm]{id=https://pnpm.io/installation} - Used for managing project dependencies.
-- :link[Git]{id=https://git-scm.com/} - Used for version control.
-- :link[VS Code]{id=https://code.visualstudio.com/} - Provide a good code editing experience.
+- :link[Node.js]{id=https://nodejs.org/en/download} - Required for running the development environment
+- :link[pnpm]{id=https://pnpm.io/installation} - Our preferred package manager for dependency management
+- :link[Git]{id=https://git-scm.com/} - For version control and project management
+- :link[VS Code]{id=https://code.visualstudio.com/} - Recommended code editor with excellent development experience
 
-If you have other alternative tools, it's also a good choice.
+> [!tip]
+> While VS Code is recommended, you can use any code editor of your choice that supports web development.
 
-## Create Project
+## Project Setup
 
-After having the above development environment, you can create a new project using the following methods:
+### Creating Your Project
 
-**Github**
+You can start your Litos project by forking the repository:
 
-Create a new project by [forking](https://github.com/Dnzzk2/Litos/fork) the code of this project, and then clone it locally:
+1. Visit the [Litos Theme repository](https://github.com/Dnzzk2/Litos)
+2. Click the "Fork" button to create your copy
+3. Clone your forked repository locally:
 
 ```bash
 git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPO_NAME].git
+cd [YOUR_REPO_NAME]
 ```
 
-## Startup Project
+### Installing Dependencies
 
-After cloning the project, you can start the project by running the following command:
+Once you have cloned the repository, install the project dependencies:
 
 ```bash
-# Install dependencies
+# Install all required dependencies
 pnpm install
 
-# Start project
+# Start the development server
 pnpm dev
 ```
 
-> [!note]+
->
-> After the project is launched, there will be:
->
-> ``` text
+> [!note]
+> When you first start the project, you might see this React-related warning:
+> ```text
 > Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
 > 1. You might have mismatching versions of React and the renderer (such as React DOM)
 > 2. You might be breaking the Rules of Hooks
 > 3. You might have more than one copy of React in the same app
 > See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
 > ```
->
-> This is caused by the **React plugin** and **MDX plugin**, and the Astro official statement in Issues states that this warning can be ignored.
+> This warning is caused by the interaction between React plugin and MDX plugin. According to Astro's official statement, this warning can be safely ignored.
 
-## Configure Project
+## Project Configuration
 
-Before configuring a project, we should first understand the [project structure](/posts/project-structure)  .
+Before customizing your site, familiarize yourself with the [project structure](/posts/project-structure). There are three main configuration areas to focus on:
 
-We can start with the following three configuration files:
+1. **Basic Site Configuration**
+   - File: `src/config.ts`
+   - Purpose: Configure site metadata, navigation, and core settings
+   - Learn more: [Basic Configuration Guide](/posts/basic-configuration)
 
-- [**Basic configuration**](/posts/basic-configuration): Can be configured in the `src/config.ts` file.
-- [**ExpressiveCode configuration**](/posts/expressivecode-configuration): Can be configured in the `ec.config.mjs` file.
-- [**MD configuration**](/posts/md-configuration): Can be configured in the `/plugins/index.ts` file.
+2. **Code Block Styling**
+   - File: `ec.config.mjs`
+   - Purpose: Customize code block appearance and behavior
+   - Learn more: [ExpressiveCode Configuration](/posts/expressivecode-configuration)
 
-## Markdown Syntax
+3. **Markdown Extensions**
+   - File: `/plugins/index.ts`
+   - Purpose: Configure markdown plugins and extensions
+   - Learn more: [Markdown Extension Syntax](/posts/markdown-extension-syntax)
 
-This theme supports both basic and enhanced markdown syntax.
+## Content Creation
 
-The support for markdown enhanced syntax comes from [**plugins**](/posts/md-configuration), and you can add plugins to support more.
+Litos supports both standard Markdown and enhanced syntax features:
+
+- [Basic Markdown Syntax](/posts/markdown-syntax-guide) - Core markdown formatting
+- [Extended Markdown Features](/posts/markdown-extension-syntax) - Advanced formatting options
+
+For post configuration and metadata, refer to the [Post Configuration](/posts/md-configuration) guide.
+
+> [!tip]
+> Start by customizing the basic configuration to match your site's branding and navigation structure before creating content.
