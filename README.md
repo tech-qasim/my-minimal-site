@@ -1,5 +1,7 @@
 # 🌟 Litos Theme
 
+![Litos Cover](./src/assets/cover@2x.png)
+
 A modern, elegant Astro theme crafted for content creators and developers.
 
 ## ✨ Key Features
