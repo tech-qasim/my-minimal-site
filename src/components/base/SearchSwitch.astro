@@ -1,0 +1,38 @@
+---
+
+---
+
+<button
+  class="inline-flex items-center justify-center rounded-md hover:scale-105 duration-200 transition-transform"
+  id="search-switch"
+  aria-label="Search"
+  title="Search"
+>
+  <span class="icon-[material-symbols--manage-search-rounded] size-6"></span>
+</button>
+
+<div id="search-panel" class="z-200 fixed top-20 hidden grid grid-rows-[auto_1fr] max-h-80vh p-4">
+  <div id="search-bar" class="gird grid-cols-[auto_1fr] items-center h-10"></div>
+  <label class="sr-only" for="search-input">Search</label>
+  <input type="search" id="search-input" class="h-full pl-2 bg-transparent outline-0" placeholder="Search" autocomplete="off" />
+</div>
+
+<script>
+  // close or open the search panel
+  document.addEventListener('astro:page-load', () => {
+    const handleToggleSearch = () => {
+      const searchPanel = document.getElementById('search-panel')
+      const isClosed = searchPanel?.classList.contains('hidden')
+
+      if (searchPanel && isClosed) {
+        searchPanel.classList.remove('hidden')
+      } else if (searchPanel && !isClosed) {
+        searchPanel.classList.add('hidden')
+      }
+    }
+
+    const searchSwitch = document.getElementById('search-switch')
+    console.log(searchSwitch)
+    searchSwitch?.addEventListener('click', handleToggleSearch)
+  })
+</script>
