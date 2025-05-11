@@ -271,3 +271,28 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Search */
+
+/* 隐藏 WebKit 浏览器（如 Chrome, Safari, Edge）中的搜索框清除按钮 */
+/* Hide the search box clear button in WebKit browsers (such as Chrome, Safari, Edge) */
+#search-input::-webkit-search-decoration,
+#search-input::-webkit-search-cancel-button,
+#search-input::-webkit-search-results-button,
+#search-input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+/* 隐藏 IE/Edge (旧版 EdgeHTML) 中的搜索框清除按钮 */
+/* Hide the search box clear button in IE/Edge (old version EdgeHTML) */
+#search-input::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* 隐藏 Firefox 中的搜索框清除按钮 (较新版本可能不再需要) */
+/* Hide the search box clear button in Firefox (may no longer be necessary in newer versions) */
+input[type='search']::-moz-search-cancel-button {
+  display: none;
+}
