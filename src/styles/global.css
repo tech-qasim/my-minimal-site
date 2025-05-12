@@ -296,3 +296,73 @@
 input[type='search']::-moz-search-cancel-button {
   display: none;
 }
+
+/* Search Styles */
+.search-results-item {
+  @apply block px-4 py-3 text-foreground hover:bg-accent transition-colors;
+}
+
+.search-results-title {
+  @apply text-base font-medium mb-1;
+}
+
+.search-results-excerpt {
+  @apply text-sm text-muted-foreground line-clamp-2;
+}
+
+/* Search Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.95);
+  }
+}
+
+.search-mask-enter {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.search-panel-enter {
+  animation: scaleIn 0.3s ease forwards;
+}
+
+.search-mask-leave {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+.search-panel-leave {
+  animation: scaleOut 0.3s ease forwards;
+}
