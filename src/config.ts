@@ -13,7 +13,7 @@ import type {
 
 //--- Readme Page Config ---
 export const SITE: Site = {
-  title: 'Litos',
+  title: 'Qasim',
   description:
     'Litos is a modern blogging theme built on Astro.js, designed for developers. It supports multiple post layouts, photo displays, project displays, and more, providing an elegant user experience and powerful customization capabilities.',
   website: 'https://litos.vercel.app/',
@@ -65,19 +65,18 @@ export const FOOTER_LINKS: Link[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'github',
-    url: 'https://github.com/yourname',
+    url: 'https://github.com/tech-qasim',
     icon: 'icon-[ri--github-fill]',
-    count: 11,
   },
   {
     name: 'twitter',
-    url: 'https://x.com/yourname',
+    url: 'https://x.com/devqasim_',
     icon: 'icon-[ri--twitter-x-fill]',
   },
   {
-    name: 'bilibili',
-    url: 'https://space.bilibili.com/yourSpaceId',
-    icon: 'icon-[ri--bilibili-fill]',
+    name: 'Linkedin',
+    url: 'https://www.linkedin.com/in/qasimxo/',
+    icon: 'icon-[ri--linkedin-fill]',
   },
 ]
 
@@ -98,19 +97,23 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
       direction: 'left',
       skills: [
         {
-          name: 'JavaScript',
+          name: 'Dart',
+          icon: 'icon-[simple-icons--dart]',
+        },
+        {
+          name: 'Java',
+          icon: 'icon-[mdi--language-java]',
+        },
+        {
+          name: 'Kotlin',
+          icon: 'icon-[mdi--language-kotlin]',
+        },
+        {
+          name: 'Javascript',
           icon: 'icon-[mdi--language-javascript]',
         },
         {
-          name: 'CSS',
-          icon: 'icon-[mdi--language-css3]',
-        },
-        {
-          name: 'HTML',
-          icon: 'icon-[mdi--language-html5]',
-        },
-        {
-          name: 'TypeScript',
+          name: 'Typescript',
           icon: 'icon-[mdi--language-typescript]',
         },
       ],
@@ -119,28 +122,16 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
       direction: 'right',
       skills: [
         {
-          name: 'Astro',
-          icon: 'icon-[lineicons--astro]',
+          name: 'Flutter',
+          icon: 'icon-[material-symbols--flutter]',
         },
         {
           name: 'Node.js',
           icon: 'icon-[mdi--nodejs]',
         },
         {
-          name: 'React',
-          icon: 'icon-[mdi--react]',
-        },
-        {
-          name: 'Next.js',
-          icon: 'icon-[devicon--nextjs]',
-        },
-        {
-          name: 'Tailwind CSS',
-          icon: 'icon-[mdi--tailwind]',
-        },
-        {
-          name: 'Iconify',
-          icon: 'icon-[line-md--iconify2-static]',
+          name: 'Native Android',
+          icon: 'icon-[mdi--android]',
         },
       ],
     },
@@ -148,8 +139,8 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
       direction: 'left',
       skills: [
         {
-          name: 'Ubuntu',
-          icon: 'icon-[mdi--ubuntu]',
+          name: 'Bloc/Cubit',
+          icon: 'icon-[file-icons--bloc]',
         },
         {
           name: 'Git',
@@ -160,8 +151,20 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
           icon: 'icon-[lineicons--mongodb]',
         },
         {
-          name: 'Vercel',
-          icon: 'icon-[lineicons--vercel]',
+          name: 'http',
+          icon: 'icon-[material-symbols--http]',
+        },
+        {
+          name: 'GetX',
+          icon: 'icon-[simple-icons--getx]',
+        },
+        {
+          name: 'Riverpod',
+          icon: 'icon-[material-symbols--flutter]',
+        },
+        {
+          name: 'Provider',
+          icon: 'icon-[material-symbols--flutter]',
         },
       ],
     },
@@ -178,7 +181,7 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
 
 export const GITHUB_CONFIG: GithubConfig = {
   ENABLED: true,
-  GITHUB_USERNAME: 'Dnzzk2',
+  GITHUB_USERNAME: 'tech-qasim',
   TOOLTIP_ENABLED: true,
 }
 
