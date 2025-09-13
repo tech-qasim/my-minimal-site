@@ -1,0 +1,32 @@
+---
+import type { WorkExperience } from '~/types'
+
+interface Props {
+  workExperienceData: WorkExperience[]
+}
+
+const { workExperienceData } = Astro.props
+---
+
+<div class="relative py-2 px-2 max-md:px-0">
+  <div class="relative w-full overflow-hidden my-4 group">
+    <div class="flex flex-col gap-8">
+      {
+        workExperienceData.map((experience) => (
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-4">
+              <h3 class="font-semibold text-lg">{experience.company}</h3>
+              <p class="text-muted-foreground text-sm">{experience.period}</p>
+            </div>
+            <p class="text-muted-foreground font-medium">{experience.role}</p>
+            <ul class="list-disc list-outside pl-6 text-muted-foreground">
+              {experience.description.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

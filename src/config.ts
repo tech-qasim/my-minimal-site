@@ -9,6 +9,7 @@ import type {
   SkillsShowcaseConfig,
   SocialLink,
   TagsConfig,
+  WorkExperienceConfig,
 } from '~/types'
 
 //--- Readme Page Config ---
@@ -166,6 +167,32 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
           name: 'Provider',
           icon: 'icon-[material-symbols--flutter]',
         },
+      ],
+    },
+  ],
+}
+
+export const WORK_EXPERIENCE_CONFIG: WorkExperienceConfig = {
+  WORK_EXPERIENCE_ENABLED: true,
+  WORK_EXPERIENCE_DATA: [
+    {
+      company: 'Appstree, Sargodha',
+      role: 'Software Engineer (Flutter)',
+      period: 'June 2024 - Present',
+      description: [
+        'Built and maintained scalable, high-performance mobile applications using Flutter, with a focus on MVVM architecture, responsive UI, and seamless user experiences across Android and iOS.',
+        'Implemented state management solutions like Riverpod and integrated Firebase services (Auth, Firestore, Cloud Messaging) to enable real-time features and cloud functionality.',
+        'Collaborated closely with designers and other Flutter developers, contributing to app architecture, feature planning, and end-to-end delivery.',
+      ],
+    },
+    {
+      company: 'CodeSquare, Sargodha',
+      role: 'Software Engineer Intern (Android)',
+      period: 'Nov 2023 - March 2024',
+      description: [
+        'Assisted in developing and testing new features for Android applications under the guidance of senior developers.',
+        'Created a variety of small-scale apps for hands-on practice and skill development.',
+        'Designed and developed a real-time chat application for lawyers and clients using Android (Java/Kotlin), ensuring secure and efficient communication.',
       ],
     },
   ],
