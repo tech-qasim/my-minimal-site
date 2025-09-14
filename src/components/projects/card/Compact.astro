@@ -5,6 +5,14 @@ interface Props extends CardProps {}
 
 const { project }: Props = Astro.props
 const projectLink = project.githubUrl || project.playStoreUrl
+
+const TECH_STACK_ICONS: { [key: string]: string } = {
+  'React': 'icon-[mdi--react]',
+  'TypeScript': 'icon-[mdi--typescript]',
+  'Node.js': 'icon-[mdi--nodejs]',
+  'Flutter': 'icon-[material-symbols--flutter]',
+  'Firebase': 'icon-[mdi--firebase]',
+}
 ---
 
 <div class="group relative block py-6 border-b border-border/60 last:border-none">
@@ -28,13 +36,17 @@ const projectLink = project.githubUrl || project.playStoreUrl
             </div>
           )
         }
-        <div class="flex flex-wrap gap-1.5 mt-2">
+        <div class="flex flex-wrap gap-2 mt-2">
           {
             project.techStack.map((tech) => (
-              <span class="text-xs bg-secondary text-secondary-foreground rounded-full px-2 py-0.5">{tech}</span>
+              <div class="rounded-lg border border-border bg-card text-card-foreground px-3 py-1 flex items-center gap-1 shadow-sm">
+                <span class:list={[TECH_STACK_ICONS[tech], 'size-4']} />
+                <span class="text-sm font-medium">{tech}</span>
+              </div>
             ))
           }
         </div>
+
         <div class="flex gap-4 mt-2">
           {
             project.githubUrl && (
