@@ -38,15 +38,23 @@ const projectLink = project.githubUrl || project.playStoreUrl
         <div class="flex gap-4 mt-2">
           {
             project.githubUrl && (
-              <a href={project.githubUrl} class="text-sm text-muted-foreground hover:text-primary transition-colors">
-                GitHub
+              <a
+                href={project.githubUrl}
+                class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+              >
+                <span class="icon-[mdi--github] size-4" />
+                <span>GitHub</span>
               </a>
             )
           }
           {
             project.playStoreUrl && (
-              <a href={project.playStoreUrl} class="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Play Store
+              <a
+                href={project.playStoreUrl}
+                class="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+              >
+                <span class="icon-[mage--playstore] size-4" />
+                <span>Play Store</span>
               </a>
             )
           }
