@@ -177,10 +177,18 @@ export type SocialLink = {
  * @property {string} description - 项目描述 / Project description
  * @property {string} introduce - 项目介绍 / Project introduce
  */
-export interface ProjectConfig {
+export interface ProjectsConfig {
+  PROJECTS_ENABLED: boolean
+  PROJECTS_DATA: Project[]
+}
+
+export interface Project {
   title: string
   description: string
-  introduce: string
+  image: string
+  techStack: string[]
+  githubUrl?: string
+  playStoreUrl?: string
 }
 
 // 项目图标类型 / Project icon type

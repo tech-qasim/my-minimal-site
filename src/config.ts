@@ -4,7 +4,7 @@ import type {
   PhotoData,
   PhotosConfig,
   PostConfig,
-  ProjectConfig,
+  ProjectsConfig,
   Site,
   SkillsShowcaseConfig,
   SocialLink,
@@ -250,10 +250,32 @@ export const TAGS_CONFIG: TagsConfig = {
   introduce: 'All the tags for posts are here, you can click to filter them.',
 }
 
-export const PROJECTS_CONFIG: ProjectConfig = {
-  title: 'Projects',
-  description: 'The examples of my projects.',
-  introduce: 'The examples of my projects.',
+export const PROJECTS_CONFIG: ProjectsConfig = {
+  PROJECTS_ENABLED: true,
+  PROJECTS_DATA: [
+    {
+      title: 'Habit Bee: AI-Powered habit tracking app',
+      description: 'This is a description of project 1.',
+      image: '/projects/habitbee.png',
+      techStack: ['Flutter', 'Riverpod', 'Firebase'],
+      githubUrl: 'https://github.com',
+      playStoreUrl: 'https://play.google.com',
+    },
+    {
+      title: 'Noti: Notes in notifications',
+      description: 'This is a description of project 2.',
+      image: '/projects/noti.png',
+      techStack: ['React', 'TypeScript', 'Node.js'],
+      githubUrl: 'https://github.com',
+    },
+    {
+      title: 'HairAI',
+      description: 'This is a description of project 3.',
+      image: '/projects/hairai.png',
+      techStack: ['React', 'TypeScript', 'Node.js'],
+      playStoreUrl: 'https://play.google.com',
+    },
+  ],
 }
 
 export const PHOTOS_CONFIG: PhotosConfig = {

@@ -1,0 +1,36 @@
+---
+import type { Project } from '~/types'
+import Compact from './Compact.astro'
+import { cn } from '~/lib/utils'
+
+export type CardProps = {
+  project: Project
+  index: number
+}
+
+const PROJECT_CARD_COMPONENTS = {
+  compact: Compact,
+} as const
+
+const PROJECT_CARD_SPACING_CLASSES = {
+  compact: '',
+} as const
+
+type Props = {
+  projects: Project[]
+  type: 'compact'
+  customSpacing?: string
+}
+
+const { projects, type, customSpacing } = Astro.props
+const spacingClass = customSpacing || PROJECT_CARD_SPACING_CLASSES[type]
+const ProjectCardElement = PROJECT_CARD_COMPONENTS[type]
+---
+
+{
+  projects.map((project, index) => (
+    <div class={cn(index > 0 && spacingClass)}>
+      <ProjectCardElement project={project} index={index} />
+    </div>
+  ))
+}

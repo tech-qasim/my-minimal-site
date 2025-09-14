@@ -1,0 +1,62 @@
+---
+import type { CardProps } from './List.astro'
+
+interface Props extends CardProps {}
+
+const { project }: Props = Astro.props
+const projectLink = project.githubUrl || project.playStoreUrl
+---
+
+<div class="group relative block py-6 border-b border-border/60 last:border-none">
+  <article class="relative z-1 flex flex-col gap-2 transform transition-transform duration-300 group-hover:translate-x-4">
+    <div class="flex items-center gap-4">
+      <div class="flex flex-col">
+        {
+          projectLink ? (
+            <a href={projectLink} class="block">
+              <div class="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                {project.title}
+              </div>
+              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-2">{project.description}</p>}
+            </a>
+          ) : (
+            <div class="block">
+              <div class="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                {project.title}
+              </div>
+              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-2">{project.description}</p>}
+            </div>
+          )
+        }
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          {
+            project.techStack.map((tech) => (
+              <span class="text-xs bg-secondary text-secondary-foreground rounded-full px-2 py-0.5">{tech}</span>
+            ))
+          }
+        </div>
+        <div class="flex gap-4 mt-2">
+          {
+            project.githubUrl && (
+              <a href={project.githubUrl} class="text-sm text-muted-foreground hover:text-primary transition-colors">
+                GitHub
+              </a>
+            )
+          }
+          {
+            project.playStoreUrl && (
+              <a href={project.playStoreUrl} class="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Play Store
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <img src={project.image} alt={project.title} class="w-12 h-12 rounded-md ml-auto" />
+    </div>
+  </article>
+
+  <div class="absolute left-0 top-0 h-full w-0.5 sm:w-1 scale-y-0 bg-accent/80 transition-transform duration-300 group-hover:scale-y-100">
+  </div>
+</div>
