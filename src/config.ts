@@ -25,41 +25,41 @@ export const SITE: Site = {
 }
 
 export const HEADER_LINKS: Link[] = [
-  {
-    name: 'Posts',
-    url: '/posts',
-  },
-  {
-    name: 'Projects',
-    url: '/projects',
-  },
-  {
-    name: 'Photos',
-    url: '/photos',
-  },
+  // {
+  //   name: 'Posts',
+  //   url: '/posts',
+  // },
+  // {
+  //   name: 'Projects',
+  //   url: '/projects',
+  // },
+  // {
+  //   name: 'Photos',
+  //   url: '/photos',
+  // },
 ]
 
 export const FOOTER_LINKS: Link[] = [
-  {
-    name: 'Readme',
-    url: '/',
-  },
-  {
-    name: 'Posts',
-    url: '/posts',
-  },
-  {
-    name: 'Projects',
-    url: '/projects',
-  },
-  {
-    name: 'Tags',
-    url: '/tags',
-  },
-  {
-    name: 'Photos',
-    url: '/photos',
-  },
+  // {
+  //   name: 'Readme',
+  //   url: '/',
+  // },
+  // {
+  //   name: 'Posts',
+  //   url: '/posts',
+  // },
+  // {
+  //   name: 'Projects',
+  //   url: '/projects',
+  // },
+  // {
+  //   name: 'Tags',
+  //   url: '/tags',
+  // },
+  // {
+  //   name: 'Photos',
+  //   url: '/photos',
+  // },
 ]
 
 // get icon https://icon-sets.iconify.design/
@@ -259,25 +259,27 @@ export const PROJECTS_CONFIG: ProjectsConfig = {
   PROJECTS_DATA: [
     {
       title: 'Habit Bee: AI-Powered habit tracking app',
-      description: 'This is a description of project 1.',
+      description:
+        'Built a habit-tracking app with custom UI/UX (reminders, calendars, streaks), integrated ChatGPT API for personalized insights, and optimized Firebase with Riverpod for efficient, secure performance.',
       image: '/projects/habitbee.png',
       techStack: ['Flutter', 'Firebase'],
-      githubUrl: 'https://github.com',
-      playStoreUrl: 'https://play.google.com',
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=app.habitbee.ai.powered.daily.habit.tracker&hl=en',
     },
     {
       title: 'Noti: Notes in notifications',
-      description: 'This is a description of project 2.',
+      description:
+        'Redesigned the Noti app with a modern UI/UX to boost adoption, optimized Firebase costs by integrating Drift for offline storage, and improved code quality with Riverpod state management in collaboration with a senior developer.',
       image: '/projects/noti.png',
       techStack: ['Flutter', 'Firebase'],
-      githubUrl: 'https://github.com',
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ertugrul&hl=en',
     },
     {
       title: 'HairAI',
-      description: 'This is a description of project 3.',
+      description:
+        'Built an AI-powered hair product scanner using Google ML Kit and ChatGPT API to provide safe/unsafe ingredient insights, boosting user trust and engagement; implemented Drift and Riverpod for offline access and smooth performance.',
       image: '/projects/hairai.png',
       techStack: ['Flutter', 'Firebase'],
-      playStoreUrl: 'https://play.google.com',
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=app.hairproduct.scanner&hl=en',
     },
   ],
 }

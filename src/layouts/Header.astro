@@ -14,14 +14,16 @@ import favicon from '../../public/favicon.svg'
   <div class="mx-auto max-w-3xl flex justify-between px-6 sm:px-8 py-4 lg:px-8">
     <div class="flex gap-3 sm:gap-6 items-center flex-shrink-0">
       <a href="/" class="pointer-events-auto select-none" transition:persist>
-        <Image
+        <!-- <Image
           src={favicon}
           width={32}
           height={32}
           alt="Logo"
           class="w-8 h-8 border-2 border-transparent dark:border-border"
           densities={[1, 2]}
-        />
+        /> -->
+
+        <h1>Qasim's Portfolio</h1>
       </a>
       <div class="flex gap-1">
         {
@@ -34,8 +36,8 @@ import favicon from '../../public/favicon.svg'
       </div>
     </div>
     <div class="flex gap-2 items-center" transition:persist="header-theme-toggle">
-      <SearchSwitch />
-      <a
+      <!-- <SearchSwitch /> -->
+      <!-- <a
         href="/rss.xml"
         target="_blank"
         class="inline-flex items-center hover:scale-105 size-5 origin-center"
@@ -43,7 +45,7 @@ import favicon from '../../public/favicon.svg'
         title="RSS Feed"
       >
         <span class="icon-[material-symbols--rss-feed] size-5"></span>
-      </a>
+      </a> -->
       <ThemeToggle client:load />
     </div>
   </div>

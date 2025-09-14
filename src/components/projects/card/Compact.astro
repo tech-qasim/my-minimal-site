@@ -25,27 +25,27 @@ const TECH_STACK_ICONS: { [key: string]: string } = {
               <div class="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 {project.title}
               </div>
-              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-2">{project.description}</p>}
+              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-3">{project.description}</p>}
             </a>
           ) : (
             <div class="block">
               <div class="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 {project.title}
               </div>
-              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-2">{project.description}</p>}
+              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-3">{project.description}</p>}
             </div>
           )
         }
-        <div class="flex flex-wrap gap-2 mt-2">
+        <!-- <div class="flex flex-wrap gap-2 mt-2">
           {
             project.techStack.map((tech) => (
-              <div class="rounded-lg border border-border bg-card text-card-foreground px-3 py-1 flex items-center gap-1 shadow-sm">
+              <div class="rounded-lg border border-border bg-card text-card-foreground px-3 py-1 flex items-center gap-2 shadow-sm">
                 <span class:list={[TECH_STACK_ICONS[tech], 'size-4']} />
                 <span class="text-sm font-medium">{tech}</span>
               </div>
             ))
           }
-        </div>
+        </div> -->
 
         <div class="flex gap-4 mt-2">
           {
