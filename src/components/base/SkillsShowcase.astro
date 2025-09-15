@@ -20,7 +20,9 @@ const duplicateSkills = (skills: Skill[]) => [...skills, ...skills, ...skills, .
           <div
             class={cn(
               'flex w-max will-change-transform',
-              row.direction === 'right' ? 'animate-[scroll-reverse_30s_linear_infinite]' : 'animate-[scroll_30s_linear_infinite]',
+              row.direction === 'right'
+                ? 'animate-[scroll-reverse_30s_linear_infinite]'
+                : 'animate-[scroll_30s_linear_infinite]',
               'group-hover:[animation-play-state:paused]',
               'safari-only'
             )}
@@ -33,75 +35,36 @@ const duplicateSkills = (skills: Skill[]) => [...skills, ...skills, ...skills, .
               </div>
             ))}
           </div>
+
+          <!-- Faded edges -->
+          <div class="pointer-events-none absolute left-0 top-0 w-[10%] h-full z-50 bg-gradient-to-r from-background to-transparent"></div>
+          <div class="pointer-events-none absolute right-0 top-0 w-[10%] h-full z-50 bg-gradient-to-l from-background to-transparent"></div>
         </div>
       )
     })
   }
-  <!-- <div class="pointer-events-none absolute left-0 top-0 w-[25%] h-full z-50 bg-gradient-to-r from-background to-transparent"></div>
-  <div class="pointer-events-none absolute right-0 top-0 w-[25%] h-full z-50 bg-gradient-to-l from-background to-transparent"></div> -->
 </div>
 
 <style is:global>
-  @-webkit-keyframes scroll {
-    0% {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(-25%, 0, 0);
-      transform: translate3d(-25%, 0, 0);
-    }
-  }
-
   @keyframes scroll {
-    0% {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(-25%, 0, 0);
-      transform: translate3d(-25%, 0, 0);
-    }
-  }
-
-  @-webkit-keyframes scroll-reverse {
-    0% {
-      -webkit-transform: translate3d(-25%, 0, 0);
-      transform: translate3d(-25%, 0, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-25%, 0, 0); }
   }
 
   @keyframes scroll-reverse {
-    0% {
-      -webkit-transform: translate3d(-25%, 0, 0);
-      transform: translate3d(-25%, 0, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
+    0% { transform: translate3d(-25%, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
   }
 
-  /* Safari 优化 */
-  .safari-only {
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-  }
-
+  .safari-only { transform-style: preserve-3d; }
   .safari-item {
-    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    /* Chrome 优化 */
     contain: layout style paint;
     will-change: transform;
   }
 </style>
+
 <script>
   function adjustAnimationSpeed() {
     const tracks = document.querySelectorAll<HTMLElement>('.flex.w-max')
@@ -115,6 +78,5 @@ const duplicateSkills = (skills: Skill[]) => [...skills, ...skills, ...skills, .
     })
   }
 
-  // 监听事件
   window.addEventListener('before-swap', adjustAnimationSpeed)
 </script>
