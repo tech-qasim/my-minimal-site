@@ -25,14 +25,14 @@ const TECH_STACK_ICONS: { [key: string]: string } = {
               <div class="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 {project.title}
               </div>
-              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-3">{project.description}</p>}
+              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5">{project.description}</p>}
             </a>
           ) : (
             <div class="block">
               <div class="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
                 {project.title}
               </div>
-              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5 line-clamp-3">{project.description}</p>}
+              {project.description && <p class="mt-1 text-sm text-muted-foreground/90 leading-5">{project.description}</p>}
             </div>
           )
         }
