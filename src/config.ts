@@ -25,18 +25,30 @@ export const SITE: Site = {
 }
 
 export const HEADER_LINKS: Link[] = [
-  // {
-  //   name: 'Posts',
-  //   url: '/posts',
-  // },
-  // {
-  //   name: 'Projects',
-  //   url: '/projects',
-  // },
-  // {
-  //   name: 'Photos',
-  //   url: '/photos',
-  // },
+  {
+    name: 'Intro',
+    url: '/#intro',
+  },
+  {
+    name: 'Spotlight',
+    url: '/#spotlight',
+  },
+  {
+    name: 'Skills',
+    url: '/#skills',
+  },
+  {
+    name: 'Experience',
+    url: '/#experience',
+  },
+  {
+    name: 'Projects',
+    url: '/#projects',
+  },
+  {
+    name: 'Contact',
+    url: '/#contact',
+  },
 ]
 
 export const FOOTER_LINKS: Link[] = [
@@ -78,6 +90,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
     name: 'Linkedin',
     url: 'https://www.linkedin.com/in/qasimxo/',
     icon: 'icon-[ri--linkedin-fill]',
+  },
+  {
+    name: 'Letterboxd',
+    url: 'https://letterboxd.com/qasimdx/',
+    icon: 'icon-[cib--letterboxd]',
   },
 ]
 

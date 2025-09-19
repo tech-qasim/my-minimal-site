@@ -9,6 +9,7 @@ import List from '~/components/posts/card/List.astro'
 import SkillsShowcase from '~/components/base/SkillsShowcase.astro'
 import WorkExperience from '~/components/base/WorkExperience.astro'
 import ProjectList from '~/components/projects/card/List.astro'
+import Contact from '~/components/base/Contact.astro'
 import { getNumPosts, getPinnedPosts } from '~/lib/data'
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -29,7 +30,7 @@ if (hasPinnedPosts) {
 
 <Layout title="Readme" description={SITE.description}>
   <div class="relative z-[1]">
-    <div class="py-8 pb-10 px-6 sm:px-8">
+    <div id="intro" class="py-8 pb-10 px-6 sm:px-8">
       <h1 class="flex flex-col gap-2">
         <span class="text-4xl sm:text-5xl tracking-tight"> Hi, I'm {SITE.title} 👋</span>
         <span class="text-muted-foreground font-light text-xl sm:text-2xl block tracking-wide text-balance">
@@ -62,7 +63,7 @@ if (hasPinnedPosts) {
       ENABLED && (
         <>
           <SectionDivider />
-          <div class="py-8 pb-10 px-6 max-md:px-6">
+          <div id="spotlight" class="py-8 pb-10 px-6 max-md:px-6">
             <div class="px-2 max-md:px-0">
               <h2 class="text-2xl sm:text-3xl">Spotlight</h2>
               <p class="text-muted-foreground mb-6 mt-1">Most recent contributions.</p>
@@ -76,7 +77,7 @@ if (hasPinnedPosts) {
       SKILLS_ENABLED && SKILLS_DATA.length > 0 && (
         <>
           <SectionDivider />
-          <div class="py-8 pb-10 px-6 max-md:px-6">
+          <div id="skills" class="py-8 pb-10 px-6 max-md:px-6">
             <div class="px-2 max-md:px-0">
               <h2 class="text-2xl sm:text-3xl tracking-tight">Skills</h2>
               <p class="text-muted-foreground mb-6 mt-1">Here are some skills I have used:</p>
@@ -90,7 +91,7 @@ if (hasPinnedPosts) {
       WORK_EXPERIENCE_ENABLED && WORK_EXPERIENCE_DATA.length > 0 && (
         <>
           <SectionDivider />
-          <div class="py-8 pb-10 px-6 max-md:px-6">
+          <div id="experience" class="py-8 pb-10 px-6 max-md:px-6">
             <div class="px-2 max-md:px-0">
               <h2 class="text-2xl sm:text-3xl tracking-tight">Work Experience</h2>
               <p class="text-muted-foreground mb-6 mt-1">Here is my work experience:</p>
@@ -104,7 +105,7 @@ if (hasPinnedPosts) {
       PROJECTS_ENABLED && PROJECTS_DATA.length > 0 && (
         <>
           <SectionDivider />
-          <div class="py-8 pb-10 px-6 max-md:px-6">
+          <div id="projects" class="py-8 pb-10 px-6 max-md:px-6">
             <div class="px-2 max-md:px-0">
               <h2 class="text-2xl sm:text-3xl tracking-tight">Projects</h2>
               <p class="text-muted-foreground mb-6 mt-1">Here are some of my projects:</p>
@@ -113,6 +114,36 @@ if (hasPinnedPosts) {
           </div>
         </>
       )
+    }
+
+    {
+    
+          <SectionDivider />
+          <div id="contact" class="py-8 pb-10 px-6 max-md:px-6">
+            <div class="px-2 max-md:px-0">
+              <h2 class="text-2xl sm:text-3xl tracking-tight">Let's build something great together</h2>
+              <p class="text-muted-foreground mb-6 mt-1">I'm always excited to collaborate on interesting projects or just have a great tech conversation!</p>
+               <div class="flex justify-center">
+  <a href="mailto:devmohdqasim@gmail.com"
+     class="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-gray-100 dark:bg-[#191a1a] text-[#08090a] dark:text-slate-200 hover:bg-gray-200 dark:hover:bg-gray-500/10 transition-colors">
+    devmohdqasim@gmail.com
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+         viewBox="0 0 24 24" fill="none" stroke="#2563EB"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         class="lucide lucide-mail w-4 h-4 mt-1">
+      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+    </svg>
+  </a>
+</div>
+
+
+
+            </div>
+            
+          </div>
+        </>
+      
     }
   </div>
 </Layout>
