@@ -7,7 +7,9 @@ import HeaderLink from '~/components/base/HeaderLink.astro'
 import SearchSwitch from '~/components/base/SearchSwitch.astro'
 import { Image } from 'astro:assets'
 import favicon from '../../public/favicon.svg'
+import MobileMenu from '~/components/base/MobileMenu.astro'
 ---
+<MobileMenu />
 
 <HeaderGradient />
 <header id="main-header" class="sticky top-0 z-50 transition-colors duration-300">
@@ -99,19 +101,20 @@ import favicon from '../../public/favicon.svg'
 
   const mobileMenu = document.getElementById('mobile-menu')!
   const openMenuButton = document.getElementById('open-menu-button')!
-  const closeMenuButton = document.getElementById('close-menu-button')!
+  const openMenuIcon = openMenuButton.querySelector('span')!
 
   openMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.remove('hidden')
-  })
-
-  closeMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden')
+    mobileMenu.classList.toggle('hidden')
+    const isHidden = mobileMenu.classList.contains('hidden')
+    openMenuIcon.classList.toggle('icon-[ri--menu-line]', isHidden)
+    openMenuIcon.classList.toggle('icon-[ri--close-line]', !isHidden)
   })
 
   mobileMenu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileMenu.classList.add('hidden')
+      openMenuIcon.classList.remove('icon-[ri--close-line]')
+      openMenuIcon.classList.add('icon-[ri--menu-line]')
     })
   })
 </script>
