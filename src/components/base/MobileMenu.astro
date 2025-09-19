@@ -1,0 +1,21 @@
+---
+import { HEADER_LINKS } from '~/config'
+import HeaderLink from './HeaderLink.astro'
+---
+
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-background/80 backdrop-blur-lg hidden">
+  <div class="absolute top-4 right-4">
+    <button id="close-menu-button" class="p-2">
+      <span class="icon-[ri--close-line] size-6"></span>
+    </button>
+  </div>
+  <nav class="flex flex-col items-center justify-center h-full gap-4">
+    {
+      HEADER_LINKS.map((link) => (
+        <a href={link.url} class="text-2xl">
+          {link.name}
+        </a>
+      ))
+    }
+  </nav>
+</div>

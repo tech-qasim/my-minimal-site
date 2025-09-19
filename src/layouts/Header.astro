@@ -22,7 +22,7 @@ import favicon from '../../public/favicon.svg'
 
     <!-- Right side: header links -->
     <div class="flex gap-3 sm:gap-6 items-center">
-      <div class="flex gap-1">
+      <nav class="hidden md:flex gap-1">
         {
           HEADER_LINKS.map((link) => (
             <HeaderLink href={link.url} background>
@@ -30,6 +30,11 @@ import favicon from '../../public/favicon.svg'
             </HeaderLink>
           ))
         }
+      </nav>
+      <div class="md:hidden">
+        <button id="open-menu-button" class="p-2">
+          <span class="icon-[ri--menu-line] size-6"></span>
+        </button>
       </div>
       <!-- Optional: theme toggle / icons -->
       <div class="flex gap-2 items-center" transition:persist="header-theme-toggle">
@@ -91,6 +96,24 @@ import favicon from '../../public/favicon.svg'
 
   observeSections()
   document.addEventListener('astro:after-swap', observeSections)
+
+  const mobileMenu = document.getElementById('mobile-menu')!
+  const openMenuButton = document.getElementById('open-menu-button')!
+  const closeMenuButton = document.getElementById('close-menu-button')!
+
+  openMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.remove('hidden')
+  })
+
+  closeMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden')
+  })
+
+  mobileMenu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden')
+    })
+  })
 </script>
 
 <style>
