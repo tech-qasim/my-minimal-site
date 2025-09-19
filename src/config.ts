@@ -96,6 +96,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
     url: 'https://letterboxd.com/qasimdx/',
     icon: 'icon-[cib--letterboxd]',
   },
+  {
+    name: 'Discord',
+    url: 'https://discordapp.com/users/1160595134224797716',
+    icon: 'icon-[ic--baseline-discord]',
+  },
 ]
 
 /**
