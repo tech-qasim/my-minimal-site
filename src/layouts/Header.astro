@@ -9,11 +9,15 @@ import { Image } from 'astro:assets'
 import favicon from '../../public/favicon.svg'
 import MobileMenu from '~/components/base/MobileMenu.astro'
 ---
+
 <MobileMenu />
 
 <HeaderGradient />
 <header id="main-header" class="sticky top-0 z-50 transition-colors duration-300">
-  <div class="mx-auto max-w-3xl flex justify-between px-6 sm:px-8 py-4 lg:px-8">
+  <div
+    id="inside-header"
+    class="mx-auto mt-3 sm:mt-6 z-50 flex items-center justify-between w-[95%] max-w-[720px] py-2 px-4 rounded-sm transition-all duration-300 overflow-hidden bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-500/10 shadow-lg relative"
+  >
     <!-- Left side: logo -->
     <div class="flex items-center flex-shrink-0 gap-3">
       <!-- Circle Avatar -->
@@ -33,11 +37,13 @@ import MobileMenu from '~/components/base/MobileMenu.astro'
           ))
         }
       </nav>
+
       <div class="md:hidden">
         <button id="open-menu-button" class="p-2">
           <span class="icon-[ri--menu-line] size-6"></span>
         </button>
       </div>
+
       <!-- Optional: theme toggle / icons -->
       <div class="flex gap-2 items-center" transition:persist="header-theme-toggle">
         <!-- <ThemeToggle client:load /> -->
@@ -47,16 +53,16 @@ import MobileMenu from '~/components/base/MobileMenu.astro'
 
   <div class="relative max-w-3xl mx-auto pointer-events-none">
     <div aria-hidden="true" class="absolute inset-x-0 -top-14 bottom-0 mx-auto max-w-3xl">
-      <div class="to-(--color-border)/50 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"></div>
-      <div class="to-(--color-border)/50 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"></div>
+      <div class="to-(--color-border)/0 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"></div>
+      <div class="to-(--color-border)/0 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%"></div>
     </div>
   </div>
 </header>
 
-<SectionDivider className="border-t-border dark:border-t-border/50" />
+<!-- <SectionDivider className="border-t-border dark:border-t-border/50" /> -->
 
 <script>
-  const header = document.getElementById('main-header')!
+  const header = document.getElementById('inside-header')!
 
   function updateHeader() {
     if (window.scrollY > 0) {
