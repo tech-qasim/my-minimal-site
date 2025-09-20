@@ -3,25 +3,45 @@ import { SOCIAL_LINKS } from '~/config.ts'
 import SocialLink from './SocialLink.astro'
 ---
 
-<div class="py-16 px-6">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    <div class="text-center md:text-left">
-      <h2 class="text-3xl sm:text-4xl tracking-tight">Let's build something great together</h2>
-      <p class="text-muted-foreground mt-4 text-lg">
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team.
-      </p>
+<div class="relative py-5 px-6">
+  <div class="max-w-3xl mx-auto text-center border border-gray-300 dark:border-gray-800 rounded-lg p-8 space-y-8">
+    <!-- Heading -->
+    <h4 class="text-xl sm:text-2xl font-medium text-[#08090a] dark:text-white">Ready to start a conversation?</h4>
+
+    <!-- Email -->
+    <a
+      href="mailto:devmohdqasim@gmail.com"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-gray-100 dark:bg-[#191a1a]
+             text-[#08090a] dark:text-slate-200 hover:bg-gray-200 dark:hover:bg-gray-500/10
+             transition-colors"
+    >
+      devmohdqasim@gmail.com
+      <!-- Mail Icon -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2563EB"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-mail w-4 h-4 mt-0.5"
+      >
+        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+      </svg>
+    </a>
+
+    <!-- Social Links -->
+    <div class="flex items-center justify-center gap-4 pt-4">
+      {SOCIAL_LINKS.map((item) => <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} />)}
     </div>
-    <div class="text-center md:text-right">
-      <a href="mailto:devmohdqasim@gmail.com" class="text-2xl sm:text-3xl font-semibold text-primary hover:underline">
-        devmohdqasim@gmail.com
-      </a>
-      <div class="flex justify-center md:justify-end gap-6 mt-4">
-        {
-          SOCIAL_LINKS.map((item) => {
-            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} />
-          })
-        }
-      </div>
-    </div>
+
+    <!-- Response time -->
+    <p class="inline-block px-4 py-2 text-sm text-[#737373] dark:text-[#A1A1AA] bg-gray-50 dark:bg-[#141414] rounded-sm">
+      💬 I typically respond within 30 Minutes!
+    </p>
   </div>
 </div>
