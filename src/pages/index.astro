@@ -11,6 +11,7 @@ import WorkExperience from '~/components/base/WorkExperience.astro'
 import ProjectList from '~/components/projects/card/List.astro'
 import Contact from '~/components/base/Contact.astro'
 import { getNumPosts, getPinnedPosts } from '~/lib/data'
+import ExperienceCard from '~/components/base/experience_card.astro'
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -98,6 +99,17 @@ if (hasPinnedPosts) {
               <p class="text-muted-foreground mb-6 mt-1">Here is my work experience:</p>
             </div>
             <WorkExperience workExperienceData={WORK_EXPERIENCE_DATA} />
+            {/* <ExperienceCard 
+  title="Research Consultant"
+  company="WorldQuant"
+  date="May 2025 - Present"
+  details={[
+    "Designed and built alpha strategies for U.S. equity markets using quantitative methods",
+    "Conducted data analysis, modeling, and backtesting of trading strategies",
+    "Identified consistent, profitable opportunities using financial data and market insights"
+  ]}
+  tags={["Quantitative Research", "Alpha Generation", "Statistical modeling", "Python"]}
+/> */}
           </div>
         </>
       )
