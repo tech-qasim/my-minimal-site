@@ -12,6 +12,7 @@ import ProjectList from '~/components/projects/card/List.astro'
 import Contact from '~/components/base/Contact.astro'
 import { getNumPosts, getPinnedPosts } from '~/lib/data'
 import ExperienceCard from '~/components/base/experience_card.astro'
+import ProfileMenu from '~/components/base/ProfileMenu.astro'
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -71,6 +72,8 @@ if (hasPinnedPosts) {
               <p class="text-muted-foreground mb-6 mt-1">Most recent contributions.</p>
             </div>
             <GithubContributions username={GITHUB_USERNAME} tooltipEnabled={TOOLTIP_ENABLED} client:load transition:animate="none" />
+        {/* <ProfileMenu /> */}
+            
           </div>
         </>
       )
@@ -88,6 +91,7 @@ if (hasPinnedPosts) {
           </div>
         </>
       )
+
     }
     {
       WORK_EXPERIENCE_ENABLED && WORK_EXPERIENCE_DATA.length > 0 && (
@@ -158,6 +162,8 @@ if (hasPinnedPosts) {
             
           </div>
         </>
+
+      
       
     }
   </div>

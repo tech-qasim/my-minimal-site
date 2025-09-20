@@ -15,13 +15,12 @@ import type {
 //--- Readme Page Config ---
 export const SITE: Site = {
   title: 'Qasim',
-  description:
-    'Litos is a modern blogging theme built on Astro.js, designed for developers. It supports multiple post layouts, photo displays, project displays, and more, providing an elegant user experience and powerful customization capabilities.',
-  website: 'https://litos.vercel.app/',
+  description: 'I’m a software engineer who crafts beautiful mobile experiences with Flutter 📱',
+  website: 'https://qasimappdev.vercel.app/',
   lang: 'en',
   base: '/',
   author: 'Dnzzk2',
-  ogImage: '/og-image.webp',
+  ogImage: '/devbanner.png',
 }
 
 export const HEADER_LINKS: Link[] = [

@@ -8,6 +8,7 @@ import SearchSwitch from '~/components/base/SearchSwitch.astro'
 import { Image } from 'astro:assets'
 import favicon from '../../public/favicon.svg'
 import MobileMenu from '~/components/base/MobileMenu.astro'
+import ProfileMenu from '~/components/base/ProfileMenu.astro'
 ---
 
 <MobileMenu />
@@ -21,7 +22,13 @@ import MobileMenu from '~/components/base/MobileMenu.astro'
     <!-- Left side: logo -->
     <div class="flex items-center flex-shrink-0 gap-3">
       <!-- Circle Avatar -->
-      <div class="w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold">Q</div>
+      <div class="relative">
+        <button id="avatar-button" class="w-10 h-10 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold"
+          >Q</button
+        >
+
+        <ProfileMenu />
+      </div>
 
       <!-- Heading -->
     </div>
@@ -122,6 +129,23 @@ import MobileMenu from '~/components/base/MobileMenu.astro'
       openMenuIcon.classList.remove('icon-[ri--close-line]')
       openMenuIcon.classList.add('icon-[ri--menu-line]')
     })
+  })
+
+  const avatarButton = document.getElementById('avatar-button')!
+  const profileMenu = document.getElementById('profile-menu')!
+
+  avatarButton.addEventListener('click', (event) => {
+    console.log('Avatar button clicked')
+    event.stopPropagation()
+    profileMenu.classList.toggle('hidden')
+    console.log('Profile menu hidden:', profileMenu.classList.contains('hidden'))
+  })
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node // ✅ cast to Node
+    if (!profileMenu.contains(target) && !avatarButton.contains(target)) {
+      profileMenu.classList.add('hidden')
+    }
   })
 </script>
 

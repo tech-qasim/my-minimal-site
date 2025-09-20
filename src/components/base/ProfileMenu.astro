@@ -1,0 +1,49 @@
+---
+import { SITE, SOCIAL_LINKS } from '~/config'
+---
+
+<div
+  id="profile-menu"
+  class="absolute top-14 right-0 z-50 w-64 bg-background border border-border rounded-lg shadow-lg hidden animate-fade-in"
+>
+  <div class="p-4 border-b border-border">
+    <p class="font-semibold">{SITE.title}</p>
+    <p class="text-sm text-muted-foreground">devmohdqasim@gmail.com</p>
+  </div>
+  <nav class="p-2">
+    <ul>
+      {
+        SOCIAL_LINKS.map((item) => (
+          <li>
+            <a href={item.url} class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-muted">
+              <span class:list={[item.icon, 'size-5']} />
+              <span>{item.name}</span>
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="mailto:devmohdqasim@gmail.com" class="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-muted">
+          <span class="icon-[ri--mail-fill] size-5"></span>
+          <span>Email</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+</style>
