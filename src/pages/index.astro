@@ -13,6 +13,8 @@ import Contact from '~/components/base/Contact.astro'
 import { getNumPosts, getPinnedPosts } from '~/lib/data'
 import ExperienceCard from '~/components/base/experience_card.astro'
 import ProfileMenu from '~/components/base/ProfileMenu.astro'
+import ProjectThumbnailCard from '~/components/projects/ProjectThumbnailCard.astro'
+import habitBeeThumbnail from 'D:\Documents\Astro.js theme\my-minimal-site\public\projects\habitbeethumbnail.png'
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -118,7 +120,7 @@ if (hasPinnedPosts) {
         </>
       )
     }
-    {
+    <!-- {
       PROJECTS_ENABLED && PROJECTS_DATA.length > 0 && (
         <>
           <SectionDivider2 />
@@ -131,6 +133,58 @@ if (hasPinnedPosts) {
           </div>
         </>
       )
+    } -->
+    {
+       <>
+          <SectionDivider2 />
+          <div id="projects" class="py-8 pb-0 px-6 max-md:px-6">
+            <div class="px-2 max-md:px-0">
+              <h2 class="text-2xl sm:text-3xl tracking-tight">Projects</h2>
+              <p class="text-muted-foreground mb-12 mt-1">Here are some of my projects:</p>
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-6">
+      <ProjectThumbnailCard
+        title="HabitBee - World's First AI-Powered Habit Tracking App"
+        description="A mobile app designed to help users track fitness activities, set goals, and monitor progress."
+        image='/projects/habitbeethumbnail.png'
+        tags={["Flutter", "Firebase", "Riverpod"]}
+        playstore='https://play.google.com/store/apps/details?id=app.habitbee.ai.powered.daily.habit.tracker&hl=en'
+      />
+
+      <ProjectThumbnailCard
+        title="Noti"
+        description="An e-commerce platform connecting local artisans with customers, featuring secure payments and user accounts."
+        image="/projects/noti.png"
+        tags={["Flutter", "Firebase", "Cloud Functions", "FCM", "Riverpod"]}
+        playstore='https://play.google.com/store/apps/details?id=com.ertugrul&hl=en'
+      />
+
+      <ProjectThumbnailCard
+        title="HairAI"
+        description="A dashboard for visualizing complex datasets with interactive charts and graphs."
+        image="/projects/hairaibanner.png"
+        tags={["Flutter", "Drift", "Riverpod"]}
+        playstore='https://play.google.com/store/apps/details?id=app.hairproduct.scanner&hl=en'
+      />
+      <ProjectThumbnailCard
+        title="Enhance"
+        description="A dashboard for visualizing complex datasets with interactive charts and graphs."
+        image="/projects/enhancebanner.png"
+        tags={["Flutter", "Drift", "Firebase", "Cloud Functions", "Riverpod"]}
+
+      />
+
+      {/* <ProjectThumbnailCard
+        title="Personal Blog on Software Development"
+        description="A personal blog sharing tutorials, thoughts, and experiences in software development."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuDK64BHy2d8oCna69nXGjVIoWKrHg-ZF4Ed85Cu5EAuaCCC9ou0KT0pFZAx8QNOxGlA9W_N52ytE38JfxQi0406ifcXhB1F_PE9sMzre5rAiY8aIsM0pjtpVVmywuu20uJ-wH7IlNCG8M2JT4vbmIWeN0BZ4KRXp1cFzrzKI0XqyxMEVYYPAIe8DUmMmFuVJQwEcn2CkKY4G2xTULeeokdxFF5xNsallq0BGW21HhEYs4K4ifOSi5NQRMU-HlH_0PovuUjIpf4ETkpm"
+        tags={["Coming Soon"]}
+      /> */}
+    </div>
+  </div>
+    <div class="my-17"></div>
+          </div>
+        </>
     }
 
     {

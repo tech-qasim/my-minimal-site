@@ -134,7 +134,6 @@ export interface WorkExperienceConfig {
   WORK_EXPERIENCE_DATA: WorkExperience[]
 }
 
-
 /**
  * GitHub配置类型 / GitHub configuration type
  * @property {boolean} ENABLED - 是否启用GitHub功能 / Whether to enable GitHub features
