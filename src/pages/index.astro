@@ -44,10 +44,9 @@ if (hasPinnedPosts) {
       </h1>
       <div class="pro text-muted-foreground text-pretty">
         <p>
-          I’m a software engineer who crafts beautiful mobile experiences with Flutter 📱. Think of me as a digital detective—I love diving
-          into complex problems and hunting down the perfect solution 🕵️‍♂️. By day, I'm building scalable, pixel-perfect apps; by night, I’m a
-          fan of a good thriller 🎬 and learning backend. My code is clean, my beats are heavy 🎧, and my apps are always ready for their
-          close-up. ✨
+         👋 Hey there! I’m a Software Engineer who loves turning ideas into sleek, high-performing apps with Flutter 💙. Give me a problem, and I’ll come up with an app solution — it’s just how my brain’s wired ⚡.
+
+When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Wailing is my all-time favorite) or vibing to Talha Anjum and Seedhe Maut 🎧. I like to think my code has the same energy — smooth flow, tight rhythm, and a little suspense 😉.
         </p>
         <p>I'm always looking for new opportunities to learn and grow.</p>
         <!-- <p>
@@ -135,56 +134,52 @@ if (hasPinnedPosts) {
       )
     } -->
     {
-       <>
-          <SectionDivider2 />
-          <div id="projects" class="py-8 pb-0 px-6 max-md:px-6">
-            <div class="px-2 max-md:px-0">
-              <h2 class="text-2xl sm:text-3xl tracking-tight">Projects</h2>
-              <p class="text-muted-foreground mb-12 mt-1">Here are some of my projects:</p>
-            </div>
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-6">
+    <>
+  <SectionDivider2 />
+  <div id="projects" class="py-8 pb-0 px-6 max-md:px-6">
+    <div class="px-2 max-md:px-0">
+      <h2 class="text-2xl sm:text-3xl tracking-tight">Projects</h2>
+      <p class="text-muted-foreground mb-12 mt-1">Here are some of my projects:</p>
+    </div>
+
+    <!-- 🔧 Fixed grid layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-6 items-stretch">
       <ProjectThumbnailCard
         title="HabitBee - World's First AI-Powered Habit Tracking App"
         description="Built a habit-tracking app with custom UI/UX (reminders, calendars, streaks), integrated ChatGPT API for personalized insights, and optimized Firebase with Riverpod for efficient, secure performance."
-        image='/projects/habitbeethumbnail.png'
-        tags={["Flutter", "Firebase", "Riverpod"]}
-        playstore='https://play.google.com/store/apps/details?id=app.habitbee.ai.powered.daily.habit.tracker&hl=en'
+        image="/projects/habitbeethumbnail.png"
+        tags={["Flutter", "Firebase", "Riverpod", 'Local Notifications', "FL Charts"]}
+        playstore="https://play.google.com/store/apps/details?id=app.habitbee.ai.powered.daily.habit.tracker&hl=en"
       />
 
       <ProjectThumbnailCard
         title="Noti"
         description="Redesigned the Noti app with a modern UI/UX to boost adoption, optimized Firebase costs by integrating Drift for offline storage, and improved code quality with Riverpod state management in collaboration with a senior developer."
         image="/projects/noti.png"
-        tags={["Flutter", "Firebase", "Cloud Functions", "FCM", "Riverpod"]}
-        playstore='https://play.google.com/store/apps/details?id=com.ertugrul&hl=en'
+        tags={["Flutter", "Firebase", "Cloud Functions", "FCM", "Riverpod", 'Local Notifications']}
+        playstore="https://play.google.com/store/apps/details?id=com.ertugrul&hl=en"
       />
 
       <ProjectThumbnailCard
         title="HairAI"
         description="Built an AI-powered hair product scanner using Google ML Kit and ChatGPT API to provide safe/unsafe ingredient insights, boosting user trust and engagement; implemented Drift and Riverpod for offline access and smooth performance."
         image="/projects/hairaibanner.png"
-        tags={["Flutter", "Drift", "Riverpod"]}
-        playstore='https://play.google.com/store/apps/details?id=app.hairproduct.scanner&hl=en'
+        tags={["Flutter", "Drift", "Riverpod", "Local Notifications", "Google ML Kit"]}
+        playstore="https://play.google.com/store/apps/details?id=app.hairproduct.scanner&hl=en"
       />
+
       <ProjectThumbnailCard
         title="Enhance"
-        description="Built a cross-platform AI skincare app that scans product labels, analyzes ingredients using Google ML Kit, and recommends products based on skin type. Integrated OCR for label detection, Firebase for authentication and storage, and followed a clean architecture with a modern Figma-based UI."
+        description="Built a cross-platform AI skincare app that scans product labels, analyzes ingredients using Google ML Kit, and recommends products by skin type. Integrated OCR, Firebase Auth & Storage, and followed clean architecture with a modern Figma-based UI."
         image="/projects/enhancebanner.png"
-        tags={["Flutter", "Drift", "Firebase", "Cloud Functions", "Riverpod"]}
-
+        tags={["Flutter", "Firebase", "Cloud Functions", "Riverpod", "Local Notifications", 'Google ML Kit']}
       />
-
-      {/* <ProjectThumbnailCard
-        title="Personal Blog on Software Development"
-        description="A personal blog sharing tutorials, thoughts, and experiences in software development."
-        image="https://lh3.googleusercontent.com/aida-public/AB6AXuDK64BHy2d8oCna69nXGjVIoWKrHg-ZF4Ed85Cu5EAuaCCC9ou0KT0pFZAx8QNOxGlA9W_N52ytE38JfxQi0406ifcXhB1F_PE9sMzre5rAiY8aIsM0pjtpVVmywuu20uJ-wH7IlNCG8M2JT4vbmIWeN0BZ4KRXp1cFzrzKI0XqyxMEVYYPAIe8DUmMmFuVJQwEcn2CkKY4G2xTULeeokdxFF5xNsallq0BGW21HhEYs4K4ifOSi5NQRMU-HlH_0PovuUjIpf4ETkpm"
-        tags={["Coming Soon"]}
-      /> */}
     </div>
   </div>
-    <div class="my-17"></div>
-          </div>
-        </>
+
+  <div class="my-16"></div>
+</>
+
     }
 
     {
