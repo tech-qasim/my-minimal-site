@@ -9,12 +9,12 @@ const { company, role, period, location, type, description, logo, skills } = Ast
     <div class="flex items-start gap-4">
       <div class="w-16 h-16 bg-cover bg-center rounded-lg flex-shrink-0" style={`background-image: url('${logo}');`}></div>
 
-      <div class="flex-grow">
-        <div class="flex items-center gap-4 flex-wrap">
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white">{company}</h3>
+      <div class="flex-grow min-w-0">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-2">
+          <h3 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white truncate">{company}</h3>
           <span
             class:list={[
-              'text-xs font-medium px-2.5 py-0.5 rounded-full',
+              'text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full',
               type === 'Full-time'
                 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
                 : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
