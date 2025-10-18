@@ -15,6 +15,7 @@ import ExperienceCard from '~/components/base/experience_card.astro'
 import ProfileMenu from '~/components/base/ProfileMenu.astro'
 import ProjectThumbnailCard from '~/components/projects/ProjectThumbnailCard.astro'
 import habitBeeThumbnail from 'D:\Documents\Astro.js theme\my-minimal-site\public\projects\habitbeethumbnail.png'
+import ExperienceTimeline from '~/components/base/experience_timeline.astro'
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -103,7 +104,76 @@ When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Waili
               <h2 class="text-2xl sm:text-3xl tracking-tight">Work Experience</h2>
               <p class="text-muted-foreground mb-6 mt-1">Companies I've worked with and the projects I've been involved in.</p>
             </div>
-            <WorkExperience workExperienceData={WORK_EXPERIENCE_DATA} />
+            <div class="space-y-6">
+          <!-- Experience Item -->
+          
+          <ExperienceTimeline
+            company="EaseZen Solutions"
+            role="Flutter Developer"
+            period="October 2025 - Present"
+            location="Remote"
+            type="Part-time"
+            description="Developed and maintained cross-platform mobile applications using Flutter for a variety of clients. Collaborated with UI/UX designers to create intuitive and engaging user interfaces."
+            logo="/companies/easezen_solutionz_logo.jpeg"
+            skills={ [
+  "Dart",
+  "Flutter",
+  "Riverpod",
+  "GetX",
+  "Bloc",
+  "Http",
+  "Dio",
+  "SQLite",
+  "Drift",
+  "Firebase",
+  "Isar",
+  "FVM"
+]}
+          />
+
+          <ExperienceTimeline
+            company="Appstree"
+            role="Flutter Developer"
+            period="June 2024 - Present"
+            location="Sargodha, Pakistan"
+            type="Full-time"
+            description="Developing AI-powered Flutter applications using ChatGPT API and Google ML Kit. Improved app performance through Riverpod-based state management and local database integration (Drift), while collaborating with teams to enhance UI/UX and maintain clean, scalable codebases."
+            logo="/companies/appstree_logo.jpeg"
+            skills={ [
+  "Dart",
+  "Flutter",
+  "Riverpod",
+  "GetX",
+  "Bloc",
+  "Http",
+  "Dio",
+  "SQLite",
+  "Drift",
+  "Firebase",
+  "Isar",
+  "FVM"
+]}
+          />
+
+          <ExperienceTimeline
+            company="CodeSquare"
+            role="Android Developer"
+            period="June 2023 - Oct 2023"
+            location="Sargodha, Pakistan"
+            type="Full-time"
+            description="Built and tested Android applications using Java under senior mentorship. Gained hands-on experience by developing multiple small-scale apps and a real-time chat platform for lawyers and clients, strengthening skills in UI design, API integration, and secure communication."
+            logo="/companies/codesquare.jpeg"
+            skills={ [
+  "Java/Kotlin",
+  "Android",
+  "Firebase",
+  "Jetpack Compose",
+  
+]}
+          />
+
+        
+        </div>
             {/* <ExperienceCard 
   title="Research Consultant"
   company="WorldQuant"
@@ -147,7 +217,7 @@ When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Waili
       <ProjectThumbnailCard
         title="HabitBee - World's First AI-Powered Habit Tracking App"
         description="Built a habit-tracking app with custom UI/UX (reminders, calendars, streaks), integrated ChatGPT API for personalized insights, and optimized Firebase with Riverpod for efficient, secure performance."
-        image="/projects/habitbeethumbnail.png"
+        image="/projects/habitbeebanner.webp"
         tags={["Flutter", "Firebase", "Riverpod", 'Local Notifications', "FL Charts"]}
         playstore="https://play.google.com/store/apps/details?id=app.habitbee.ai.powered.daily.habit.tracker&hl=en"
       />
@@ -155,7 +225,7 @@ When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Waili
       <ProjectThumbnailCard
         title="Noti"
         description="Redesigned the Noti app with a modern UI/UX to boost adoption, optimized Firebase costs by integrating Drift for offline storage, and improved code quality with Riverpod state management in collaboration with a senior developer."
-        image="/projects/noti.png"
+        image="/projects/notibanner.webp"
         tags={["Flutter", "Firebase", "Cloud Functions", "FCM", "Riverpod", 'Local Notifications']}
         playstore="https://play.google.com/store/apps/details?id=com.ertugrul&hl=en"
       />
@@ -168,7 +238,16 @@ When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Waili
         playstore="https://play.google.com/store/apps/details?id=app.hairproduct.scanner&hl=en"
       />
 
+    
       <ProjectThumbnailCard
+        title="AlignMe"
+        description="Developed a cross-platform posture correction app using Flutter that helps users improve posture through smart reminders, daily exercises, and personalized tips. Integrated Google Sign-In, progress tracking, and offline access with a clean, distraction-free UI to promote better health and user engagement."
+        image="/projects/alignmebanner.webp", 
+        playstore='https://play.google.com/store/apps/details?id=app.posture.reminder&hl=en'
+        tags={["Flutter", "Firebase", "Cloud Functions", "Riverpod", "Local Notifications",]}
+      />
+
+        <ProjectThumbnailCard
         title="Enhance"
         description="Built a cross-platform AI skincare app that scans product labels, analyzes ingredients using Google ML Kit, and recommends products by skin type. Integrated OCR, Firebase Auth & Storage, and followed clean architecture with a modern Figma-based UI."
         image="/projects/enhancebanner.png"

@@ -1,0 +1,49 @@
+---
+const { company, role, period, location, type, description, logo, skills } = Astro.props
+---
+
+<details
+  class="group bg-background-light dark:bg-background-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden transition-all duration-300"
+>
+  <summary class="flex items-center justify-between p-6 cursor-pointer transition-all duration-300">
+    <div class="flex items-start gap-4">
+      <div class="w-16 h-16 bg-cover bg-center rounded-lg flex-shrink-0" style={`background-image: url('${logo}');`}></div>
+
+      <div class="flex-grow">
+        <div class="flex items-center gap-4 flex-wrap">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">{company}</h3>
+          <span
+            class:list={[
+              'text-xs font-medium px-2.5 py-0.5 rounded-full',
+              type === 'Full-time'
+                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+                : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+            ]}
+          >
+            {type}
+          </span>
+        </div>
+
+        <p class="text-sm text-gray-600 dark:text-gray-400">{role} • {period}</p>
+        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mt-1 gap-1">
+          <span class="icon-[mdi--location] size-4"></span>
+          <span>{location}</span>
+        </div>
+      </div>
+    </div>
+    <span class="icon-[mdi--chevron-right] text-gray-600 dark:text-gray-400 text-2xl transition-transform duration-300 group-open:rotate-90"
+    ></span>
+  </summary>
+
+  <div class="px-6 pb-6 text-gray-700 dark:text-gray-300 overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-[500px]">
+    <p class="mb-4">{description}</p>
+
+    <div class="flex flex-wrap gap-2">
+      {
+        skills.map((skill: any) => (
+          <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded-full">{skill}</span>
+        ))
+      }
+    </div>
+  </div>
+</details>
