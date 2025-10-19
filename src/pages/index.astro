@@ -117,19 +117,46 @@ const skills = [
 When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Wailing is my all-time favorite) or vibing to Talha Anjum and Seedhe Maut 🎧. I like to think my code has the same energy — smooth flow, tight rhythm, and a little suspense 😉.
         </p>
         <p>I'm always looking for new opportunities to learn and grow.</p>
-        <!-- <p>
-          This theme is inspired by <a href="https://github.com/tech-qasim" target="_blank" rel="nofollow noreferrer"> @needim</a> and redesigned
-          by <a href="https://github.com/tech-qasim" target="_blank" rel="nofollow noreferrer"> @Dnzzk2</a> based on Astro.
-        </p> -->
-      </div>
-      <div class="mt-6 flex gap-6">
+        <p>You can reach me out on various platforms.</p>
+
+  
+      <div class="flex gap-6">
         {
           SOCIAL_LINKS.map((item) => {
             return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />
           })
         }
         <SocialLink href={`mailto:devmohdqasim@gmail.com`} icon="icon-[ri--mail-fill]" aria-label="Email" label="email" />
+
+           
       </div>
+
+        <p>As a music and movie enthusiast, I share my favorites on Letterboxd and Spotify.</p>
+        <div class="flex gap-6">
+  <SocialLink
+    href="https://letterboxd.com/qasimdx/"
+    icon="icon-[fa6-brands--letterboxd]"
+    aria-label="Letterboxd"
+    label="Letterboxd"
+  />
+  <SocialLink
+    href="https://open.spotify.com/user/31k2flo4njfen3rau6ssvxw7kmau"
+    icon="icon-[mdi--spotify]"
+    aria-label="Spotify"
+    label="Spotify"
+  />
+</div>
+
+        
+
+
+      </div>
+
+      
+
+     
+
+  
     </div>
     {
       ENABLED && (

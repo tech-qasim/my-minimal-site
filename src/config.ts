@@ -90,11 +90,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
     url: 'https://www.linkedin.com/in/qasimxo/',
     icon: 'icon-[ri--linkedin-fill]',
   },
-  {
-    name: 'Letterboxd',
-    url: 'https://letterboxd.com/qasimdx/',
-    icon: 'icon-[fa6-brands--letterboxd]',
-  },
+  // {
+  //   name: 'Letterboxd',
+  //   url: 'https://letterboxd.com/qasimdx/',
+  //   icon: 'icon-[fa6-brands--letterboxd]',
+  // },
   {
     name: 'Discord',
     url: 'https://discordapp.com/users/1160595134224797716',
