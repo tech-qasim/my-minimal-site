@@ -1,5 +1,19 @@
 ---
-const { categories = [] } = Astro.props
+interface Skill {
+  name: string
+  iconClass: string
+}
+
+interface Category {
+  title: string
+  skills: Skill[]
+}
+
+interface Props {
+  categories: Category[]
+}
+
+const { categories = [] }: Props = Astro.props
 
 /*
 Example data structure:
