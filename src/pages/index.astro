@@ -16,6 +16,7 @@ import ProfileMenu from '~/components/base/ProfileMenu.astro'
 import ProjectThumbnailCard from '~/components/projects/ProjectThumbnailCard.astro'
 import habitBeeThumbnail from 'D:\Documents\Astro.js theme\my-minimal-site\public\projects\habitbeethumbnail.png'
 import ExperienceTimeline from '~/components/base/experience_timeline.astro'
+import SkillList from '~/components/base/Skill.astro'
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -32,6 +33,12 @@ if (hasPinnedPosts) {
 } else {
   showPosts = await getNumPosts(size)
 }
+
+const skills = [
+  { name: 'Flutter', icon: '/icons/flutter.svg', tooltip: 'Expert' },
+  { name: 'Dart', icon: '/icons/dart.svg', tooltip: 'Advanced' },
+  { name: 'Firebase', icon: '/icons/firebase.svg' },
+]
 ---
 
 <Layout title="Readme" description={SITE.description}>
