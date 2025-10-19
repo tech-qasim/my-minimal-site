@@ -10,6 +10,6 @@
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "types": []
+    "types": ["astro/client", "astro-icon"]
   }
 }

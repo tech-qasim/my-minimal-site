@@ -1,29 +1,49 @@
-<!-- ---
-const {
-  title = 'Items',
-  items = [], // Expect array of { name, icon?, tooltip? }
-  className = '',
-} = Astro.props
+---
+const { categories = [] } = Astro.props
+
+/*
+Example data structure:
+
+categories = [
+  {
+    title: 'Frontend',
+    skills: [
+      { name: 'Flutter', iconClass: 'devicon-flutter-plain colored' },
+      { name: 'React', iconClass: 'devicon-react-original colored' },
+    ]
+  },
+  {
+    title: 'Backend',
+    skills: [
+      { name: 'Node.js', iconClass: 'devicon-nodejs-plain colored' },
+      { name: 'Express', iconClass: 'devicon-express-original colored' },
+    ]
+  }
+];
+*/
 ---
 
-<section class={`my-6 ${className}`}>
-  <h2 class="text-lg font-semibold mb-3">{title}</h2>
-
-  <ul class="flex flex-wrap gap-3 print:mt-4">
+<section class="my-0">
+  <div class="flex flex-col gap-7 px-2">
     {
-      items.length > 0 ? (
-        items.map(({ name, icon, tooltip }) => (
-          <li
-            class="flex items-center gap-2 rounded-md border border-gray-300 bg-black-100 px-2 py-1 text-sm text-gray-800 hover:bg-gray-200 transition-colors print:border-none print:bg-transparent"
-            title={tooltip || name}
-          >
-            {icon && <span class={`icon-[${icon}] size-4`} />}
-            <span>{name}</span>
-          </li>
-        ))
-      ) : (
-        <li class="text-gray-500 italic text-sm">No items available</li>
-      )
+      categories.map(({ title, skills }) => (
+        <div>
+          <h3 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-100">{title}</h3>
+
+          <ul class="flex flex-wrap gap-4">
+            {skills.map(({ name, iconClass }) => (
+              <li
+                class="flex items-center gap-2 px-2 py-1 rounded-md border border-gray-200 dark:border-gray-700 
+                     bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition 
+                     text-gray-700 dark:text-gray-200 text-sm"
+              >
+                <i class={`${iconClass} text-2xl`} />
+                <span class="font-medium">{name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
     }
-  </ul>
-</section> -->
+  </div>
+</section>

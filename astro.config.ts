@@ -7,6 +7,7 @@ import robotsTxt from 'astro-robots-txt'
 import expressiveCode from 'astro-expressive-code'
 import { remarkPlugins, rehypePlugins } from './plugins'
 import { SITE } from './src/config'
+import astroIcon from 'astro-icon'
 
 import netlify from '@astrojs/netlify'
 
@@ -29,6 +30,6 @@ export default defineConfig({
     rehypePlugins,
   },
 
-  integrations: [expressiveCode(), mdx(), react(), sitemap(), robotsTxt()],
+  integrations: [expressiveCode(), mdx(), react(), sitemap(), robotsTxt(), astroIcon()],
   adapter: netlify(),
 })

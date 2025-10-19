@@ -35,10 +35,70 @@ if (hasPinnedPosts) {
 }
 
 const skills = [
-  { name: 'Flutter', icon: '/icons/flutter.svg', tooltip: 'Expert' },
-  { name: 'Dart', icon: '/icons/dart.svg', tooltip: 'Advanced' },
-  { name: 'Firebase', icon: '/icons/firebase.svg' },
-]
+  {
+    title: 'Languages',
+    skills: [
+      { name: 'Java', iconClass: 'icon-[devicon--java]' },
+      { name: 'Kotlin', iconClass: 'icon-[devicon--kotlin]' },
+      { name: 'Dart', iconClass: 'icon-[devicon--dart]' },
+      { name: 'JavaScript', iconClass: 'icon-[devicon--javascript]' },
+    ],
+  },
+  {
+    title: 'Frameworks',
+    skills: [
+      { name: 'Flutter', iconClass: 'icon-[devicon--flutter]' },
+      { name: 'Android SDK', iconClass: 'icon-[devicon--android]' },
+      { name: 'Node.js', iconClass: 'icon-[devicon--nodejs]' },
+    ],
+  },
+  {
+    title: 'State Management',
+    skills: [
+      { name: 'Riverpod', iconClass: 'icon-[devicon--flutter]' },
+      { name: 'Bloc', iconClass: 'icon-[file-icons--bloc]' },
+      { name: 'GetX', iconClass: 'icon-[simple-icons--getx]' },
+    ],
+  },
+  {
+    title: 'Networking & API',
+    skills: [
+      { name: 'http', iconClass: 'icon-[material-symbols--http]' },
+      { name: 'Dio', iconClass: 'icon-[icon-park--api]' },
+      { name: 'Express.js', iconClass: 'icon-[lineicons--expressjs]' },
+    ],
+  },
+  {
+    title: 'Databases',
+    skills: [
+      { name: 'SQLite', iconClass: 'icon-[devicon--sqlite]' },
+      { name: 'Drift', iconClass: 'icon-[material-symbols--waves]' },
+      { name: 'Firebase', iconClass: 'icon-[devicon--firebase]' },
+      { name: 'MongoDB', iconClass: 'icon-[devicon--mongodb]' },
+    ],
+  },
+  {
+    title: 'Dev Tools',
+    skills: [
+      { name: 'VS Code', iconClass: 'icon-[devicon--vscode]' },
+      { name: 'Postman', iconClass: 'icon-[devicon--postman]' },
+      { name: 'Git', iconClass: 'icon-[devicon--git]' },
+      { name: 'Android Studio', iconClass: 'icon-[devicon--androidstudio]' },
+      { name: 'FVM', iconClass: 'icon-[material-symbols--layers]' },
+    ],
+  },
+  {
+    title: 'AI Tools',
+    skills: [
+      { name: 'ChatGPT', iconClass: 'icon-[ri--openai-fill]' },
+      { name: 'GitHub Copilot', iconClass: 'icon-[octicon--copilot-24]' },
+      { name: 'Claude', iconClass: 'icon-[logos--claude-icon]' },
+    ],
+  },
+];
+
+
+
 ---
 
 <Layout title="Readme" description={SITE.description}>
@@ -96,7 +156,10 @@ When I’m not coding, you’ll find me lost in a thriller movie (🩸 The Waili
               <h2 class="text-2xl sm:text-3xl tracking-tight">Skills</h2>
               <p class="text-muted-foreground mb-6 mt-1">Technologies and tools I've worked with and enjoy using.</p>
             </div>
-            <SkillsShowcase skillsData={SKILLS_DATA} />
+
+            <SkillList categories={skills} />
+            {/* <SkillsShowcase skillsData={SKILLS_DATA} /> */}
+            {/* <SkillList title="Skills" items={skills} className="mt-8" /> */}
           </div>
         </>
       )
