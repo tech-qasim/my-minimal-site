@@ -1,14 +1,6 @@
 ---
-const { company, role, period, location, type, description, logo, skills } = Astro.props as {
-  company: string;
-  role: string;
-  period: string;
-  location: string;
-  type: string;
-  description: string[];
-  logo: string;
-  skills: string[];
-};
+const { company, role, period, location, type, description, logo, skills } = Astro.props
+// description is now expected to be an array of strings
 ---
 
 <details
@@ -48,16 +40,14 @@ const { company, role, period, location, type, description, logo, skills } = Ast
     ></span>
   </summary>
 
-  <div class="px-6 pb-6 text-gray-700 dark:text-gray-300 overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-[500px]">
-    <ul class="list-disc list-inside mb-4">
-      {description.map((item) => (
-        <li>{item}</li>
-      ))}
+  <div class="px-6 pb-6 text-muted-foreground text-pretty overflow-hidden transition-all duration-300 max-h-0 group-open:max-h-[500px]">
+    <ul class="list-disc pl-5 space-y-2 mb-4">
+      {description.map((point: string) => <li>{point}</li>)}
     </ul>
 
     <div class="flex flex-wrap gap-2">
       {
-        skills.map((skill: any) => (
+        skills.map((skill: string) => (
           <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded-full">{skill}</span>
         ))
       }
