@@ -93,6 +93,7 @@ import ProfileMenu from '~/components/base/ProfileMenu.astro'
           navLinks.forEach((link) => {
             const href = link.getAttribute('href')
             if (href) {
+              console.log(href)
               link.classList.toggle('active', href.substring(2) === entry.target.id)
             }
           })
