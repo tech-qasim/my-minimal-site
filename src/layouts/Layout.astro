@@ -4,8 +4,10 @@ import '~/styles/markdown.css'
 import '~/styles/lqip.css'
 import { SITE } from '~/config'
 import Head from '~/components/base/Head.astro'
+import BottomNav from '~/components/base/BottomNavigation.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
+import HeaderGradient from '~/components/theme/HeaderGradient.astro'
 
 type Props = {
   title: string
@@ -22,13 +24,15 @@ const { title, description, image }: Props = Astro.props
     <Head title={`Mobile Developer | ${SITE.title}`} {description} {image} />
   </head>
   <body class="flex flex-col">
-    <Header />
+    <!-- <Header /> -->
+    <HeaderGradient />
     <div class="grow flex">
-      <main class="relative max-w-3xl mx-auto grow min-w-0">
+      <main class="relative max-w-3xl mx-auto grow min-w-0 pt-12 pb-20">
         <slot />
       </main>
     </div>
-    <Footer />
+    <!-- <Footer /> -->
+    <BottomNav />
     <div
       class="pointer-events-none fixed bottom-0 left-0 h-28 w-full z-50 bg-background [mask-image:linear-gradient(transparent,hsl(var(--background)))]"
     >
