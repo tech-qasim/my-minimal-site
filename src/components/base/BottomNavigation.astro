@@ -2,6 +2,7 @@
 const NAV_LINKS = [
   { name: 'Intro', url: '#intro', id: 'intro', icon: 'icon-[ri--home-line]' },
   { name: 'Spotlight', url: '#spotlight', id: 'spotlight', icon: 'icon-[ri--star-line]' },
+  { name: 'Skills', url: '#skills', id: 'skills', icon: 'icon-[mage--stack]' },
   { name: 'Work', url: '#experience', id: 'experience', icon: 'icon-[ri--briefcase-line]' },
   { name: 'Projects', url: '#projects', id: 'projects', icon: 'icon-[ri--folder-line]' },
   { name: 'Contact', url: '#contact', id: 'contact', icon: 'icon-[ri--mail-line]' },
@@ -20,7 +21,7 @@ const NAV_LINKS = [
     NAV_LINKS.map((link) => (
       <a
         href={link.url}
-        class="nav-link flex flex-col items-center text-xs sm:text-sm font-medium opacity-70 transition-all duration-200"
+        class="nav-link flex flex-col items-center text-xs sm:text-sm font-medium opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100 active:scale-95 ease-out"
         data-section={link.id}
       >
         <span class={`text-base sm:text-lg mb-1 ${link.icon}`} />
@@ -29,39 +30,3 @@ const NAV_LINKS = [
     ))
   }
 </nav>
-
-<style>
-  .nav-link.active {
-    opacity: 1 !important;
-    font-weight: 600;
-    transform: scale(1.08);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-  }
-</style>
-
-<script>
-  const links = document.querySelectorAll('.nav-link') as NodeListOf<HTMLElement>
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const id = entry.target.getAttribute('id')
-        const activeLink = document.querySelector(`.nav-link[data-section="${id}"]`) as HTMLElement | null
-
-        if (entry.isIntersecting) {
-          links.forEach((link) => link.classList.remove('active'))
-          if (activeLink) activeLink.classList.add('active')
-        }
-      })
-    },
-    {
-      threshold: window.innerWidth < 768 ? 0.3 : 0.1,
-    }
-  )
-
-  // Observe each section
-  links.forEach((link) => {
-    const section = document.querySelector(`#${link.dataset.section}`) as Element | null
-    if (section) observer.observe(section)
-  })
-</script>

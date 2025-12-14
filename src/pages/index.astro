@@ -15,7 +15,8 @@ import ExperienceCard from '~/components/base/experience_card.astro'
 import ProfileMenu from '~/components/base/ProfileMenu.astro'
 import ProjectThumbnailCard from '~/components/projects/ProjectThumbnailCard.astro'
 import habitBeeThumbnail from 'D:\Documents\Astro.js theme\my-minimal-site\public\projects\habitbeethumbnail.png'
-import ExperienceTimeline from '~/components/base/experience_timeline.astro'
+import Timeline from '~/components/base/Timeline.astro'
+import TimelineItem from '~/components/base/TimelineItem.astro'
 import SkillList from '~/components/base/Skill.astro'
 
 
@@ -213,64 +214,57 @@ const skills = [
               <h2 class="text-2xl sm:text-3xl tracking-tight">Work Experience</h2>
               <p class="text-muted-foreground mb-6 mt-1">Companies I've worked with and the projects I've been involved in.</p>
             </div>
-            <div class="space-y-6">
-          <!-- Experience Item -->
-          
-         
-
-          <ExperienceTimeline
-            company="Appstree"
-            role="Flutter Developer"
-            period="June 2024 - Present"
-            location="Sargodha, Pakistan"
-            type="Full-time"
-            description={[
-    "Developed AI-powered Flutter apps using ChatGPT API and Google ML Kit.",
-    "Improved app performance using Riverpod and Drift.",
-    "Collaborated with design and backend teams to enhance UI/UX."
-  ]}
-            logo="/companies/appstree_logo.jpeg"
-            skills={ [
-  "Dart",
-  "Flutter",
-  "Riverpod",
-  "GetX",
-  "Bloc",
-  "Http",
-  "Dio",
-  "SQLite",
-  "Drift",
-  "Firebase",
-  "Isar",
-  "FVM"
-]}
-          />
-
-          <ExperienceTimeline
-            company="CodeSquare"
-            role="Android Developer"
-            period="June 2023 - Oct 2023"
-            location="Sargodha, Pakistan"
-            type="Intern"
-            description={
-              [
-                 "Built and tested Android applications using Java under senior mentorship.",
-  "Gained hands-on experience by developing multiple small-scale apps and a real-time chat platform for lawyers and clients.",
-  "Strengthened skills in UI design, API integration, and secure communication."
-              ]
-            }
-            logo="/companies/codesquare.jpeg"
-            skills={ [
-  "Java/Kotlin",
-  "Android",
-  "Firebase",
-  "Jetpack Compose",
   
-]}
-          />
+          <Timeline>
+            <TimelineItem
+              company="Appstree"
+              role="Flutter Developer"
+              period="June 2024 - Present"
+              location="Sargodha, Pakistan"
+              type="Full-time"
+              description={[
+                "Developed AI-powered Flutter apps using ChatGPT API and Google ML Kit.",
+                "Improved app performance using Riverpod and Drift.",
+                "Collaborated with design and backend teams to enhance UI/UX."
+              ]}
+              logo="/companies/appstree_logo.jpeg"
+              skills={[
+                "Dart",
+                "Flutter",
+                "Riverpod",
+                "GetX",
+                "Bloc",
+                "Http",
+                "Dio",
+                "SQLite",
+                "Drift",
+                "Firebase",
+                "Isar",
+                "FVM"
+              ]}
+            />
 
-        
-        </div>
+            <TimelineItem
+              company="CodeSquare"
+              role="Android Developer"
+              period="June 2023 - Oct 2023"
+              location="Sargodha, Pakistan"
+              type="Intern"
+              description={[
+                "Built and tested Android applications using Java under senior mentorship.",
+                "Gained hands-on experience by developing multiple small-scale apps and a real-time chat platform for lawyers and clients.",
+                "Strengthened skills in UI design, API integration, and secure communication."
+              ]}
+              logo="/companies/codesquare.jpeg"
+              skills={[
+                "Java/Kotlin",
+                "Android",
+                "Firebase",
+                "Jetpack Compose"
+              ]}
+            />
+          </Timeline>
+
             {/* <ExperienceCard 
   title="Research Consultant"
   company="WorldQuant"
