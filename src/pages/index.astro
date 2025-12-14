@@ -18,6 +18,10 @@ import habitBeeThumbnail from 'D:\Documents\Astro.js theme\my-minimal-site\publi
 import Timeline from '~/components/base/Timeline.astro'
 import TimelineItem from '~/components/base/TimelineItem.astro'
 import SkillList from '~/components/base/Skill.astro'
+import { getLatestMovie } from '~/lib/letterboxd'
+import LetterboxdCard from '~/components/base/LetterboxdCard.astro'
+
+const latestMovie = await getLatestMovie('qasimdx'); // Fetch latest movie
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -176,6 +180,13 @@ const skills = [
 
       </div>
 
+         {latestMovie && (
+               <div class="mt-8">
+                 <p class="text-sm text-muted-foreground mb-3 font-medium uppercase tracking-wider">Recently Watched</p>
+                 <LetterboxdCard movie={latestMovie} />
+               </div>
+            )}
+
       
 
      
@@ -192,6 +203,9 @@ const skills = [
               <p class="text-muted-foreground mb-6 mt-1">Most recent contributions.</p>
             </div>
             <GithubContributions username={GITHUB_USERNAME} tooltipEnabled={TOOLTIP_ENABLED} client:load transition:animate="none" />
+            
+         
+
         {/* <ProfileMenu /> */}
             
           </div>

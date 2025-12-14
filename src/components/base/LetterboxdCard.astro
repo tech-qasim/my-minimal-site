@@ -1,0 +1,88 @@
+---
+import type { LetterboxdItem } from '~/lib/letterboxd'
+
+interface Props {
+  movie: LetterboxdItem
+}
+
+const { movie } = Astro.props
+---
+
+<a
+  href={movie.link}
+  target="_blank"
+  class="group relative flex gap-4 bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-xl p-3 overflow-hidden hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 no-underline hover:bg-gray-50 dark:hover:bg-gray-800/50 items-stretch"
+>
+  <!-- Poster Container -->
+  <div class="relative w-24 sm:w-28 shrink-0 aspect-square rounded-md overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+    <img
+      src={movie.posterUrl}
+      alt={movie.movieTitle}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+    <!-- Rewatch badge -->
+    {
+      movie.rewatch && (
+        <div class="absolute top-1 right-1 bg-black/60 backdrop-blur-sm text-white p-0.5 rounded-full" title="Rewatch">
+          <span class="icon-[mdi--restore] text-[10px] block" />
+        </div>
+      )
+    }
+  </div>
+
+  <!-- Content -->
+  <div class="flex-grow min-w-0 flex flex-col justify-between py-0.5">
+    <div class="flex flex-col gap-1">
+      <div>
+        <h3
+          class="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight truncate group-hover:text-primary transition-colors pr-6"
+        >
+          {movie.movieTitle}
+        </h3>
+        <div class="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground font-medium mt-0.5">
+          <span>{movie.year}</span>
+          {movie.director && <span>•</span>}
+          {movie.director && <span class="truncate max-w-[150px]">{movie.director}</span>}
+          {movie.runtime && <span>•</span>}
+          {movie.runtime && <span>{movie.runtime}</span>}
+        </div>
+      </div>
+
+      {/* Genres */}
+      {
+        movie.genres && movie.genres.length > 0 && (
+          <div class="flex flex-wrap gap-1 mt-1">
+            {movie.genres.map((genre) => (
+              <span class="px-1.5 py-0.5 text-[10px] rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 font-medium border border-gray-200 dark:border-gray-700">
+                {genre}
+              </span>
+            ))}
+          </div>
+        )
+      }
+
+      {/* Review */}
+      {movie.review && <p class="text-xs text-muted-foreground line-clamp-2 mt-2 leading-relaxed italic">"{movie.review}"</p>}
+    </div>
+
+    {/* Footer: Ratings */}
+    <div class="flex items-center gap-4 text-xs font-medium text-muted-foreground mt-2">
+      {/* Letterboxd Rating */}
+
+      {/* User Rating */}
+      {
+        movie.rating > 0 && (
+          <div class="flex items-center gap-1" title="My Rating">
+            <span class="icon-[mdi--star-outline] text-blue-500 text-sm" />
+            <span class="text-gray-900 dark:text-gray-200">{movie.rating}/5</span>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Arrow Icon (Top Right absolute) -->
+  <div class="absolute top-3 right-3 text-gray-400 group-hover:text-primary transition-colors">
+    <span class="icon-[mdi--arrow-top-right] text-lg opacity-0 group-hover:opacity-100 transition-opacity"></span>
+  </div>
+</a>
