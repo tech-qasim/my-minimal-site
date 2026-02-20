@@ -36,7 +36,20 @@ import SocialLink from './SocialLink.astro'
 
     <!-- Social Links -->
     <div class="flex items-center justify-center gap-4 pt-4">
-      {SOCIAL_LINKS.map((item) => <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} />)}
+      {
+        SOCIAL_LINKS.map((item) => {
+          return (
+            <SocialLink
+              href={item.url}
+              icon={item.icon}
+              aria-label={`Link of ${item.name}`}
+              count={item.count}
+              label="followers"
+              tooltip={item.name}
+            />
+          )
+        })
+      }
     </div>
 
     <!-- Response time -->

@@ -147,10 +147,10 @@ const skills = [
       <div class="flex gap-6">
         {
           SOCIAL_LINKS.map((item) => {
-            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" />
+            return <SocialLink href={item.url} icon={item.icon} aria-label={`Link of ${item.name}`} count={item.count} label="followers" tooltip={item.name} />
           })
         }
-        <SocialLink href={`mailto:devmohdqasim@gmail.com`} icon="icon-[ri--mail-fill]" aria-label="Email" label="email" />
+        <SocialLink href={`mailto:devmohdqasim@gmail.com`} icon="icon-[ri--mail-fill]" aria-label="Email" label="email" tooltip="Email" />
 
            
       </div>
@@ -162,12 +162,14 @@ const skills = [
     icon="icon-[fa6-brands--letterboxd]"
     aria-label="Letterboxd"
     label="Letterboxd"
+    tooltip="Letterboxd"
   />
   <SocialLink
     href="https://open.spotify.com/user/31k2flo4njfen3rau6ssvxw7kmau"
     icon="icon-[mdi--spotify]"
     aria-label="Spotify"
     label="Spotify"
+    tooltip="Spotify"
   />
 </div>
 

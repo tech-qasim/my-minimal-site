@@ -76,12 +76,12 @@ export const FOOTER_LINKS: Link[] = [
 // get icon https://icon-sets.iconify.design/
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    name: 'github',
+    name: 'Github',
     url: 'https://github.com/tech-qasim',
     icon: 'icon-[ri--github-fill]',
   },
   {
-    name: 'twitter',
+    name: 'X',
     url: 'https://x.com/devqasim_',
     icon: 'icon-[ri--twitter-x-fill]',
   },
