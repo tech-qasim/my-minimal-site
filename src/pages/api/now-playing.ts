@@ -34,14 +34,14 @@ export const GET: APIRoute = async () => {
       })
       if (!recentRes.ok) {
         return new Response(JSON.stringify({ is_playing: false, item: null }), {
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store, no-cache, must-revalidate', 'Pragma': 'no-cache' },
         })
       }
       const recent = await recentRes.json()
       const track = recent.items?.[0]?.track
       if (!track) {
         return new Response(JSON.stringify({ is_playing: false, item: null }), {
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store, no-cache, must-revalidate', 'Pragma': 'no-cache' },
         })
       }
       return new Response(
@@ -62,7 +62,7 @@ export const GET: APIRoute = async () => {
     const data = await res.json()
     if (!data || !data.item) {
       return new Response(JSON.stringify({ is_playing: false, item: null }), {
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store, no-cache, must-revalidate', 'Pragma': 'no-cache' },
       })
     }
 
@@ -85,7 +85,7 @@ export const GET: APIRoute = async () => {
     console.error('Spotify API error:', err)
     return new Response(JSON.stringify({ is_playing: false, item: null }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store, no-cache, must-revalidate', 'Pragma': 'no-cache' },
     })
   }
 }
