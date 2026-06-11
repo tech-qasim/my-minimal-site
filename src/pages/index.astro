@@ -14,14 +14,11 @@ import { getNumPosts, getPinnedPosts } from '~/lib/data'
 import ExperienceCard from '~/components/base/experience_card.astro'
 import ProfileMenu from '~/components/base/ProfileMenu.astro'
 import ProjectThumbnailCard from '~/components/projects/ProjectThumbnailCard.astro'
-import habitBeeThumbnail from 'D:\Documents\Astro.js theme\my-minimal-site\public\projects\habitbeethumbnail.png'
 import Timeline from '~/components/base/Timeline.astro'
 import TimelineItem from '~/components/base/TimelineItem.astro'
 import SkillList from '~/components/base/Skill.astro'
-import { getLatestMovie } from '~/lib/letterboxd'
-import LetterboxdCard from '~/components/base/LetterboxdCard.astro'
+import InterestsSection from '~/components/base/InterestsSection'
 
-const latestMovie = await getLatestMovie('qasimdx'); // Fetch latest movie
 
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
@@ -178,12 +175,10 @@ const skills = [
 
       </div>
 
-         {latestMovie && (
-               <div class="mt-8">
-                 <p class="text-sm text-muted-foreground mb-3 font-medium uppercase tracking-wider">Recently Watched</p>
-                 <LetterboxdCard movie={latestMovie} />
-               </div>
-            )}
+         <div class="mt-8">
+           <p class="text-sm text-muted-foreground mb-3 font-medium uppercase tracking-wider">Interests & Listening</p>
+           <InterestsSection client:load />
+         </div>
 
       
 
