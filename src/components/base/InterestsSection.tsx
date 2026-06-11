@@ -46,7 +46,7 @@ export default function InterestsSection() {
   const [loadingMovie, setLoadingMovie] = useState(true)
 
   useEffect(() => {
-    fetch('/api/now-playing', { cache: 'no-store' })
+    fetch(`/api/now-playing?t=${Date.now()}`, { cache: 'no-store' })
       .then((res) => res.json())
       .then((data: SpotifyNowPlaying) => {
         setNowPlaying(data)

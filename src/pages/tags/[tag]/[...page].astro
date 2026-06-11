@@ -7,6 +7,8 @@ import Pagination from '~/components/base/Pagination.astro'
 import List from '~/components/posts/card/List.astro'
 import { getAllPosts, getAllTags } from '~/lib/data'
 
+export const prerender = true
+
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const [allPosts, tagsMap] = await Promise.all([getAllPosts(), getAllTags()])
 

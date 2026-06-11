@@ -10,6 +10,8 @@ import { POSTS_CONFIG, SITE } from '~/config'
 import { render } from 'astro:content'
 import { getAllPosts } from '~/lib/data'
 
+export const prerender = true
+
 export async function getStaticPaths() {
   const sortedPosts = await getAllPosts()
   return sortedPosts.map((post, index) => ({

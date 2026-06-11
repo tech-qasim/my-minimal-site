@@ -9,11 +9,12 @@ import { remarkPlugins, rehypePlugins } from './plugins'
 import { SITE } from './src/config'
 import astroIcon from 'astro-icon'
 
-import netlify from '@astrojs/netlify'
+import vercel from '@astrojs/vercel'
 
 export default defineConfig({
   site: SITE.website,
   base: SITE.base,
+  output: 'server',
 
   prefetch: {
     prefetchAll: true,
@@ -31,5 +32,5 @@ export default defineConfig({
   },
 
   integrations: [expressiveCode(), mdx(), react(), sitemap(), robotsTxt(), astroIcon()],
-  adapter: netlify(),
+  adapter: vercel(),
 })

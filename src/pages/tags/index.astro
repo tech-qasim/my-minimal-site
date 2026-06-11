@@ -4,6 +4,8 @@ import Layout from '~/layouts/Layout.astro'
 import { getAllPosts } from '~/lib/data'
 import { getAllTags } from '~/lib/data'
 
+export const prerender = true
+
 const { title, description, introduce } = TAGS_CONFIG
 
 const [tagsMap, posts] = await Promise.all([getAllTags(), getAllPosts()])

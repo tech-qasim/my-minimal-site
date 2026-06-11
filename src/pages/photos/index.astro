@@ -3,6 +3,8 @@ import { PHOTOS_CONFIG, PhotosList } from '~/config'
 import Layout from '~/layouts/Layout.astro'
 import PhotoTimeline from '~/components/photos/PhotoTimeline.astro'
 
+export const prerender = true
+
 const { title, description, introduce } = PHOTOS_CONFIG
 ---
 

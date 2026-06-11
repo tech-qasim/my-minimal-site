@@ -2,6 +2,8 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { SITE } from '~/config'
 
+export const prerender = true
+
 export async function GET(context) {
   const posts = await getCollection('posts')
 
