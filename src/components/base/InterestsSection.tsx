@@ -152,7 +152,7 @@ export default function InterestsSection() {
         <div className="flex items-center gap-2 mb-2 sm:mb-4 z-10">
           <span className="icon-[ri--film-fill] size-3.5 sm:size-4 text-orange-500 animate-[pulse_2.5s_infinite]" />
           <h3 className="font-semibold text-[10px] sm:text-xs tracking-wider uppercase text-slate-500 dark:text-slate-400">
-            Recently Watched Movie
+            Recent Movie
           </h3>
         </div>
 
