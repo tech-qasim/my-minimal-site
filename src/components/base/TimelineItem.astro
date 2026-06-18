@@ -37,16 +37,7 @@ const { company, role, period, location, type, description, logo, skills } = Ast
             </div>
 
             <div class="flex items-center gap-2">
-              <span
-                class:list={[
-                  'text-[10px] sm:text-xs font-medium px-2.5 py-1 rounded-full whitespace-nowrap',
-                  type === 'Full-time'
-                    ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
-                    : 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300',
-                ]}
-              >
-                {type}
-              </span>
+              <span class="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">{period}</span>
               <!-- Chevron -->
               <span
                 class="icon-[mdi--chevron-down] text-2xl text-gray-400 dark:text-gray-600 transition-transform duration-300 group-open:rotate-180"
@@ -55,10 +46,6 @@ const { company, role, period, location, type, description, logo, skills } = Ast
           </div>
 
           <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-            <div class="flex items-center gap-1.5">
-              <span class="icon-[line-md--calendar] size-4 opacity-70"></span>
-              <span>{period}</span>
-            </div>
             <div class="flex items-center gap-1.5">
               <span class="icon-[mdi--location] size-4 opacity-70"></span>
               <span>{location}</span>
