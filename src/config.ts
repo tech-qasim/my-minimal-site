@@ -81,9 +81,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: 'icon-[ri--github-fill]',
   },
   {
-    name: 'X',
-    url: 'https://x.com/devqasim_',
-    icon: 'icon-[ri--twitter-x-fill]',
+    name: 'Email',
+    url: 'mailto:devmohdqasim@gmail.com',
+    icon: 'icon-[ri--mail-fill]',
   },
   {
     name: 'Linkedin',
@@ -95,11 +95,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   //   url: 'https://letterboxd.com/qasimdx/',
   //   icon: 'icon-[fa6-brands--letterboxd]',
   // },
-  {
-    name: 'Discord',
-    url: 'https://discordapp.com/users/1160595134224797716',
-    icon: 'icon-[ic--baseline-discord]',
-  },
 ]
 
 /**
@@ -203,7 +198,7 @@ export const WORK_EXPERIENCE_CONFIG: WorkExperienceConfig = {
     {
       company: 'Appstree, Sargodha',
       role: 'Software Engineer (Flutter)',
-      period: 'June 2024 - Present',
+      period: 'June 2024 - April 2026',
       description: [
         'Built and maintained scalable, high-performance mobile applications using Flutter, with a focus on MVVM architecture, responsive UI, and seamless user experiences across Android and iOS.',
         'Implemented state management solutions like Riverpod and integrated Firebase services (Auth, Firestore, Cloud Messaging) to enable real-time features and cloud functionality.',
