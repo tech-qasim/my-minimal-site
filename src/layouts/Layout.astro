@@ -8,6 +8,7 @@ import BottomNav from '~/components/base/BottomNavigation.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
 import HeaderGradient from '~/components/theme/HeaderGradient.astro'
+import { FlickeringGrid } from '~/components/magicui/flickering-grid'
 
 type Props = {
   title: string
@@ -26,7 +27,19 @@ const { title, description, image }: Props = Astro.props
   <body class="flex flex-col">
     <!-- <Header /> -->
     <HeaderGradient />
-    <div class="grow flex">
+    <div class="absolute inset-0 top-0 left-0 right-0 h-25 overflow-hidden z-0">
+      <FlickeringGrid
+        client:load
+        className="h-full w-full"
+        squareSize={2}
+        gridGap={2}
+        style={{
+          maskImage: "linear-gradient(to bottom, black, transparent)",
+          WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
+        }}
+      />
+    </div>
+    <div class="grow flex relative z-10">
       <main class="relative max-w-3xl mx-auto grow min-w-0 pt-12 pb-20">
         <slot />
       </main>
