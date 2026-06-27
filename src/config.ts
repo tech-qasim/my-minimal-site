@@ -160,6 +160,14 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
           icon: 'icon-[file-icons--bloc]',
         },
         {
+          name: 'Redux',
+          icon: 'icon-[logos--redux]',
+        },
+        {
+          name: 'React Native',
+          icon: 'icon-[logos--react]',
+        },
+        {
           name: 'Git',
           icon: 'icon-[mdi--git]',
         },
